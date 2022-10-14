@@ -1,0 +1,76 @@
+<odoo>
+
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_confirm']" position="after">
+                <button name="button_review"
+                        type="object"
+                        states="to_review"
+                        string="Review"
+                        class="oe_highlight"
+                        groups="sale_custom.group_review_sale_order"
+                />
+                <button name="button_review_reject"
+                        type="object"
+                        states="to_review"
+                        string="Reject"
+                        class="oe_highlight"
+                        groups="sale_custom.group_review_sale_order"
+                />
+            </xpath>
+            <xpath expr="//header//button[@name='action_confirm']" position="after">
+                <button name="button_approve"
+                        type="object"
+                        states="approve"
+                        string="Approve"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_sale_order"
+                />
+                <button name="button_approve_reject"
+                        type="object"
+                        states="approve"
+                        string="Reject"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_sale_order"
+                />
+            </xpath>
+
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page name="misc_info" string="Miscellaneous">
+                    <group>
+                        <group>
+                            <field name="scope_of_work"/>
+                            <field name="term_of_contract"/>
+                            <field name="license_no"/>
+                        </group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="auth_sign_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//field[@name='validity_date']" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
+            </xpath>
+
+<!--            <xpath expr="//field[@name='sale_order_template_id']" position="attributes">-->
+<!--                <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>-->
+<!--            </xpath>-->
+
+            <xpath expr="//field[@name='date_order']" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
