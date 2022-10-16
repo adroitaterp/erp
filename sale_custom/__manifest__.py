@@ -19,11 +19,12 @@
     'version': '15.0.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'hr'],
+    'depends': ['base', 'sale', 'crm'],
 
     # always loaded
     'data': [
         'security/security.xml',
+        'views/lead_views.xml',
         'views/sale_views.xml',
     ],
 
