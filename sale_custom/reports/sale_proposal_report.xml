@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <report id="sale_proposal_report"
+            model="sale.order"
+            string="Proposal"
+            report_type="qweb-pdf"
+            name="sale_custom.sale_proposal_template"
+            file="sale_custom.sale_proposal_template"
+    />
+
+</odoo>

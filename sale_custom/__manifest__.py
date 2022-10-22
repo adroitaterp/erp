@@ -26,6 +26,9 @@
         'security/security.xml',
         'views/lead_views.xml',
         'views/sale_views.xml',
+        'reports/sale_proposal_report.xml',
+        'reports/custom_header_footer.xml',
+        'reports/sale_proposal_template.xml',
     ],
 
 }

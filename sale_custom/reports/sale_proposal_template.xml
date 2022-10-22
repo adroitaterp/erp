@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="sale_proposal_template">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="sale_custom.custom_header"/>
+                    <div class="page">
+                        <div style="page-break-after:always;">
+                            <img t-att-src="'/sale_custom/static/description/ddd.png'" width="100%" style="max-height: 900px;"/>
+                        </div>
+                        <strong style="font-size:25px; color: blue;">
+                            <span t-field="res_company.name"/>
+                        </strong>
+                        <br/>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%; page-break-after:always;">
+                            <p style="font-size: 18px; word-spacing: 12px" class="text-justify">
+                                Thank you for reaching out to us and entrusting us with your Tax Consulting
+                                requirements. We are pleased to present our proposal for our services as independent
+                                authorized, Accredited Accountants, Tax Consultants and F.T.A (Federal Tax Authority)
+                                approved Tax Agents.
+                                <br/>
+                                <br/>
+                                This proposal details the entire requirements regarding the services to be rendered by
+                                our Firm to your esteemed organization. We are committed to satisfying you with our
+                                fees and services, thus please do not hesitate to contact us if you have any queries or
+                                amendments.
+                                <br/>
+                                <br/>
+                                Alliance aims to be a long-term trusted service provider to your organization and it is
+                                our goal to ensure the utmost professionalism and quality of service delivery throughout
+                                all aspects of our relationship. We look forward to working with you.
+                                <br/>
+                                <br/>
+                                Best Regards
+                                <br/>
+                                Mr. Ali El Naggar
+                                <br/>
+                                Tax Partner
+                                <br/>
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <!--                                                            <br/>-->
+                            <!--                                                            <br/>-->
+                            <!--                                                            <br/>-->
+
+                            <img t-att-src="'/sale_custom/static/description/aaa.png'" width="100%"/>
+                        </div>
+                        <br/>
+                        <br/>
+                        <p style="font-size:25px">COMPANY</p>
+                        <strong style="font-size:25px;">
+                            INTRODUCTION
+                        </strong>
+                        <br/>
+                        <br/>
+                        <div style="text-align: right;">
+                            <img t-att-src="'/sale_custom/static/description/hhhh.png'" width="90%"/>
+                        </div>
+                        <br/>
+                        <strong style="font-size:25px;">
+                            Our Brief Profile
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%; page-break-after:always;">
+                            <p style="font-size: 18px; word-spacing: 15px" class="text-justify">
+                                Alliance Adroit Accounting and Bookkeeping (AAA) is a firm of Chartered Accountants,
+                                Auditors, Industrial and Business Advisors, and Management Consultants providing high
+                                quality services.
+                                <br/>
+                                <br/>
+                                Alliance Adroit Accounting and Bookkeeping is an Associate of Adroit Accounting and Tax
+                                Consultancy (AATC) rated among the leading professional service firms, in the United
+                                Arab Emirates (UAE). As an associate of ADROIT CONSULTANCY LIMITED Company
+                                number 12854222 UK, we serve more than 5000 clients with more than 50 professional
+                                staff members, backed up by 7 partners including Overseas.
+                                <br/>
+                                <br/>
+                                <br/>
+                                As one of the very few VAT, Excise Tax, and Customs-related tax experts in the UAE,
+                                we pride ourselves on being market leaders for these services.
+                                <br/>
+                            </p>
+                        </div>
+                        <strong style="font-size:25px;">
+                            Our Values
+                        </strong>
+                        <br/>
+                        <br/>
+                        <strong style="font-size:25px;text-decoration: underline; ">
+                            Client Focused
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px" class="text-justify">
+                                At Alliance Adroit Accounting and Bookkeeping we are looking for a long-term
+                                relationship with our Clients and are willing to add value to the Client’s business. We
+                                listen to Clients and their concerns and put their interests first.a
+                            </p>
+                        </div>
+                        <br/>
+                        <strong style="font-size:25px;text-decoration: underline;">
+                            Quality
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px" class="text-justify">
+                                lliance Adroit Accounting and Bookkeeping is an Approved Tax Agency authorized by
+                                the Federal Tax Authority (FTA) that strictly follows Federal Tax Authority’s
+                                regulations on indirect taxation Excise, VAT, and related engagements. We are required
+                                to
+                                document and demonstrate that our firm strictly complies with the professional ethics
+                                and quality control standards established by International bodies (IFAC)
+                            </p>
+                        </div>
+                        <br/>
+                        <strong style="font-size:25px;text-decoration: underline;">
+                            Professional Development
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px" class="text-justify">
+                                Alliance Adroit Accounting and Bookkeeping provides a full range of professional
+                                consulting, accounting, and tax services that include much more than standard financial
+                                statements and regular tax services. Whether your business is large or small, our
+                                Alliance Adroit experts are on standby to provide customized support and reliable
+                                Consulting, Accounting, and Taxation services.
+                            </p>
+                        </div>
+                        <br/>
+                        <strong style="font-size:25px;text-decoration: underline;">
+                            Accountable
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px" class="text-justify">
+                                We look for actionable solutions that produce tangible measurable results for our
+                                clients. We focus on the practical.
+                            </p>
+                        </div>
+                        <br/>
+                        <strong style="font-size:25px;text-decoration: underline;">
+                            Principle
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px;page-break-after:always;"
+                               class="text-justify">
+                                While advocating for the interests of our clients, we uphold the highest ethical,
+                                regulatory, and legal standards of our profession.
+                                <br/>
+                            </p>
+                        </div>
+                        <t t-call="sale_custom.custom_footer"/>
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
