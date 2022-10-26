@@ -5,11 +5,21 @@
         <t t-call="web.html_container">
             <t t-call="web.basic_layout">
                 <t t-foreach="docs" t-as="doc">
-                    <t t-call="sale_custom.custom_header"/>
+                    <div class="page" t-attf-style="background-image:url('/sale_custom/static/description/ddd.png'); background-size:285mm 260mm; width:255mm; height:252mm;">
+                        <span t-field="doc.name"/>
+
+                    </div>
+
                     <div class="page">
-                        <div style="page-break-after:always;">
-                            <img t-att-src="'/sale_custom/static/description/ddd.png'" width="100%" style="max-height: 900px;"/>
-                        </div>
+                        <t t-call="sale_custom.custom_header"/>
+
+
+                        <!--                        <div>-->
+                        <!--                            <img t-att-src="'/sale_custom/static/description/ddd.png'" width="100%"-->
+                        <!--                                 style="max-height: 900px;"/>-->
+                        <!--                            <span t-field="doc.name"/>-->
+                        <!--                        </div>-->
+                        <p style="page-break-after:always;"/>
                         <strong style="font-size:25px; color: blue;">
                             <span t-field="res_company.name"/>
                         </strong>
@@ -155,6 +165,192 @@
                                 regulatory, and legal standards of our profession.
                                 <br/>
                             </p>
+                        </div>
+                        <br/>
+                        <strong style="font-size:25px;text-decoration: underline;page-break-after:always">
+                            AGREED SCOPE OF WORK
+                        </strong>
+                        <br/>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <span t-field="doc.scope_of_work"/>
+                        </div>
+                        <br/>
+                        <p style="page-break-after:always;"/>
+                        <strong style="font-size:25px;text-decoration: underline;">
+                            Professional Fees
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px;"
+                               class="text-justify">
+                                Our fee for the below services are based on the estimated professional time, skills,
+                                and degree of responsibilities that will be involved in undertaking the assignment
+                                <br/>
+                            </p>
+                        </div>
+                        <br/>
+                        <br/>
+                        <table class="table table-sm o_main_table">
+                            <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th name="th_description" class="text-left">Product</th>
+                                    <th name="th_quantity" class="text-center">QTY</th>
+                                    <th name="th_priceunit" class="text-right">Unit Price</th>
+                                    <th name="th_subtotal" class="text-right">SubTotal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-set="sr_no" t-value="0"/>
+                                <t t-foreach="doc.order_line" t-as="line">
+                                    <t t-set="sr_no" t-value="sr_no + 1"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
+                                       groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
+                                       groups="account.group_show_line_subtotals_tax_included"/>
+
+                                    <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                        <t t-if="not line.display_type">
+                                            <td name="td_name">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td name="td_quantity" class="text-right">
+                                                <span t-field="line.product_uom_qty"/>
+                                            </td>
+                                            <td name="td_priceunit" class="text-right">
+                                                <span t-field="line.price_unit"/>
+                                            </td>
+                                            <td name="td_subtotal" class="text-right o_price_total">
+                                                <span t-field="line.price_subtotal"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="row" style="font-size: 18px; word-spacing: 15px;">
+                            <div class="col-6">
+                                <strong style="font-size:25px;text-decoration: underline;">
+                                    Payment Terms
+                                </strong>
+                                <br/>
+                                <span t-field="doc.payment_term_id.note"/>
+                            </div>
+                            <div class="col-6">
+                                <div style="text-align: right;">
+                                    <img t-att-src="'/sale_custom/static/description/cccc.png'" width="100%"/>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <strong style="font-size:25px;text-decoration: underline;">
+                            Confidentiality
+                        </strong>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px;"
+                               class="text-justify">
+                                In accordance with our firm’s policy, all information submitted by yourselves to us
+                                regarding this assignment shall be kept in the strictest of confidence and shall not be
+                                disclosed to unrelated third parties except where we have received your consent to do
+                                so, or where there is a legal right or duty to disclose
+                                <br/>
+                            </p>
+                        </div>
+                        <p style="page-break-after:always;"/>
+                        <strong style="font-size:25px;text-decoration: underline;">
+                            Terms of Contract
+                        </strong>
+                        <br/>
+                        <br/>
+                        <div style="padding-top: 3px; height=100%;">
+                            <p style="font-size: 18px; word-spacing: 15px;"
+                               class="text-justify">
+                                The term of this agreement is 12 months and will start from _______ and will remain in
+                                force until ____________.
+                                All formal communication and exchange of files containing confidential information will
+                                be held through an authorized email: info@alliance-acc.com.
+                                Alliance Adroit Accounting and Bookkeeping will not be required to perform any other
+                                administrative or reporting functions other than those stated in the scope of work
+                                above. Throughout the term of the Contract, the Client shall pay Alliance Adroit the
+                                agreed fee
+                                in accordance with the fee clause, on a timely basis.
+                                <br/>
+                            </p>
+                            <span t-field="doc.term_of_contract" style="font-size: 18px; word-spacing: 15px;"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p style="font-size: 18px; word-spacing: 15px;"
+                               class="text-justify">
+                                Yours faithfully,
+                                <br/>
+                            </p>
+                            <br/>
+                            <div class="row" style="font-size: 18px;">
+                                <div class="col-6">
+                                    <strong style="font-size:18px;text-decoration: underline;">
+                                        For and on behalf of:
+                                    </strong>
+                                    <br/>
+                                    <p>
+                                        ALLIANCE ADROIT ACCOUNTING and BOOKKEEPING
+                                    </p>
+                                    <p>
+                                        License No: 893417
+                                    </p>
+                                    <p>
+                                        TRN: 100584022600003
+                                    </p>
+                                    <p>
+                                        Name:
+                                        <span t-field="doc.user_id.name"/>
+                                    </p>
+                                    <p>
+                                        Position: Tax Director
+                                    </p>
+                                    <p>
+                                        Signature:
+                                    </p>
+                                    <p>
+                                        Company Stamp:
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <strong style="font-size:18px;text-decoration: underline;">
+                                        For and on the behalf of::
+                                    </strong>
+                                    <br/>
+                                    <p>
+                                        Company Name
+                                    </p>
+                                    <p>
+                                        License No:
+                                    </p>
+                                    <p>
+                                        TRN:
+                                    </p>
+                                    <p>
+                                        Name:
+                                        <!--                                        <span t-field="doc.user_id.name"/>-->
+                                    </p>
+                                    <p>
+                                        Position:
+                                    </p>
+                                    <p>
+                                        Signature:
+                                    </p>
+                                    <p>
+                                        Company Stamp:
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <t t-call="sale_custom.custom_footer"/>
                     </div>
