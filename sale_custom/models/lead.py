@@ -15,3 +15,10 @@ class CRMLeadInh(models.Model):
             'type': 'contact',
         })
         return res
+
+    @api.onchange('user_id')
+    def onchange_user_id(self):
+        template_id = self.env.ref('sale_custom.email_crm_assign').id
+        template = self.env['mail.template'].browse(template_id)
+        template.send_mail(self.id, force_send=True)
+

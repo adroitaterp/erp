@@ -26,4 +26,30 @@
         <field name="category_id" ref="approval_all_document_root"/>
     </record>
 
+<!--    CRM Records-->
+
+    <record id="crm_user_oppor_rule" model="ir.rule">
+        <field name="name">Opportunity User</field>
+        <field name="model_id" ref="model_crm_lead"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+    </record>
+
+    <record id="crm_manager_oppor_rule" model="ir.rule">
+        <field name="name">Opportunity Manager</field>
+        <field name="model_id" ref="model_crm_lead"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('user_id','=', user.id),('user_id.employee_id.parent_id','=', user.employee_id.id)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+
+    <record id="crm_admin_oppor_rule" model="ir.rule">
+        <field name="name">Opportunity Admin</field>
+        <field name="model_id" ref="model_crm_lead"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+    </record>
+
 </odoo>
