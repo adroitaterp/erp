@@ -5,36 +5,52 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//header/button[@name='action_confirm']" position="after">
-                <button name="button_proposal_review"
-                        type="object"
-                        states="to_review"
-                        string="Review"
-                        class="oe_highlight"
-                        groups="sale_custom.group_review_proposal"
-                />
-                <button name="button_proposal_review_reject"
-                        type="object"
-                        states="to_review"
-                        string="Reject"
-                        class="oe_highlight"
-                        groups="sale_custom.group_review_proposal"
-                />
-            </xpath>
+<!--            <xpath expr="//header/button[@name='action_confirm']" position="after">-->
+<!--                <button name="button_proposal_review"-->
+<!--                        type="object"-->
+<!--                        states="to_review"-->
+<!--                        string="Review"-->
+<!--                        class="oe_highlight"-->
+<!--                        groups="sale_custom.group_review_proposal"-->
+<!--                />-->
+<!--                <button name="button_proposal_review_reject"-->
+<!--                        type="object"-->
+<!--                        states="to_review"-->
+<!--                        string="Reject"-->
+<!--                        class="oe_highlight"-->
+<!--                        groups="sale_custom.group_review_proposal"-->
+<!--                />-->
+<!--            </xpath>-->
             <xpath expr="//header//button[@name='action_confirm']" position="after">
                 <button name="button_proposal_approve"
                         type="object"
-                        states="approve"
+                        states="to_proposal_approve"
                         string="Approve"
                         class="oe_highlight"
                         groups="sale_custom.group_approve_proposal"
                 />
                 <button name="button_proposal_approve_reject"
                         type="object"
-                        states="approve"
+                        states="to_proposal_approve"
                         string="Reject"
                         class="oe_highlight"
                         groups="sale_custom.group_approve_proposal"
+                />
+            </xpath>
+            <xpath expr="//header//button[@name='action_confirm']" position="after">
+                <button name="button_contract_approve"
+                        type="object"
+                        states="to_contract_approve"
+                        string="Approve"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                />
+                <button name="button_contract_approve_reject"
+                        type="object"
+                        states="to_contract_approve"
+                        string="Reject"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
                 />
             </xpath>
 
@@ -70,7 +86,20 @@
                 <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
             </xpath>
 
+            <xpath expr="//sheet/notebook/page[@name='customer_signature']" position="after">
+                <page string="Product Description" name="product_description">
+                    <field name="sale_description_lines">
+                        <tree editable="bottom">
+                            <field name="order_id" invisible="1"/>
+                            <field name="product_id"/>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
         </field>
     </record>
+
 
 </odoo>

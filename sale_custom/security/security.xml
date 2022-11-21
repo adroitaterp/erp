@@ -6,20 +6,20 @@
         <field name="description">Helps you handle your Basic needs.</field>
     </record>
 
-    <record id="group_review_proposal" model="res.groups">
-        <field name="name">Proposal Review</field>
-        <field name="category_id" ref="approval_all_document_root"/>
-    </record>
+<!--    <record id="group_review_proposal" model="res.groups">-->
+<!--        <field name="name">Proposal Review</field>-->
+<!--        <field name="category_id" ref="approval_all_document_root"/>-->
+<!--    </record>-->
 
     <record id="group_approve_proposal" model="res.groups">
         <field name="name">Proposal Approve</field>
         <field name="category_id" ref="approval_all_document_root"/>
     </record>
 
-    <record id="group_review_contract" model="res.groups">
-        <field name="name">Contract Review</field>
-        <field name="category_id" ref="approval_all_document_root"/>
-    </record>
+<!--    <record id="group_review_contract" model="res.groups">-->
+<!--        <field name="name">Contract Review</field>-->
+<!--        <field name="category_id" ref="approval_all_document_root"/>-->
+<!--    </record>-->
 
     <record id="group_approve_contract" model="res.groups">
         <field name="name">Contract Approve</field>
