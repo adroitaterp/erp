@@ -5,8 +5,8 @@
         <t t-call="web.html_container">
             <t t-call="web.basic_layout">
                 <t t-foreach="docs" t-as="doc">
-                    <div class="page" t-attf-style="background-image:url('/sale_custom/static/description/ddd.png'); background-size:285mm 260mm; width:255mm; height:252mm;">
-                        <span t-field="doc.name"/>
+                    <div class="page"
+                         t-attf-style="background-image:url('/sale_custom/static/description/ddd.png'); background-size:285mm 260mm; width:255mm; height:252mm;">
 
                     </div>
 
@@ -169,7 +169,30 @@
                         <br/>
                         <strong style="font-size:25px;text-decoration: underline;page-break-after:always">
                             AGREED SCOPE OF WORK
+                            <br/>
+                            <br/>
                         </strong>
+                        <table class="table table-sm o_main_table">
+                            <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th name="th_description" class="text-left">Product</th>
+                                    <th name="th_quantity" class="text-left">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="doc.sale_description_lines" t-as="line">
+                                    <tr>
+                                        <td name="td_name">
+                                            <span t-field="line.product_id.name"/>
+                                        </td>
+                                        <td name="td_description">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
                         <br/>
                         <br/>
                         <div style="padding-top: 3px; height=100%;">
