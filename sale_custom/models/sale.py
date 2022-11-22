@@ -31,6 +31,40 @@ class SaleOrderInherit(models.Model):
 
     sale_description_lines = fields.One2many('sale.description', 'order_id')
 
+    @api.model
+    def create(self, vals):
+        res = super(SaleOrderInherit, self).create(vals)
+        lines = []
+        for r in res.order_line:
+            vals = {
+                'order_id': res.id,
+                'product_id': r.product_id.id,
+                # 'name': r.name,
+            }
+            lines.append(vals)
+        result = self.env['sale.description'].create(lines)
+        return res
+
+    def write(self, vals):
+        res = super(SaleOrderInherit, self).write(vals)
+        for rec in self:
+            result = self.env['sale.order'].browse(self.env.context.get('active_ids'))
+            print(result)
+            lines = []
+            for i in rec.sale_description_lines:
+                i.unlink()
+            for r in rec.order_line:
+                print(r)
+                values = {
+                    'order_id': self.id,
+                    'product_id': r.product_id.id,
+                    # 'name': r.name,
+                }
+                lines.append(values)
+            print(lines)
+            result = self.env['sale.description'].create(lines)
+        return res
+
     @api.onchange('order_line')
     def compute_sale_desc(self):
         for rec in self.order_line:
@@ -71,6 +105,23 @@ class SaleOrderInherit(models.Model):
         })
 
 
+# #
+# class SaleLines(models.Model):
+#     _inherit = 'sale.order.line'
+
+    # def write(self, values):
+    #     if 'product_id' in values:
+    #         record = self.env['sale.description'].search([('product_id', '=', self.product_id.id),('order_id', '=', self.order_id.id)])
+    #         print("ggggggggggggggggggggggggg" , record)
+    #         for r in record:
+    #             r.update({
+    #                 'product_id': values['product_id']
+    #             })
+    #
+    #     res = super(SaleLines, self).write(values)
+    #     return res
+
+
 class SaleNameLines(models.Model):
     _name = 'sale.description'
     _description = 'Sale Description'
@@ -78,6 +129,4 @@ class SaleNameLines(models.Model):
 
     order_id = fields.Many2one('sale.order')
     product_id = fields.Many2one('product.product', string='Product')
-    name = fields.Html('Description')
-
-
+    name = fields.Html('Description' , related='product_id.description')
