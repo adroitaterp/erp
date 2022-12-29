@@ -1,6 +1,6 @@
 
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api,_
 from odoo.exceptions import ValidationError , UserError
 
 
@@ -14,23 +14,12 @@ class CRMLeadInh(models.Model):
             'name': res.name,
             'type': 'contact',
         })
-        res.onchange_user_id_assignee()
-        return res
-
-    def write(self, vals):
-        res = super(CRMLeadInh, self).write(vals)
-        self.onchange_user_id_assignee()
         return res
 
     # @api.onchange('user_id')
-    def onchange_user_id_assignee(self):
-        body = 'Hello,<br/>' + 'Your Lead' + ' ' + str(self.name) + ' ' + ' ' + ' is assigned to you.<br/>' + 'Do not hesitate to contact us if you have any questions<br/><br/>' + 'Thank you<br/>' + self.env.user.name
-        mail_values = {
-            'subject': 'Your Lead' + ' ' + self.name,
-            'body_html': body,
-            'email_to': self.user_id.login,
-            'email_from': self.env.user.login,
-            'reply_to': self.env.user.login,
-        }
-        create_and_send_email = self.env['mail.mail'].create(mail_values).send()
+    # def onchange_user_id(self):
+    #     if self.user_id:
+    #         template_id = self.env.ref('sale_custom.email_crm_assign').id
+    #         template = self.env['mail.template'].browse(template_id)
+    #         template.send_mail(self.id, force_send=True)
 

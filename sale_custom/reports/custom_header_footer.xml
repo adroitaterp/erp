@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="custom_header">
-        <div class="header ">
-            <div class="row" style="font-size:17px">
-                <div class="col-5">
-                    <span>
-                        <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" alt="Logo"
-                             width="50%"/>
-                    </span>
-                </div>
-                <div class="col-1">
-
-                </div>
-                <div class="col-4">
-                    <!--                    <span style="font-weight:bold;text-color: #FFD700;">REAL ESTATE . INTERIORS . HOLIDAY HOMES</span>-->
-                </div>
-            </div>
+        <div class="header " >
+            <table>
+                <tr width="100%">
+                    <img t-att-src="'/sale_custom/static/description/header_small.PNG'" width="100%"/>
+                </tr>
+                <br/>
+                <tr width="100%">
+                    <td width="80%" style="text-align:center;">
+                        <h5 style="text-decoration:overline underline;">
+                            <strong>
+                                Alliance Prime Accounting and Tax Consultancy (APATC)
+                            </strong>
+                        </h5>
+                    </td>
+                    <td style="text-align:left;" width="20%" >
+                        <img t-att-src="'/sale_custom/static/description/logo.png'" height="70%"/>
+                    </td>
+                </tr>
+            </table>
         </div>
     </template>
 
     <template id="custom_footer">
-        <div class="footer">
-            <div style="background-color: rgb(199, 213, 219)" height="100%"
-                 width="100%">
-                <div class="row mt64">
-                    <div class="col-4">
-                    </div>
-
-                    <div class="col-10" style="font-size:22px;float: right ;color: blue">
-                        <strong>Alliance Adroit Accounting and Bookkeeping</strong>
+        <div class="footer" style="margin:0;padding:0;" width="100%" height="100%">
+            <div style="background-color:darkblue; text-align:right;color:white;">
+                <table class="text-right">
+                    <tr style="text-align:right">
+                        <strong style="font-size:23px;">Alliance Adroit Accounting and Bookkeeping</strong>
                         <br/>
-                        <span t-field="res_company.phone"/>
-                        <br/>
-                        <span t-field="res_company.street"/>
-                    </div>
-                </div>
+                    </tr>
+                    <tr style="text-align:right">
+                        <strong style="font-size:17px;">
+                            <i class="fa fa-link">
+                                <span t-field="res_company.website"/>
+                            </i>
+                            <i class="fa fa-envelope">
+                                <span t-field="res_company.email"/>
+                            </i>
+                            <i class="fa fa-phone icon-large">
+                                <span t-field="res_company.phone"/>
+                            </i>
+                        </strong>
 
-                <!--                <div class="col-7" style="float: right">-->
-                <!--                    <p style="font-size:27px;float: right">Alliance Adroit Accounting and Bookkeeping</p>-->
-                <!--                    <span t-field="res_company.phone" style="font-size:22px;float: right"/>-->
-                <!--                    <br/>-->
-                <!--                    <p style="font-size:22px;">OFF No.</p>-->
-                <!--                    <span t-field="res_company.street" style="font-size:22px;float: right"/>-->
-                <!--                    <br/>-->
-                <!--                </div>-->
+
+                        <br/>
+                    </tr>
+                    <tr class="text-right">
+                        <strong style="font-size:17px;">
+                            <span t-field="res_company.street"/>
+                        </strong>
+                    </tr>
+                    <br/>
+                    <br/>
+                    <br/>
+                </table>
             </div>
         </div>
     </template>

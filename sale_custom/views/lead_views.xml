@@ -33,13 +33,6 @@
                 <attribute name="groups">base.group_user</attribute>
             </xpath>
 
-            <xpath expr="//header" position="inside">
-                <button name="onchange_user_id_assignee"
-                        string="Send"
-                        type="object"
-                />
-            </xpath>
-
         </field>
     </record>
 
