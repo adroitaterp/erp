@@ -16,15 +16,15 @@
                     <div class="page">
                         <t t-call="sale_custom.custom_header"/>
                         <div style="padding-left:-50px;padding-right:-50px;">
-<!--                            <div class="text-center">-->
-<!--                                <br/>-->
-<!--                                <h5 style="text-align:center;text-decoration:overline underline;">-->
-<!--                                    <strong>-->
-<!--                                        Alliance Prime Accounting and Tax Consultancy (APATC)-->
-<!--                                    </strong>-->
-<!--                                </h5>-->
-<!--                            </div>-->
-<!--                            <br/>-->
+                            <!--                            <div class="text-center">-->
+                            <!--                                <br/>-->
+                            <!--                                <h5 style="text-align:center;text-decoration:overline underline;">-->
+                            <!--                                    <strong>-->
+                            <!--                                        Alliance Prime Accounting and Tax Consultancy (APATC)-->
+                            <!--                                    </strong>-->
+                            <!--                                </h5>-->
+                            <!--                            </div>-->
+                            <!--                            <br/>-->
                             <br/>
                             <img t-att-src="'/sale_custom/static/description/front.PNG'" width="100%"
                                  style="max-height: 900px;"/>
@@ -531,6 +531,9 @@
                                         <p>
                                             Company Stamp:
                                         </p>
+                                        <img t-att-src="'/sale_custom/static/description/STAMP.png'" height="200px"
+                                             width="80%"/>
+
                                     </div>
                                 </div>
                             </div>
