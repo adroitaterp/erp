@@ -131,4 +131,5 @@ class SaleNameLines(models.Model):
 
     order_id = fields.Many2one('sale.order')
     product_id = fields.Many2one('product.product', string='Product')
-    name = fields.Text('Description' , related='product_id.description')
+    name = fields.Text('Description')
+    # name = fields.Text('Description' , related='product_id.description')
