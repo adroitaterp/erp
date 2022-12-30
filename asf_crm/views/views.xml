@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+
+        <record id="view_crm_activity_report_edit_inh" model="ir.ui.view">
+            <field name="name">crm.activity.report.tree.inh</field>
+            <field name="model">crm.activity.report</field>
+            <field name="inherit_id" ref="crm.crm_activity_report_view_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='body']"  position="after">
+                    <field name="attendees"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_user_activity_report_action" model="ir.actions.act_window">
+            <field name="name">Activities</field>
+            <field name="res_model">crm.activity.report</field>
+            <field name="view_mode">graph,pivot,tree</field>
+            <field name="context">{
+                'search_default_completion_date': 1,
+                'pivot_column_groupby': ['subtype_id', 'mail_activity_type_id'],
+                'pivot_row_groupby': ['date:month'],
+                'graph_mode': 'bar',
+                'graph_groupbys': ['date:month', 'subtype_id'],
+                }</field>
+            <field name="domain">[('user_id', '=', uid),('mail_activity_type_id.category', '=', 'meeting')]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No data yet!
+                </p><p>
+                Start scheduling activities on your opportunities
+            </p>
+            </field>
+        </record>
+
+        <menuitem
+                id="crm_user_activity_report_menu"
+                name="Meeting Activities"
+                parent="crm.crm_menu_report"
+                action="crm_user_activity_report_action"
+                sequence="4"/>
+
+    </data>
+</odoo>
