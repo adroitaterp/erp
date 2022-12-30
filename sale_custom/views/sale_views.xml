@@ -5,22 +5,6 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-<!--            <xpath expr="//header/button[@name='action_confirm']" position="after">-->
-<!--                <button name="button_proposal_review"-->
-<!--                        type="object"-->
-<!--                        states="to_review"-->
-<!--                        string="Review"-->
-<!--                        class="oe_highlight"-->
-<!--                        groups="sale_custom.group_review_proposal"-->
-<!--                />-->
-<!--                <button name="button_proposal_review_reject"-->
-<!--                        type="object"-->
-<!--                        states="to_review"-->
-<!--                        string="Reject"-->
-<!--                        class="oe_highlight"-->
-<!--                        groups="sale_custom.group_review_proposal"-->
-<!--                />-->
-<!--            </xpath>-->
             <xpath expr="//header//button[@name='action_confirm']" position="after">
                 <button name="button_proposal_approve"
                         type="object"
@@ -77,11 +61,6 @@
             <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
             </xpath>
-
-<!--            <xpath expr="//field[@name='sale_order_template_id']" position="attributes">-->
-<!--                <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>-->
-<!--            </xpath>-->
-
             <xpath expr="//field[@name='date_order']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
             </xpath>
@@ -97,6 +76,10 @@
                     </field>
                 </page>
             </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+				<field name="start_date"/>
+				<field name="end_date"/>
+			</xpath>
 
         </field>
     </record>

@@ -28,6 +28,8 @@ class SaleOrderInherit(models.Model):
     auth_sign_id = fields.Many2one('hr.employee', string='Authorised Signatory')
     term_of_contract = fields.Text(string='Term of Contract')
     license_no = fields.Char(string='License No')
+    start_date = fields.Date('Start Date')
+    end_date = fields.Date('End Date')
 
     sale_description_lines = fields.One2many('sale.description', 'order_id')
 
@@ -129,4 +131,4 @@ class SaleNameLines(models.Model):
 
     order_id = fields.Many2one('sale.order')
     product_id = fields.Many2one('product.product', string='Product')
-    name = fields.Html('Description' , related='product_id.description')
+    name = fields.Text('Description' , related='product_id.description')
