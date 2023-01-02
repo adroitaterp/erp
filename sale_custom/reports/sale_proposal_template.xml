@@ -16,47 +16,62 @@
                     <div class="page">
                         <t t-call="sale_custom.custom_header"/>
                         <div style="padding-left:-50px;padding-right:-50px;">
-                            <!--                            <div class="text-center">-->
-                            <!--                                <br/>-->
-                            <!--                                <h5 style="text-align:center;text-decoration:overline underline;">-->
-                            <!--                                    <strong>-->
-                            <!--                                        Alliance Prime Accounting and Tax Consultancy (APATC)-->
-                            <!--                                    </strong>-->
-                            <!--                                </h5>-->
-                            <!--                            </div>-->
-                            <!--                            <br/>-->
                             <br/>
                             <img t-att-src="'/sale_custom/static/description/front.PNG'" width="100%"
                                  style="max-height: 900px;"/>
                             <br/>
                             <br/>
                             <div style="padding-left:50px;padding-right:50px;">
-                                <t t-if="doc.state in ['to_proposal_approve','draft' ,'sent' ,'to_contract_approve']">
-                                    <strong style="font-size:16px;color: blue;">
-                                        PROPOSAL
+                                <!--                                <t t-if="doc.state in ['to_proposal_approve','draft' ,'sent' ,'to_contract_approve']">-->
+                                <!--                                    <strong style="font-size:16px;color: blue;">-->
+                                <!--                                        PROPOSAL-->
+                                <!--                                        <br/>-->
+                                <!--                                    </strong>-->
+                                <!--                                </t>-->
+                                <!--                                <t t-if="doc.state in ['sale']">-->
+                                <!--                                    <strong style="font-size:16px;color: blue;">-->
+                                <!--                                        CONTRACT-->
+                                <!--                                        <br/>-->
+                                <!--                                    </strong>-->
+                                <!--                                </t>-->
+                                <!--                                <strong style="color: red;">-->
+                                <!--                                    Prepared For:-->
+                                <!--                                </strong>-->
+                                <!--                                <br/>-->
+                                <table class="table table-borderless table-sm" style="border:none">
+                                    <tr>
+                                        <t t-if="doc.state in ['to_proposal_approve','draft' ,'sent' ,'to_contract_approve']">
+                                            <td>
+                                                <strong style="font-size:16px;color: blue;">
+                                                    PROPOSAL
+                                                </strong>
+                                            </td>
+                                        </t>
+                                        <t t-if="doc.state in ['sale']">
+                                            <td>
+                                                <strong style="font-size:16px;color: blue;">
+                                                    CONTRACT
+                                                </strong>
+                                            </td>
+                                        </t>
                                         <br/>
-                                    </strong>
-                                </t>
-                                <t t-if="doc.state in ['sale']">
-                                    <strong style="font-size:16px;color: blue;">
-                                        CONTRACT
-                                        <br/>
-                                    </strong>
-                                </t>
-                                <strong style="color: red;">
-                                    Prepared For:
-                                </strong>
-                                <br/>
-                                <table>
-                                    <tr width="100%">
-                                        <th width="60%">Company Name</th>
-                                        <td width="40%">
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong style="color: red;">
+                                                Prepared For:
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Company Name</th>
+                                        <td width="80%">
                                             <span t-field="doc.partner_id.name"/>
                                         </td>
                                     </tr>
-                                    <tr width="100%">
-                                        <th width="60%">Date</th>
-                                        <td width="40%">
+                                    <tr>
+                                        <th width="20%">Date</th>
+                                        <td width="80%">
                                             <span t-esc="context_timestamp(doc.date_order).strftime('%d/%m/%Y')"/>
                                         </td>
                                     </tr>
