@@ -42,7 +42,7 @@ class SaleOrderInherit(models.Model):
             vals = {
                 'order_id': res.id,
                 'product_id': r.product_id.id,
-                'name': r.name,
+                'name': r.product_id.description,
             }
             lines.append(vals)
         result = self.env['sale.description'].create(lines)
@@ -61,7 +61,7 @@ class SaleOrderInherit(models.Model):
                 values = {
                     'order_id': self.id,
                     'product_id': r.product_id.id,
-                    'name': r.name,
+                    'name': r.product_id.description,
                 }
                 lines.append(values)
             print(lines)
@@ -132,5 +132,6 @@ class SaleNameLines(models.Model):
 
     order_id = fields.Many2one('sale.order')
     product_id = fields.Many2one('product.product', string='Product')
-    name = fields.Text('Description')
+    name = fields.Html('Description')
+    # name = fields.Text('Description')
     #name = fields.Text('Description' , related='product_id.description')
