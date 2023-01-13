@@ -80,7 +80,7 @@
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="start_date"/>
                 <field name="end_date"/>
-                                <field name="payment_terms_note"/>
+                <field name="payment_terms_note"/>
 
             </xpath>
 <!--            <xpath expr="//field[@name='sale_order_template_id']" position="after">-->
