@@ -30,7 +30,8 @@ class SaleOrderInherit(models.Model):
     license_no = fields.Char(string='License No')
     start_date = fields.Date('Start Date')
     end_date = fields.Date('End Date')
-
+    payment_terms_note = fields.Text(string='Payment Terms Note')
+    termination_days = fields.Integer('Termination Days')
     sale_description_lines = fields.One2many('sale.description', 'order_id')
 
     @api.model
@@ -41,7 +42,7 @@ class SaleOrderInherit(models.Model):
             vals = {
                 'order_id': res.id,
                 'product_id': r.product_id.id,
-                # 'name': r.name,
+                'name': r.name,
             }
             lines.append(vals)
         result = self.env['sale.description'].create(lines)
@@ -60,7 +61,7 @@ class SaleOrderInherit(models.Model):
                 values = {
                     'order_id': self.id,
                     'product_id': r.product_id.id,
-                    # 'name': r.name,
+                    'name': r.name,
                 }
                 lines.append(values)
             print(lines)

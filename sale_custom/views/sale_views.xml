@@ -49,6 +49,7 @@
                         <group>
                             <field name="employee_id"/>
                             <field name="auth_sign_id"/>
+                            <field name="termination_days"/>
                         </group>
                     </group>
                 </page>
@@ -77,9 +78,15 @@
                 </page>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-				<field name="start_date"/>
-				<field name="end_date"/>
-			</xpath>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                                <field name="payment_terms_note"/>
+
+            </xpath>
+<!--            <xpath expr="//field[@name='sale_order_template_id']" position="after">-->
+<!--&lt;!&ndash;                <label for="payment_terms_note" string="Payment Terms Note"/>&ndash;&gt;-->
+<!--                <field name="payment_terms_note"/>-->
+<!--            </xpath>-->
 
         </field>
     </record>

@@ -131,6 +131,7 @@
                                             <br/>
                                             Mr.
                                             <span t-field="doc.employee_id.name"/>
+                                            <br/>
                                             Tax Partner
                                         </p>
                                     </div>
@@ -141,7 +142,7 @@
                             </div>
                             <br/>
                             <br/>
-                            <h4>The Tax, Audit and Consulting Advisors to ALL UAE businesses.</h4>
+                            <h4>The Tax, Audit and Consulting Advisors to ALL UAE Businesses.</h4>
                             <p style="font-size:18px">Alliance Prime Accounting and Tax Consultancy was established in
                                 the
                                 hub for global trade....
@@ -264,8 +265,8 @@
                             <table class="table table-bordered">
                                 <thead style="display: table-row-group">
                                     <tr>
-                                        <th name="th_description" class="text-left">Service</th>
-                                        <th name="th_quantity" class="text-left">Description</th>
+                                        <th name="th_description" class="text-left" width="30%">Service</th>
+                                        <th name="th_quantity" class="text-left" width="70%">Description</th>
                                     </tr>
                                 </thead>
                                 <tbody class="sale_tbody">
@@ -296,7 +297,7 @@
                                 <p style="font-size: 18px;"
                                    class="text-justify">
                                     Based off of the estimated professional time, skills, and degree of
-                                    responsibilities that will be involved in executing the above mentioned
+                                    responsibilities that will be involved in executing the above-mentioned
                                     services and inclusive of additional requirements discussed, kindly see the
                                     below proposal.
                                     <br/>
@@ -360,25 +361,26 @@
                                     INSERT SPECIFIC DETAILS OF EACH PAYMENT
                                 </strong>
                                 <br/>
-                                <strong>
-                                    Excise Annual Services:
-                                </strong>
-                                <br/>
-                                paid in advance on a quarterly basis.
-                                <br/>
-                                <strong>
-                                    Excise Registration:
-                                </strong>
-                                <br/>
-                                paid in advance, a one-time payment.
-                                <br/>
-                                <strong>
-                                    RSP Registration:
-                                </strong>
-                                <br/>
-                                Payable 50% advance payment on<span t-field="doc.date_order"/>, remaining 50% due
-                                upon FTA approval.
-                                <br/>
+                                <span t-field="doc.payment_terms_note"/>
+                                <!--                                <strong>-->
+                                <!--                                    Excise Annual Services:-->
+                                <!--                                </strong>-->
+                                <!--                                <br/>-->
+                                <!--                                paid in advance on a quarterly basis.-->
+                                <!--                                <br/>-->
+                                <!--                                <strong>-->
+                                <!--                                    Excise Registration:-->
+                                <!--                                </strong>-->
+                                <!--                                <br/>-->
+                                <!--                                paid in advance, a one-time payment.-->
+                                <!--                                <br/>-->
+                                <!--                                <strong>-->
+                                <!--                                    RSP Registration:-->
+                                <!--                                </strong>-->
+                                <!--                                <br/>-->
+                                <!--                                Payable 50% advance payment on<span t-field="doc.date_order"/>, remaining 50% due-->
+                                <!--                                upon FTA approval.-->
+                                <!--                                <br/>-->
                                 <strong>
                                     <h3>
                                         Acceptable payment methods:
@@ -393,13 +395,13 @@
                                 </strong>
                                 <br/>
                                 <strong style="padding-left:50px;padding-right:50px;">
-                                    Bank transfer:
+                                    Bank Transfer
                                 </strong>
                                 <br/>
                             </p>
-                            <br/>
-                            <br/>
-                            <br/>
+                            <!--                            <br/>-->
+                            <!--                            <br/>-->
+                            <!--                            <br/>-->
                             <strong style="font-size:25px;text-decoration: underline;">
                                 Confidentiality
                             </strong>
@@ -425,7 +427,7 @@
                             <div style="padding-top: 3px; height=100%;">
                                 <p style="font-size: 18px;"
                                    class="text-justify">
-                                    By signing this PROPOSAL, The Client is in agreement with the above mentioned
+                                    By signing this PROPOSAL, The Client is in agreement with the above-mentioned
                                     OBJECTIVE * SCOPE OF SERVICES and in agreement with commencement date of services as
                                     well as the payment terms and conditions.
                                     <br/>
@@ -461,6 +463,25 @@
                                     <br/>
                                 </p>
                                 <!--                                <span t-field="doc.term_of_contract" style="font-size: 18px; word-spacing: 15px;"/>-->
+                                <strong style="font-size:25px;text-decoration: underline;">
+                                    TERMINATION CLAUSE
+                                </strong>
+                                <br/>
+                                <div style="padding-top: 3px; height=100%;">
+                                    <p style="font-size: 18px;"
+                                       class="text-justify">
+                                        This contract may be cancelled at any time by either party, but not while
+                                        Alliance Prime Accounting and Tax Consultancy (APATC) is doing job, by providing
+                                        written notice to APATC at least <span t-field="doc.termination_days"/> prior to the effective date
+                                        of termination. The Client will compensate the company for the services
+                                        performed and expenditures spent until the effective date of termination under
+                                        the provisions of this contract if the contract is terminated. Following the
+                                        completion of services, APATC will deliver The Client's file and property in
+                                        Alliance possession, for which The Client has paid for all services, at The
+                                        Client's request.
+                                    </p>
+                                </div>
+                                <br/>
                                 <strong style="font-size:25px;text-decoration: underline;">
                                     APPLICABLE LAWS
                                 </strong>
@@ -507,7 +528,7 @@
                                         </p>
                                         <p>
                                             Name:
-                                            <span t-field="doc.user_id.name"/>
+                                            <span t-field="res_company.name"/>
                                         </p>
                                         <p>
                                             Position: Tax Director
@@ -518,6 +539,10 @@
                                         <p>
                                             Company Stamp:
                                         </p>
+                                        <p>
+                                            <img t-att-src="'/sale_custom/static/description/STAMP.png'" height="200px"
+                                                 width="80%"/>
+                                        </p>
                                     </div>
                                     <div class="col-6">
                                         <strong style="font-size:18px;text-decoration: underline;">
@@ -525,13 +550,14 @@
                                         </strong>
                                         <br/>
                                         <p>
-                                            Company Name
+                                            <span t-field="doc.partner_id.name"/>
                                         </p>
                                         <p>
                                             License No:
                                         </p>
                                         <p>
                                             TRN:
+                                            <span t-field="doc.partner_id.vat"/>
                                         </p>
                                         <p>
                                             Name:
@@ -546,10 +572,11 @@
                                         <p>
                                             Company Stamp:
                                         </p>
-                                        <img t-att-src="'/sale_custom/static/description/STAMP.png'" height="200px"
-                                             width="80%"/>
+
 
                                     </div>
+                                    <br/>
+
                                 </div>
                             </div>
                         </div>
