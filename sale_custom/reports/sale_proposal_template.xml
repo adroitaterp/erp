@@ -358,7 +358,8 @@
                                 <strong>EXCLUSIVE. *A tax invoice will be issued upon receipt of payment.</strong>
                                 <br/>
                                 <strong>
-                                    INSERT SPECIFIC DETAILS OF EACH PAYMENT
+                                    <span t-field="doc.payment_details"/>
+<!--                                    INSERT SPECIFIC DETAILS OF EACH PAYMENT-->
                                 </strong>
                                 <br/>
                                 <span t-field="doc.payment_terms_note"/>
@@ -472,7 +473,7 @@
                                        class="text-justify">
                                         This contract may be cancelled at any time by either party, but not while
                                         Alliance Prime Accounting and Tax Consultancy (APATC) is doing job, by providing
-                                        written notice to APATC at least <span t-field="doc.termination_days"/> prior to the effective date
+                                        written notice to APATC at least <span t-field="doc.termination_days"/> days prior to the effective date
                                         of termination. The Client will compensate the company for the services
                                         performed and expenditures spent until the effective date of termination under
                                         the provisions of this contract if the contract is terminated. Following the
@@ -518,7 +519,7 @@
                                         </strong>
                                         <br/>
                                         <p>
-                                            ALLIANCE ADROIT ACCOUNTING and BOOKKEEPING
+                                            Alliance Prime Accounting and Tax Consultancy (APATC)
                                         </p>
                                         <p>
                                             License No: 893417
@@ -528,10 +529,11 @@
                                         </p>
                                         <p>
                                             Name:
-                                            <span t-field="res_company.name"/>
+                                            <span t-field="doc.auth_sign_id.name"/>
                                         </p>
                                         <p>
-                                            Position: Tax Director
+                                            Position:
+                                            <span t-field="doc.auth_sign_id.job_title"/>
                                         </p>
                                         <p>
                                             Signature:
@@ -554,6 +556,7 @@
                                         </p>
                                         <p>
                                             License No:
+                                            <span t-field="doc.partner_id.license_no"/>
                                         </p>
                                         <p>
                                             TRN:
@@ -561,10 +564,11 @@
                                         </p>
                                         <p>
                                             Name:
-                                            <!--                                        <span t-field="doc.user_id.name"/>-->
+                                            <span t-field="doc.contact_id.name"/>
                                         </p>
                                         <p>
                                             Position:
+                                            <span t-field="doc.contact_id.function"/>
                                         </p>
                                         <p>
                                             Signature:

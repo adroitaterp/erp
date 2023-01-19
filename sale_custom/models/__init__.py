@@ -2,3 +2,4 @@
 
 from . import sale
 from . import lead
+from . import res_partner

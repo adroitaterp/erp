@@ -32,7 +32,19 @@ class SaleOrderInherit(models.Model):
     end_date = fields.Date('End Date')
     payment_terms_note = fields.Text(string='Payment Terms Note')
     termination_days = fields.Integer('Termination Days')
+    payment_details = fields.Text('Payment Details')
+    contact_id = fields.Many2one('res.partner', string='Contact')
+
     sale_description_lines = fields.One2many('sale.description', 'order_id')
+
+    contact_ids = fields.Many2many('res.partner', string='Contacts', compute='compute_contact_ids')
+
+    @api.depends('contact_id')
+    def compute_contact_ids(self):
+        # contacts = self.env['res.partner'].search([('is_eng', '=', True)])
+        for rec in self:
+            contacts = rec.partner_id.child_ids.ids
+        self.contact_ids = contacts
 
     @api.model
     def create(self, vals):

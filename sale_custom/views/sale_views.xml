@@ -50,6 +50,9 @@
                             <field name="employee_id"/>
                             <field name="auth_sign_id"/>
                             <field name="termination_days"/>
+                            <field name="payment_details"/>
+                            <field name="contact_id" domain="[('id', 'in', contact_ids)]"/>
+                            <field name="contact_ids" invisible="1"/>
                         </group>
                     </group>
                 </page>

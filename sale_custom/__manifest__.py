@@ -28,6 +28,7 @@
         # 'data/mail_template.xml',
         'views/lead_views.xml',
         'views/sale_views.xml',
+        'views/partner_views.xml',
         'reports/sale_proposal_report.xml',
         'reports/custom_header_footer.xml',
         'reports/sale_proposal_template.xml',

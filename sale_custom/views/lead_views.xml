@@ -6,28 +6,27 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='company_id']" position="attributes">
-                <attribute name="required">0</attribute>
-            </xpath>
-            <xpath expr="//field[@name='phone']" position="attributes">
-                <attribute name="required">0</attribute>
-            </xpath>
-            <xpath expr="//field[@name='email_from']" position="attributes">
-                <attribute name="required">0</attribute>
+                <attribute name="required">1</attribute>
             </xpath>
 
-            <xpath expr="//field[@name='street']" position="attributes">
-                <attribute name="required">0</attribute>
-            </xpath>
-            <xpath expr="//field[@name='street2']" position="attributes">
-                <attribute name="required">0</attribute>
-            </xpath>
-            <xpath expr="//field[@name='city']" position="attributes">
-                <attribute name="required">0</attribute>
-            </xpath>
-
-            <xpath expr="//field[@name='mobile']" position="attributes">
-                <attribute name="required">0</attribute>
-            </xpath>
+<!--            <xpath expr="//field[@name='phone']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='email_from']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='street']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='street2']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='city']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='mobile']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
 
             <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="groups">base.group_user</attribute>
