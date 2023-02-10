@@ -32,6 +32,7 @@
         'reports/sale_proposal_report.xml',
         'reports/custom_header_footer.xml',
         'reports/sale_proposal_template.xml',
+        'reports/sale_contract_template.xml',
     ],
 
 }

@@ -24,5 +24,14 @@
             name="sale_custom.sale_proposal_template"
             file="sale_custom.sale_proposal_template"
             paperformat="paperformat_report_proposal_id"/>
+            
+    <report id="sale_contract_report"
+            model="sale.order"
+            string="Contract"
+            report_type="qweb-pdf"
+            name="sale_custom.sale_contract_template"
+            file="sale_custom.sale_contract_template"
+            paperformat="paperformat_report_proposal_id"/>
+            
 
 </odoo>
