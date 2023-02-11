@@ -23,6 +23,7 @@ class SaleOrderInherit(models.Model):
         ('rejected', 'Rejected'),
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='to_proposal_approve')
 
+    until_completion = fields.Boolean('Until Completion')
     scope_of_work = fields.Text(string='Customer Note')
     employee_id = fields.Many2one('hr.employee', string='Employee')
     auth_sign_id = fields.Many2one('hr.employee', string='Authorised Signatory')

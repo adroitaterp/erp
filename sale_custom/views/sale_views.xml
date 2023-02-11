@@ -38,6 +38,7 @@
                 />
             </xpath>
 
+
             <xpath expr="//page[@name='order_lines']" position="after">
                 <page name="misc_info" string="Miscellaneous">
                     <group>
@@ -82,7 +83,8 @@
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="start_date"/>
-                <field name="end_date"/>
+                <field name="until_completion"/>
+                <field name="end_date" attrs="{'invisible': [('until_completion', '=', True)]}"/>
                 <field name="payment_terms_note"/>
 
             </xpath>

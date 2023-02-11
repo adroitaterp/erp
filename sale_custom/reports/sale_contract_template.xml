@@ -445,7 +445,13 @@
 
                                     The term of this agreement is:
                                     <span t-field="doc.start_date"/>
-                                    UNTIL<span t-field="doc.end_date"/>.
+                                    UNTIL
+                                    <t t-if="doc.until_completion">
+                                        COMPLETION
+                                    </t>
+                                    <t t-else="">
+                                    <span t-field="doc.end_date"/>
+                                    </t>
                                     <br/>
 
                                     All formal communication and exchange of files containing confidential information

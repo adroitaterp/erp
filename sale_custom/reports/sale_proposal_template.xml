@@ -117,7 +117,7 @@
                                         <br/>
                                         <p style="font-size: 18px;" class="text-justify">Throughout this
                                             proposal, we have provided you with the details for each service
-                                            discussed to be rendered by the Alliance Prime for<span
+                                            discussed to be rendered by the Alliance Prime for <span
                                                     t-field="doc.partner_id.name"/>.
                                             <br/>
                                             <br/>
@@ -445,7 +445,13 @@
 
                                     The term of this agreement is:
                                     <span t-field="doc.start_date"/>
-                                    UNTIL<span t-field="doc.end_date"/>.
+                                    UNTIL
+                                    <t t-if="doc.until_completion">
+                                        COMPLETION
+                                    </t>
+                                    <t t-else="">
+                                    <span t-field="doc.end_date"/>
+                                    </t>
                                     <br/>
 
                                     All formal communication and exchange of files containing confidential information
@@ -467,7 +473,7 @@
                                     <br/>
 
                                     Alliance Prime Accounting and Tax Consultancy accepts no liability to indemnify the
-                                    business for any losses, expenses, or liabilities incurred by<span
+                                    business for any losses, expenses, or liabilities incurred by <span
                                         t-field="doc.partner_id.name"/>, due to
                                     tax or any other statutory or contractual liability to any third party arising from
                                     the Consultancy Services
