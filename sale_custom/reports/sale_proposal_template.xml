@@ -260,7 +260,7 @@
                             </div>
                             <br/>
                             <p style="font-size: 18px;" class="text-justify">
-                                This is the contract between Alliance Prime Accounting and Tax Consultancy (APATC) and the <span t-field="doc.name"></span> (The Client).
+                                
                             </p>
                             <br/>
                             <strong style="font-size:25px;text-decoration: underline;page-break-after:always">
