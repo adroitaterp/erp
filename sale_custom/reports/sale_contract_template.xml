@@ -40,19 +40,20 @@
                                 <!--                                <br/>-->
                                 <table class="table table-borderless table-sm" style="border:none">
                                     <tr>
-                                        <!--                                        <t t-if="doc.state in ['to_proposal_approve','draft' ,'sent' ,'to_contract_approve']">-->
-                                        <!--                                            <td>-->
-                                        <!--                                                <strong style="font-size:16px;color: blue;">-->
-                                        <!--                                                    PROPOSAL-->
-                                        <!--                                                </strong>-->
-                                        <!--                                            </td>-->
-                                        <!--                                        </t>-->
-                                        <!--                                        <t t-if="doc.state in ['sale']">-->
-                                        <td>
-                                            <strong style="font-size:16px;color: blue;">
-                                                <span t-field="doc.state"/>
-                                            </strong>
-                                        </td>
+                                        <t t-if="doc.state in ['sale', 'to_contract_approve']">
+                                            <td>
+                                                <strong style="font-size:16px;color: blue;">
+                                                    <span t-field="doc.state"/>
+                                                </strong>
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td>
+                                                <strong style="font-size:16px;color: blue;">
+                                                    Waiting For Approval
+                                                </strong>
+                                            </td>
+                                        </t>
                                         <!--                                        </t>-->
                                         <br/>
                                     </tr>
@@ -257,6 +258,10 @@
                             <!--                                    <br/>-->
                             <!--                                </p>-->
                             <!--                            </div>-->
+                            <p style="font-size: 18px;" class="text-justify">
+                                This is the contract between Alliance Prime Accounting and Tax Consultancy (APATC) and the <span t-field="doc.name"></span> (The Client).
+                            </p>
+                            <br/>
                             <strong style="font-size:25px;text-decoration: underline;page-break-after:always">
                                 AGREED SCOPE OF WORK
                                 <br/>
@@ -313,6 +318,7 @@
                                         <!--                                        <th name="th_quantity" class="text-center">QTY</th>-->
                                         <th name="th_unit" class="text-right">Units</th>
                                         <th name="th_price_unit" class="text-right">Rates</th>
+                                        <th name="th_term" class="text-right">Term</th>
                                         <th name="th_subtotal" class="text-right">Price AED/ TERMS</th>
                                         <!--                                        <th name="th_subtotal" class="text-right">SubTotal</th>-->
                                     </tr>
@@ -338,6 +344,9 @@
                                                 <td name="td_priceunit" class="text-right">
                                                     <span t-field="line.price_unit"/>
                                                 </td>
+                                                <td name="td_term" class="text-right">
+                                                    <span t-field="line.term"/>
+                                                </td>
                                                 <td name="td_subtotal" class="text-right o_price_total">
                                                     <span t-field="line.price_subtotal"/>
                                                 </td>
@@ -345,6 +354,7 @@
                                         </tr>
                                     </t>
                                     <tr>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <th name="th_total" class="text-right">Total</th>
@@ -450,7 +460,7 @@
                                         COMPLETION
                                     </t>
                                     <t t-else="">
-                                    <span t-field="doc.end_date"/>
+                                        <span t-field="doc.end_date"/>
                                     </t>
                                     <br/>
 
@@ -473,7 +483,7 @@
                                     <br/>
 
                                     Alliance Prime Accounting and Tax Consultancy accepts no liability to indemnify the
-                                    business for any losses, expenses, or liabilities incurred by <span
+                                    business for any losses, expenses, or liabilities incurred by<span
                                         t-field="doc.partner_id.name"/>, due to
                                     tax or any other statutory or contractual liability to any third party arising from
                                     the Consultancy Services
@@ -523,7 +533,7 @@
                                     <p style="font-size: 18px;"
                                        class="text-justify">
                                         The Client is in agreement with the entirety of the Contract and understands
-                                        that acceptance of this contract shall be considered a contract between both
+                                        that acceptance of this shall be considered a contract between both
                                         <span t-field="doc.partner_id.name"/>
                                         and ALLIANCE PRIME ACCOUNT AND TAX
                                         CONSULTANCY.

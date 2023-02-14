@@ -58,7 +58,9 @@
                     </group>
                 </page>
             </xpath>
-
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="before">
+                <field name="term"/>
+            </xpath>
             <xpath expr="//field[@name='validity_date']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
             </xpath>
