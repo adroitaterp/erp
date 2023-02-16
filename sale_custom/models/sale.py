@@ -67,24 +67,26 @@ class SaleOrderInherit(models.Model):
             result = self.env['sale.order'].browse(self.env.context.get('active_ids'))
             print(result)
             lines = []
+            sale_description = []
             for i in rec.sale_description_lines:
-                i.unlink()
+                sale_description.append(i.product_id.id)
             for r in rec.order_line:
                 print(r)
-                values = {
-                    'order_id': self.id,
-                    'product_id': r.product_id.id,
-                    'name': r.product_id.description,
-                }
-                lines.append(values)
+                if r.product_id.id not in sale_description:
+                    values = {
+                        'order_id': self.id,
+                        'product_id': r.product_id.id,
+                        'name': r.product_id.description,
+                    }
+                    lines.append(values)
             print(lines)
             result = self.env['sale.description'].create(lines)
         return res
 
-    @api.onchange('order_line')
-    def compute_sale_desc(self):
-        for rec in self.order_line:
-            rec.order_id.sale_description_lines.product_id = rec.product_id.id
+    # @api.onchange('order_line')
+    # def compute_sale_desc(self):
+    #     for rec in self.order_line:
+    #         rec.order_id.sale_description_lines.product_id = rec.product_id.id
 
     # def button_proposal_review(self):
     #     self.write({

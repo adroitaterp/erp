@@ -454,13 +454,13 @@
                                     <br/>
 
                                     The term of this agreement is from : 
-                                    <span t-field="doc.start_date" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                    <span t-field="doc.start_date" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
                                     UNTIL
                                     <t t-if="doc.until_completion">
                                         COMPLETION
                                     </t>
                                     <t t-else="">
-                                        <span t-field="doc.end_date" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                        <span t-field="doc.end_date" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
                                     </t>
                                     <br/>
 

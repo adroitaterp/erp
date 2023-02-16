@@ -118,7 +118,7 @@
                                         <br/>
                                         <p style="font-size: 18px;" class="text-justify">Throughout this
                                             proposal, we have provided you with the details for each service
-                                            discussed to be rendered by the Alliance Prime for<span
+                                            discussed to be rendered by the Alliance Prime for <span
                                                     t-field="doc.partner_id.name"/>.
                                             <br/>
                                             <br/>
@@ -454,14 +454,14 @@
 
                                     The term of this agreement is from :
                                     <span t-field="doc.start_date"
-                                          t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                          t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
                                     UNTIL
                                     <t t-if="doc.until_completion">
                                         COMPLETION
                                     </t>
                                     <t t-else="">
                                         <span t-field="doc.end_date"
-                                              t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                              t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
                                     </t>
                                     <br/>
 
