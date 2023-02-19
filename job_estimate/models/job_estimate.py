@@ -53,6 +53,7 @@ class JobEstimate(models.Model):
             'state': 'draft',
             'partner_id': self.customer_id.id,
             'payment_details': self.payment_details,
+            'contact_id': self.child_ids.id,
             'estimation_id': self.id,
         })
         for line in self.estimate_lines:

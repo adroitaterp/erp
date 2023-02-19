@@ -75,7 +75,7 @@
     <menuitem
             id="menu_job_estimate"
             name="Job Estimate"
-            parent="sale.sale_order_menu"
+            parent="crm.crm_menu_sales"
             action="job_estimate.job_estimate_action"
             sequence="2"/>
 </odoo>
