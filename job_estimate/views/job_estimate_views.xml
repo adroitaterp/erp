@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="job_estimate_form_view" model="ir.ui.view">
+        <field name="name">Job Estimate Form</field>
+        <field name="model">job.estimate</field>
+        <field name="arch" type="xml">
+            <form string="Job Estimate">
+                <header>
+                    <button type="object" name="button_confirm" string="Confirm Estimate" attrs="{'invisible': [('state', '!=', 'draft')]}"></button>
+                    <button type="object" name="create_quotation" string="Create Quotation" attrs="{'invisible': [('state', '!=', 'confirmed')]}"></button>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="customer_id" required="1"/>
+                            <field name="child_ids"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Estimate Lines" name="estimate_line">
+                            <field name="estimate_lines">
+                                <tree>
+                                    <field name="product_id"/>
+                                    <field name="qty"/>
+                                    <field name="unit_price"/>
+                                    <field name="term"/>
+                                    <field name="subtotal"/>
+                                </tree>
+                            </field>
+                            <div style="float:right; width:20%;" class="row">
+                                <div class="col-6">
+                                    <h3>Total</h3>
+                                </div>
+                                <div class="col-6">
+                                    <field name="total_amount"/>
+                                </div>
+                            </div>
+                        </page>
+                        <page string="Miscellaneous" name="miscellaneous">
+                            <group>
+                                <field name="payment_details"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="job_estimate_action" model="ir.actions.act_window">
+        <field name="name">Job Estimate</field>
+        <field name="res_model">job.estimate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+            id="menu_job_estimate"
+            name="Job Estimate"
+            parent="sale.sale_order_menu"
+            action="job_estimate.job_estimate_action"
+            sequence="2"/>
+</odoo>
