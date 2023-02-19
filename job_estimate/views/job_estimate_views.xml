@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <form string="Job Estimate">
                 <header>
-                    <button type="object" name="button_confirm" string="Confirm Estimate" attrs="{'invisible': [('state', '!=', 'draft')]}"></button>
-                    <button type="object" name="create_quotation" string="Create Quotation" attrs="{'invisible': [('state', '!=', 'confirmed')]}"></button>
+                    <button type="object" name="button_confirm" string="Confirm Estimate" attrs="{'invisible': [('state', '!=', 'draft')]}" groups="job_estimate.confirm_estimation"></button>
+                    <button type="object" name="create_quotation" string="Create Quotation" attrs="{'invisible': [('state', '!=', 'confirmed')]}" groups="job_estimate.create_quotation"></button>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -19,6 +19,7 @@
                         </group>
                         <group>
                             <field name="email"/>
+                            <field name="quotation_ref"/>
                         </group>
                     </group>
                     <notebook>
@@ -49,6 +50,20 @@
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="job_estimate_tree_view" model="ir.ui.view">
+        <field name="name">Job Estimate Tree</field>
+        <field name="model">job.estimate</field>
+        <field name="arch" type="xml">
+            <tree string="Job Estimate">
+                <field name="estimate_name"/>
+                <field name="customer_id"/>
+                <field name="child_ids"/>
+                <field name="quotation_ref"/>
+                <field name="state"/>
+            </tree>
         </field>
     </record>
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="confirm_estimation" model="res.groups">
+        <field name="name">Confirm Job Estimation</field>
+    </record>
+
+    <record id="create_quotation" model="res.groups">
+        <field name="name">Create Quotation From Estimation</field>
+    </record>
+</odoo>

@@ -2,6 +2,11 @@
 
 from odoo import models, fields, api
 
+# class InheritSaleOrder(models.Model):
+#     _inherit = 'sale.order'
+#
+#     estimation_ref = fields.Many2one('job.estimation')
+
 
 class JobEstimate(models.Model):
     _name = 'job.estimate'
@@ -10,11 +15,12 @@ class JobEstimate(models.Model):
     estimate_name = fields.Char('Estimate', readonly=True, required=True, copy=False, default='New')
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'), ('quotation', 'Quotation')], default='draft')
     customer_id = fields.Many2one('res.partner')
-    child_ids = fields.Many2one('res.partner')
+    child_ids = fields.Many2one('res.partner', 'Contact Person')
     email = fields.Char(related='customer_id.email', string='Email')
     payment_details = fields.Char('Payment Details')
     estimate_lines = fields.One2many('job.estimate.line', 'job_estimate', string='Estimate Lines')
     total_amount = fields.Float('Total', compute='get_total_amount')
+    quotation_ref = fields.Many2one('sale.order')
 
     @api.onchange('customer_id')
     def get_child_ids(self):
@@ -47,6 +53,7 @@ class JobEstimate(models.Model):
             'state': 'draft',
             'partner_id': self.customer_id.id,
             'payment_details': self.payment_details,
+            'estimation_id': self.id,
         })
         for line in self.estimate_lines:
             self.env['sale.order.line'].create({
@@ -56,6 +63,7 @@ class JobEstimate(models.Model):
                 'term': line.term,
             })
         self.state = 'quotation'
+        self.quotation_ref = sale_order.id
 
 
 class JobEstimateLine(models.Model):
