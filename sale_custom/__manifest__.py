@@ -19,7 +19,7 @@
     'version': '15.0.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale_management', 'crm' ,'sale' ,'hr'],
+    'depends': ['base', 'sale_management', 'crm' ,'sale' ,'hr', 'job_estimate'],
 
     # always loaded
     'data': [

@@ -289,10 +289,14 @@
                             </table>
                             <br/>
                             <br/>
-                            <div style="padding-top: 3px; height=100%;">
-                                <span t-field="doc.scope_of_work"/>
-                            </div>
-                            <br/>
+                            <t t-if="doc.scope_of_work">
+                                <p style="page-break-after:always;"/>
+                                <div style="padding-top: 3px; height=100%;">
+                                    <span t-field="doc.scope_of_work"/>
+                                </div>
+                                <br/>
+
+                            </t>
                             <p style="page-break-after:always;"/>
                             <strong style="font-size:25px;text-decoration: underline;">
                                 Professional Fees

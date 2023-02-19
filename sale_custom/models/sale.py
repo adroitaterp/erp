@@ -35,6 +35,7 @@ class SaleOrderInherit(models.Model):
     termination_days = fields.Integer('Termination Days')
     payment_details = fields.Text('Payment Details')
     contact_id = fields.Many2one('res.partner', string='Contact')
+    estimation_id = fields.Many2one('job.estimate')
 
     sale_description_lines = fields.One2many('sale.description', 'order_id')
 
