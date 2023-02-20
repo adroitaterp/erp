@@ -61,6 +61,7 @@ class JobEstimate(models.Model):
                 'order_id': sale_order.id,
                 'product_id': line.product_id.id,
                 'product_uom_qty': line.qty,
+                'price_unit': line.unit_price,
                 'term': line.term,
             })
         self.state = 'quotation'
@@ -72,7 +73,7 @@ class JobEstimateLine(models.Model):
 
     product_id = fields.Many2one('product.product', 'Product')
     unit_price = fields.Float('Unit Price')
-    qty = fields.Float('Quantity')
+    qty = fields.Float('Quantity', default=1)
     term = fields.Selection([('one_time', 'One Time'), ('monthly', 'Monthly'), ('quarterly', 'Quarterly'), ('yearly', 'Yearly')])
     subtotal = fields.Float('Subtotal', compute='get_subtotal')
     job_estimate = fields.Many2one('job.estimate', 'Job Estimate')
