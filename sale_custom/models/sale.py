@@ -17,6 +17,7 @@ class SaleOrderInherit(models.Model):
         ('sent', 'Proposal Sent'),
         # ('to_contract_review', 'Waiting For Contract Review'),
         ('to_contract_approve', 'Waiting For Contract Approval'),
+        ('customer_approval', 'Customer Approval'),
         ('sale', 'Contract'),
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),
@@ -115,8 +116,13 @@ class SaleOrderInherit(models.Model):
         })
 
     def button_contract_approve(self):
+        self.write({
+            'state': 'customer_approval'
+        })
+
+    def button_customer_approve(self):
         rec = super(SaleOrderInherit, self).action_confirm()
-        return rec
+        self.write({'state': 'sale'})
 
     def button_contract_approve_reject(self):
         self.write({

@@ -29,6 +29,13 @@
                         class="oe_highlight"
                         groups="sale_custom.group_approve_contract"
                 />
+                <button name="button_customer_approve"
+                        type="object"
+                        states="customer_approval"
+                        string="Approved by customer"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                />
                 <button name="button_contract_approve_reject"
                         type="object"
                         states="to_contract_approve"
@@ -71,7 +78,9 @@
             <xpath expr="//field[@name='date_order']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', '=', 'sale')]}</attribute>
             </xpath>
-
+            <xpath expr="//header/field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,sent,customer_approval,sale"/>
+            </xpath>
             <xpath expr="//sheet/notebook/page[@name='customer_signature']" position="after">
                 <page string="Product Description" name="product_description">
                     <field name="sale_description_lines">
