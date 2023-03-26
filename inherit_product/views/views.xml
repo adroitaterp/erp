@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record id="product_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='list_price']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_percentage_price' ,'=', True)]}</attribute>
+                </xpath>
+                <label for="list_price" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_percentage_price' ,'=', True)]}</attribute>
+                </label>
+
+<!--                <xpath expr="//field[@name='list_price']" position="attributes">-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='uom_po_id']" position="after">
+                    <field name="is_percentage_price" string="Is Percentage Price"/>
+                    <field name="percentage_price" attrs="{'invisible': [('is_percentage_price', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='tax_string']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_percentage_price' ,'=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_line_tree_view" model="ir.ui.view">
+            <field name="name">sale.order.line.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+                    <field name="percentage_price"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
