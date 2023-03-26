@@ -134,7 +134,8 @@ class SaleOrderInherit(models.Model):
 class SaleLines(models.Model):
     _inherit = 'sale.order.line'
 
-    term = fields.Selection([('one_time', 'One Time'), ('monthly', 'Monthly'), ('quarterly', 'Quarterly'), ('yearly', 'Yearly')])
+    term = fields.Selection([('one_time', 'One Time'), ('monthly', 'Monthly'), ('quarterly', 'Quarterly'),
+                             ('yearly', 'Yearly'), ('per_item', 'Per Item'), ('free_of_charge', 'Free of Charge')])
 
     # def write(self, values):
     #     if 'product_id' in values:
