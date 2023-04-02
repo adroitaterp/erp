@@ -320,10 +320,11 @@
                                     <tr>
                                         <th name="th_description" class="text-left">AGREED SCOPE OF SERVICES</th>
                                         <!--                                        <th name="th_quantity" class="text-center">QTY</th>-->
-<!--                                        <th name="th_unit" class="text-right">Units</th>-->
+                                        <!--                                        <th name="th_unit" class="text-right">Units</th>-->
+                                        <th name="th_price_unit" class="text-right">Percentage Price</th>
                                         <th name="th_price_unit" class="text-right">Rates</th>
                                         <th name="th_term" class="text-right">Term</th>
-<!--                                        <th name="th_subtotal" class="text-right">Price AED</th>-->
+                                        <!--                                        <th name="th_subtotal" class="text-right">Price AED</th>-->
                                         <!--                                        <th name="th_subtotal" class="text-right">SubTotal</th>-->
                                     </tr>
                                 </thead>
@@ -342,30 +343,36 @@
                                                 <td name="td_name">
                                                     <span t-field="line.name"/>
                                                 </td>
-<!--                                                <td name="td_quantity" class="text-right">-->
-<!--                                                    <span t-field="line.product_uom_qty"/>-->
-<!--                                                </td>-->
+                                                <!--                                                <td name="td_quantity" class="text-right">-->
+                                                <!--                                                    <span t-field="line.product_uom_qty"/>-->
+                                                <!--                                                </td>-->
+
+                                                <td name="td_percentage_price" class="text-right">
+                                                    <a>
+                                                        <span t-field="line.percentage_price" />%
+                                                    </a>
+                                                </td>
                                                 <td name="td_priceunit" class="text-right">
                                                     <span t-field="line.price_unit"/>
                                                 </td>
                                                 <td name="td_term" class="text-right">
                                                     <span t-field="line.term"/>
                                                 </td>
-<!--                                                <td name="td_subtotal" class="text-right o_price_total">-->
-<!--                                                    <span t-field="line.price_subtotal"/>-->
-<!--                                                </td>-->
+                                                <!--                                                <td name="td_subtotal" class="text-right o_price_total">-->
+                                                <!--                                                    <span t-field="line.price_subtotal"/>-->
+                                                <!--                                                </td>-->
                                             </t>
                                         </tr>
                                     </t>
-<!--                                    <tr>-->
-<!--                                        <td></td>-->
-<!--                                        <td></td>-->
-<!--                                        <td></td>-->
-<!--                                        <th name="th_total" class="text-right">Total</th>-->
-<!--                                        <td name="td_total" class="text-right o_price_total">-->
-<!--                                            <span t-esc="json.loads(doc.tax_totals_json)['formatted_amount_total']"/>-->
-<!--                                        </td>-->
-<!--                                    </tr>-->
+                                    <!--                                    <tr>-->
+                                    <!--                                        <td></td>-->
+                                    <!--                                        <td></td>-->
+                                    <!--                                        <td></td>-->
+                                    <!--                                        <th name="th_total" class="text-right">Total</th>-->
+                                    <!--                                        <td name="td_total" class="text-right o_price_total">-->
+                                    <!--                                            <span t-esc="json.loads(doc.tax_totals_json)['formatted_amount_total']"/>-->
+                                    <!--                                        </td>-->
+                                    <!--                                    </tr>-->
                                 </tbody>
                             </table>
                             <br/>
@@ -375,9 +382,9 @@
                             <br/>
                             <p style="font-size: 18px;"
                                class="text-justify">
-<!--                                *All fees associated with this contract are required to be PAID IN FULL before-->
-<!--                                services are rendered.-->
-<!--                                <br/>-->
+                                <!--                                *All fees associated with this contract are required to be PAID IN FULL before-->
+                                <!--                                services are rendered.-->
+                                <!--                                <br/>-->
                                 *All prices are VAT
                                 <strong>EXCLUSIVE. *A tax invoice will be issued upon receipt of payment.</strong>
                                 <br/>
@@ -457,7 +464,7 @@
                                     well as the payment terms and conditions.
                                     <br/>
 
-                                    The term of this agreement is from : 
+                                    The term of this agreement is from :
                                     <span t-field="doc.start_date" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
                                     UNTIL
                                     <t t-if="doc.until_completion">
@@ -487,7 +494,7 @@
                                     <br/>
 
                                     Alliance Prime Accounting and Tax Consultancy accepts no liability to indemnify the
-                                    business for any losses, expenses, or liabilities incurred by<span
+                                    business for any losses, expenses, or liabilities incurred by  <span
                                         t-field="doc.partner_id.name"/>, due to
                                     tax or any other statutory or contractual liability to any third party arising from
                                     the Consultancy Services
