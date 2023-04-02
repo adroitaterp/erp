@@ -321,7 +321,7 @@
                                         <th name="th_description" class="text-left">AGREED SCOPE OF SERVICES</th>
                                         <!--                                        <th name="th_quantity" class="text-center">QTY</th>-->
                                         <!--                                        <th name="th_unit" class="text-right">Units</th>-->
-                                        <th name="th_price_unit" class="text-right">Percentage Price</th>
+                                        <!--                                        <th name="th_price_unit" class="text-right">Percentage Price</th>-->
                                         <th name="th_price_unit" class="text-right">Rates</th>
                                         <th name="th_term" class="text-right">Term</th>
                                         <!--                                        <th name="th_subtotal" class="text-right">Price AED</th>-->
@@ -347,13 +347,25 @@
                                                 <!--                                                    <span t-field="line.product_uom_qty"/>-->
                                                 <!--                                                </td>-->
 
-                                                <td name="td_percentage_price" class="text-right">
-                                                    <a>
-                                                        <span t-field="line.percentage_price" />%
-                                                    </a>
-                                                </td>
+                                                <!--                                                <td name="td_percentage_price" class="text-right">-->
+                                                <!--                                                    <a>-->
+                                                <!--                                                        <span t-field="line.percentage_price" />%-->
+                                                <!--                                                    </a>-->
+                                                <!--                                                </td>-->
+<!--                                                <td name="td_priceunit" class="text-right">-->
+<!--                                                    <span t-field="line.price_unit"/>-->
+<!--                                                </td>-->
+
                                                 <td name="td_priceunit" class="text-right">
-                                                    <span t-field="line.price_unit"/>
+                                                    <span t-if="line.price_unit">
+                                                        <span t-esc="line.price_unit"/>
+                                                    </span>
+                                                    <span t-elif="line.percentage_price">
+                                                        <span t-esc="line.percentage_price"/>%
+                                                    </span>
+                                                    <span t-else="">
+                                                        N/A
+                                                    </span>
                                                 </td>
                                                 <td name="td_term" class="text-right">
                                                     <span t-field="line.term"/>
