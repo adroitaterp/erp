@@ -48,6 +48,21 @@ class ProductProduct(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    percentage_price = fields.Float(string='Percentage Price', related='product_id.percentage_price')
+    percentage_price = fields.Float(string='Percentage Price')
 
-
+#
+# class MailComposeMessage(models.TransientModel):
+#     _inherit = 'mail.compose.message'
+#
+#     cc = fields.Char(string='Cc')
+#
+#     @api.model
+#     def generate_email_for_composer(self, template_id, composition_mode, model, res_id, email_values=None):
+#         if email_values is None:
+#             email_values = {}
+#         if self.cc:
+#             email_values['cc'] = self.cc
+#         return super(MailComposeMessage, self).generate_email_for_composer(template_id, composition_mode, model, res_id, email_values=email_values)
+#
+#
+#
