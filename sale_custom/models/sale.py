@@ -22,6 +22,7 @@ class SaleOrderInherit(models.Model):
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),
         ('rejected', 'Rejected'),
+        ('rejected_by_customer', 'Rejected By Customer'),
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='to_proposal_approve')
 
     until_completion = fields.Boolean('Until Completion')
@@ -124,13 +125,15 @@ class SaleOrderInherit(models.Model):
         rec = super(SaleOrderInherit, self).action_confirm()
         self.write({'state': 'sale'})
 
+    def button_customer_reject(self):
+        self.write({'state': 'rejected_by_customer'})
+
     def button_contract_approve_reject(self):
         self.write({
             'state': 'rejected'
         })
 
 
-# #
 class SaleLines(models.Model):
     _inherit = 'sale.order.line'
 

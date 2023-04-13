@@ -6,6 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//header//button[@name='action_confirm']" position="after">
+
                 <button name="button_proposal_approve"
                         type="object"
                         states="to_proposal_approve"
@@ -33,6 +34,13 @@
                         type="object"
                         states="customer_approval"
                         string="Approved by customer"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                />
+                <button name="button_customer_reject"
+                        type="object"
+                        states="customer_approval"
+                        string="Reject by customer"
                         class="oe_highlight"
                         groups="sale_custom.group_approve_contract"
                 />
