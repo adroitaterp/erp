@@ -13,16 +13,17 @@ class SaleOrderInherit(models.Model):
     state = fields.Selection([
         # ('to_proposal_review', 'Waiting For Proposal Review'),
         ('to_proposal_approve', 'Waiting For Proposal Approval'),
+        ('waiting_for_customer_approval', 'Waiting For Customer Approval'),
+        ('customer_rejected', 'Customer Rejected'),
         ('draft', 'Proposal'),
         ('sent', 'Proposal Sent'),
         # ('to_contract_review', 'Waiting For Contract Review'),
         ('to_contract_approve', 'Waiting For Contract Approval'),
-        ('customer_approval', 'Customer Approval'),
         ('sale', 'Contract'),
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),
         ('rejected', 'Rejected'),
-        ('rejected_by_customer', 'Rejected By Customer'),
+        # ('rejected_by_customer', 'Rejected By Customer'),
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='to_proposal_approve')
 
     until_completion = fields.Boolean('Until Completion')
@@ -98,7 +99,17 @@ class SaleOrderInherit(models.Model):
 
     def button_proposal_approve(self):
         self.write({
+            'state': 'waiting_for_customer_approval'
+        })
+
+    def button_customer_approve(self):
+        self.write({
             'state': 'draft'
+        })
+
+    def button_customer_rejected(self):
+        self.write({
+            'state': 'customer_rejected'
         })
 
     # def button_proposal_review_reject(self):
@@ -118,15 +129,15 @@ class SaleOrderInherit(models.Model):
 
     def button_contract_approve(self):
         self.write({
-            'state': 'customer_approval'
+            'state': 'sale'
         })
 
-    def button_customer_approve(self):
-        rec = super(SaleOrderInherit, self).action_confirm()
-        self.write({'state': 'sale'})
+    # def button_customer_approve(self):
+    #     rec = super(SaleOrderInherit, self).action_confirm()
+    #     self.write({'state': 'sale'})
 
-    def button_customer_reject(self):
-        self.write({'state': 'rejected_by_customer'})
+    # def button_customer_reject(self):
+    #     self.write({'state': 'rejected_by_customer'})
 
     def button_contract_approve_reject(self):
         self.write({
