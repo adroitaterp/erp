@@ -1,21 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# from odoo import models, fields, api
-
-
-# class inherit_product(models.Model):
-#     _name = 'inherit_product.inherit_product'
-#     _description = 'inherit_product.inherit_product'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
 from odoo import models, fields, api
 
 
@@ -49,20 +31,12 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     percentage_price = fields.Float(string='Percentage Price')
+    price_unit = fields.Float(compute='_compute_unit_price', store=True)
 
-#
-# class MailComposeMessage(models.TransientModel):
-#     _inherit = 'mail.compose.message'
-#
-#     cc = fields.Char(string='Cc')
-#
-#     @api.model
-#     def generate_email_for_composer(self, template_id, composition_mode, model, res_id, email_values=None):
-#         if email_values is None:
-#             email_values = {}
-#         if self.cc:
-#             email_values['cc'] = self.cc
-#         return super(MailComposeMessage, self).generate_email_for_composer(template_id, composition_mode, model, res_id, email_values=email_values)
-#
-#
-#
+    @api.depends('percentage_price')
+    def _compute_unit_price(self):
+        for line in self:
+            if line.percentage_price:
+                line.price_unit = 0
+            else:
+                line.price_unit = line.price_unit
