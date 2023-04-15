@@ -12,9 +12,6 @@
                     <attribute name="attrs">{'invisible': [('is_percentage_price' ,'=', True)]}</attribute>
                 </label>
 
-                <!--                <xpath expr="//field[@name='list_price']" position="attributes">-->
-                <!--                    <attribute name="invisible">1</attribute>-->
-                <!--                </xpath>-->
                 <xpath expr="//field[@name='uom_po_id']" position="after">
                     <field name="is_percentage_price" string="Is Percentage Price"/>
                     <field name="percentage_price" attrs="{'invisible': [('is_percentage_price', '=', False)]}"/>
@@ -31,7 +28,11 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
-                    <field name="percentage_price"/>
+                    <field name="percentage_price" attrs="{'invisible': [('price_unit', '>', 0)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('percentage_price','>', 0)]}</attribute>
+
                 </xpath>
             </field>
         </record>
