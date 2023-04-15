@@ -65,6 +65,20 @@
                         class="oe_highlight"
                         groups="sale_custom.group_approve_contract"
                 />
+                <button name="button_customer_contract_approve"
+                        type="object"
+                        states="waiting_customer_contract_approval"
+                        string="Customer Contract Approve"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                />
+                <button name="button_customer_contract_reject"
+                        type="object"
+                        states="waiting_customer_contract_approval"
+                        string="Customer Contract Reject"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                />
             </xpath>
 
 
