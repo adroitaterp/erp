@@ -40,20 +40,27 @@
                                 <!--                                <br/>-->
                                 <table class="table table-borderless table-sm" style="border:none">
                                     <tr>
-                                        <t t-if="doc.state in ['sale', 'to_contract_approve']">
+                                        <t t-if="doc.state in ['to_contract_approve', 'sale']">
                                             <td>
                                                 <strong style="font-size:16px;color: blue;">
-                                                    <span t-field="doc.state"/>
+                                                    Contract
                                                 </strong>
                                             </td>
                                         </t>
                                         <t t-else="">
                                             <td>
                                                 <strong style="font-size:16px;color: blue;">
-                                                    Waiting For Approval
+                                                    <span t-field="doc.state"/>
                                                 </strong>
                                             </td>
                                         </t>
+                                        <!--                                        <t t-else="">-->
+                                        <!--                                            <td>-->
+                                        <!--                                                <strong style="font-size:16px;color: blue;">-->
+                                        <!--                                                    Waiting For Approval-->
+                                        <!--                                                </strong>-->
+                                        <!--                                            </td>-->
+                                        <!--                                        </t>-->
                                         <!--                                        </t>-->
                                         <br/>
                                     </tr>
@@ -352,9 +359,9 @@
                                                 <!--                                                        <span t-field="line.percentage_price" />%-->
                                                 <!--                                                    </a>-->
                                                 <!--                                                </td>-->
-<!--                                                <td name="td_priceunit" class="text-right">-->
-<!--                                                    <span t-field="line.price_unit"/>-->
-<!--                                                </td>-->
+                                                <!--                                                <td name="td_priceunit" class="text-right">-->
+                                                <!--                                                    <span t-field="line.price_unit"/>-->
+                                                <!--                                                </td>-->
 
                                                 <td name="td_priceunit" class="text-right">
                                                     <span t-if="line.price_unit">
