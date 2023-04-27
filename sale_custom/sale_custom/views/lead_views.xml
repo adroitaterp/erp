@@ -1,0 +1,112 @@
+<odoo>
+
+    <record id="view_crm_lead_form_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+
+<!--            <xpath expr="//field[@name='phone']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='email_from']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='street']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='street2']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='city']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='mobile']" position="attributes">-->
+<!--                <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="groups">base.group_user</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_crm_activity_report_tree_inherit" model="ir.ui.view">
+        <field name="name">crm.activity.report.tree.inherit</field>
+        <field name="model">crm.activity.report</field>
+        <field name="inherit_id" ref="crm.crm_activity_report_view_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='author_id']" position="before">
+                <field name="lead_id" optional="show"/>
+                <field name="partner_id" optional="show"/>
+                <field name="company_id" optional="show"/>
+                <field name="user_id" optional="show"/>
+            </xpath>
+
+        </field>
+    </record>
+
+<!--    <record id="view_crm_oppor_tree_inherit" model="ir.ui.view">-->
+<!--        <field name="name">crm.oppor.tree.inherit</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            <xpath expr="//field[@name='stage_id']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='phone']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='activity_date_deadline_my']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='activity_ids']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='expected_revenue']" position="after">-->
+<!--                <field name="state" optional="show"/>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='expected_revenue']" position="attributes">-->
+<!--                <attribute name="string">Sale Value</attribute>-->
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="view_crm_lead_tree_inherit" model="ir.ui.view">-->
+<!--        <field name="name">crm.lead.tree.inherit</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            <xpath expr="//field[@name='phone']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='city']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='country_id']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='team_id']" position="after">-->
+<!--                <field name="state" optional="show"/>-->
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>
