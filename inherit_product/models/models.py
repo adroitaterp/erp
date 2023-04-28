@@ -31,11 +31,17 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     percentage_price = fields.Float(string='Percentage Price')
-    
-    @api.depends('percentage_price')
-    def _compute_unit_price(self):
-        for line in self:
-            if line.percentage_price:
-                line.price_unit = 0
-            else:
-                line.price_unit = line.price_unit
+    is_percentage = fields.Boolean(string='Is Percentage' , related='product_id.is_percentage_price')
+
+    # @api.depends('percentage_price')
+    # def _compute_unit_price(self):
+    #     for line in self:
+    #         if line.percentage_price:
+    #             line.price_unit = 0
+    #         else:
+    #             line.price_unit = line.price_unit
+
+
+
+
+

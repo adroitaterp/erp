@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_inherit_product_inherit_product,inherit_product.inherit_product,model_inherit_product_inherit_product,base.group_user,1,1,1,1
+access_project_type,access.project.type,model_project_type,,1,1,1,1

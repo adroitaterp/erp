@@ -11,10 +11,9 @@
                 <label for="list_price" position="attributes">
                     <attribute name="attrs">{'invisible': [('is_percentage_price' ,'=', True)]}</attribute>
                 </label>
-
                 <xpath expr="//field[@name='uom_po_id']" position="after">
-                    <field name="is_percentage_price" string="Is Percentage Price"/>
-                    <field name="percentage_price" attrs="{'invisible': [('is_percentage_price', '=', False)]}"/>
+                    <field name="is_percentage_price" string="Is Percentage Price" />
+                    <field name="percentage_price" attrs="{'invisible': [('is_percentage_price', '=', False)]}" force_save="1"/>
                 </xpath>
                 <xpath expr="//field[@name='tax_string']" position="attributes">
                     <attribute name="attrs">{'invisible': [('is_percentage_price' ,'=', True)]}</attribute>
@@ -28,27 +27,27 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
-                    <field name="percentage_price" attrs="{'invisible': [('price_unit', '>', 0)]}"/>
+                    <field name="percentage_price" attrs="{'invisible': [('price_unit', '>', 0)]}" force_save="1"/>
+                    <field name="is_percentage" force_save="1" invisible="1"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
-                    <attribute name="attrs">{'readonly': [('percentage_price','>', 0)]}</attribute>
+                    <attribute name="attrs">{'readonly': [('is_percentage','=', True)]}</attribute>
 
                 </xpath>
             </field>
         </record>
-<!--        <record model="ir.ui.view" id="cc_message_inherit">-->
-<!--            <field name="name">mail.cc.compose.message.form.inherit</field>-->
-<!--            <field name="model">mail.compose.message</field>-->
-<!--            <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <xpath expr="//field[@name='partner_ids']" position="after">-->
-<!--                    <field name="email_cc"/>-->
-<!--                </xpath>-->
 
-<!--                &lt;!&ndash;                    <xpath expr="//field[@name='subject']" position="before">&ndash;&gt;-->
-<!--                &lt;!&ndash;                        <field name="email_bcc" colspan="2"/>&ndash;&gt;-->
-<!--                &lt;!&ndash;                    </xpath>&ndash;&gt;-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="product_product_form_view" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lst_price']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_percentage_price' ,'=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
     </data>
 </odoo>
