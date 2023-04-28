@@ -40,7 +40,7 @@
                                 <!--                                <br/>-->
                                 <table class="table table-borderless table-sm" style="border:none">
                                     <tr>
-                                        <t t-if="doc.state in ['to_contract_approve', 'sale']">
+                                        <t t-if="doc.state in ['waiting_customer_contract_approval', 'sale']">
                                             <td>
                                                 <strong style="font-size:16px;color: blue;">
                                                     Contract
