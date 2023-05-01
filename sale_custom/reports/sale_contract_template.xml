@@ -40,12 +40,29 @@
                                 <!--                                <br/>-->
                                 <table class="table table-borderless table-sm" style="border:none">
                                     <tr>
-                                        <t t-if="doc.state in ['to_contract_approve', 'sale']">
-                                            <td>
-                                                <strong style="font-size:16px;color: blue;">
-                                                    Contract
-                                                </strong>
-                                            </td>
+
+                                        <!--                                        <td>-->
+                                        <!--                                            <strong style="font-size:16px;color: blue;">-->
+                                        <!--                                                <span t-esc="doc.state_name()"/>-->
+                                        <!--                                            </strong>-->
+                                        <!--                                        </td>-->
+
+                                        <t t-if="doc.state in ['waiting_customer_contract_approval', 'sale' ,'draft']">
+                                            <t t-if="doc.state in ['waiting_customer_contract_approval', 'sale']">
+                                                <td>
+                                                    <strong style="font-size:16px;color: blue;">
+                                                        Contract
+                                                    </strong>
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td>
+                                                    <strong style="font-size:16px;color: blue;">
+                                                        Waiting For Contract Approval
+                                                    </strong>
+                                                </td>
+                                            </t>
+
                                         </t>
                                         <t t-else="">
                                             <td>
@@ -266,7 +283,8 @@
                             <!--                                </p>-->
                             <!--                            </div>-->
                             <p style="font-size: 18px;" class="text-justify">
-                                This is the contract between Alliance Prime Accounting and Tax Consultancy (APATC) and the <span t-field="doc.partner_id.name"></span> (The Client).
+                                This is the contract between Alliance Prime Accounting and Tax Consultancy (APATC) and
+                                the <span t-field="doc.partner_id.name"></span> (The Client).
                             </p>
 
                             <strong style="font-size:25px;text-decoration: underline;page-break-after:always">
@@ -484,13 +502,15 @@
                                     <br/>
 
                                     The term of this agreement is from :
-                                    <span t-field="doc.start_date" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
+                                    <span t-field="doc.start_date"
+                                          t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
                                     UNTIL
                                     <t t-if="doc.until_completion">
                                         COMPLETION
                                     </t>
                                     <t t-else="">
-                                        <span t-field="doc.end_date" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
+                                        <span t-field="doc.end_date"
+                                              t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
                                     </t>
                                     <br/>
 
@@ -513,7 +533,7 @@
                                     <br/>
 
                                     Alliance Prime Accounting and Tax Consultancy accepts no liability to indemnify the
-                                    business for any losses, expenses, or liabilities incurred by  <span
+                                    business for any losses, expenses, or liabilities incurred by<span
                                         t-field="doc.partner_id.name"/>, due to
                                     tax or any other statutory or contractual liability to any third party arising from
                                     the Consultancy Services
