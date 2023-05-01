@@ -46,6 +46,7 @@ class SaleOrderInherit(models.Model):
 
     contact_ids = fields.Many2many('res.partner', string='Contacts', compute='compute_contact_ids')
 
+
     @api.depends('contact_id')
     def compute_contact_ids(self):
         # contacts = self.env['res.partner'].search([('is_eng', '=', True)])
