@@ -12,14 +12,14 @@ class SaleOrderInherit(models.Model):
 
     state = fields.Selection([
         # ('to_proposal_review', 'Waiting For Proposal Review'),
-        ('to_proposal_approve', 'Waiting For Proposal Approval'),
-        ('waiting_for_customer_approval', 'Waiting For Customer Approval'),
+        ('to_proposal_approve', 'Waiting For Management Proposal Approval'),
+        ('waiting_for_customer_approval', 'Waiting For Customer Proposal Approval'),
         ('customer_rejected', 'Proposal Rejected By Customer'),
         ('draft', 'Proposal'),
         ('sent', 'Proposal Sent'),
         # ('to_contract_review', 'Waiting For Contract Review'),
-        ('to_contract_approve', 'Waiting For Contract Approval'),
-        ('waiting_customer_contract_approval', 'Waiting Customer Contract Approval'),
+        ('to_contract_approve', 'Waiting For Management Contract Approval'),
+        ('waiting_customer_contract_approval', 'Waiting For Customer Contract Approval'),
         ('sale', 'Contract'),
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),

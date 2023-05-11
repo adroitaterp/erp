@@ -10,14 +10,14 @@
                 <button name="button_proposal_approve"
                         type="object"
                         states="to_proposal_approve"
-                        string="Approve"
+                        string="Management Approve"
                         class="oe_highlight"
                         groups="sale_custom.group_approve_proposal"
                 />
                 <button name="button_proposal_approve_reject"
                         type="object"
                         states="to_proposal_approve"
-                        string="Reject"
+                        string="Management Reject"
                         class="oe_highlight"
                         groups="sale_custom.group_approve_proposal"
                 />
@@ -40,7 +40,7 @@
                 <button name="button_contract_approve"
                         type="object"
                         states="to_contract_approve"
-                        string="Approve"
+                        string="Management Approve"
                         class="oe_highlight"
                         groups="sale_custom.group_approve_contract"
                 />
@@ -61,7 +61,7 @@
                 <button name="button_contract_approve_reject"
                         type="object"
                         states="to_contract_approve"
-                        string="Reject"
+                        string="Management Reject"
                         class="oe_highlight"
                         groups="sale_custom.group_approve_contract"
                 />
