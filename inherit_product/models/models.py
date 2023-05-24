@@ -11,6 +11,7 @@ class ProductTemplate(models.Model):
 class PricelistItem(models.Model):
     _inherit = 'product.pricelist.item'
 
+
     @api.depends('applied_on', 'compute_price')
     def _compute_price(self):
         for item in self:
