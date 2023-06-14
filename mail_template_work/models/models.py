@@ -8,101 +8,101 @@ import base64
 from odoo.exceptions import UserError
 
 
-class ResUsers(models.Model):
-    _inherit = 'res.users'
-
-    is_unique = fields.Boolean('is unique')
-
-    def get_details(self):
-        template = self.env.ref('mail_template_work.crm_lead_custom_template')
-        if template:
-            p1 = """ <tr class="text-center"><h4>Active Leads for last 24 hours</h4></tr> """
-            p2 = """ <tr class="text-center"><h4>Activities for last 24 hours</h4></tr> """
-            p3 = """ <tr class="text-center"><h4>Sale Orders for last 24 hours</h4></tr> """
-            body_line = ""
-            x_body_line = ""
-            today = fields.Datetime.now() - datetime.timedelta(days=1)
-            get_user = self.env['res.users'].search([])
-            for user_id in get_user:
-                leads = self.env['crm.lead'].search([('user_id', '=', user_id.id),('create_date', '>=', today)])
-                if leads:
-                    count = len(leads)
-                    body_line += """<tr class="text-left"><strong><th style="font-size:18.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#67B7D1">{0}</th></strong>""".format(
-                        count) \
-                                 + """<td style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#C5C5C5">{0}</td></tr>""".format(
-                        user_id.name)
-            body_line += p2
-            for user_id in get_user:
-                counter = 0
-                activities = self.env['crm.activity.report'].search([('user_id', '=', user_id.id),('create_date', '>=', today)])
-                if activities:
-                    activity_type = self.env['mail.activity.type'].search([])
-                    for type in activity_type:
-                        x_activities = activities.filtered(lambda a:a.mail_activity_type_id.id == type.id)
-                        if x_activities:
-                            type_id = type.name
-                        else:
-                            type_id = "---"
-                        x_count = len(x_activities)
-                        if x_count > 0:
-                            if counter == 0:
-                                body_line +=  """<tr class="text-left"><strong><th style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#C5C5C5">{0}</th></strong>""".format(
-                                        user_id.name)
-                            if counter > 0:
-                                body_line += """<td></td><td></td>"""
-                            body_line += """<td style="font-size:18.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#67B7D1">{0}</td>""".format(
-                                x_count) + """ <td style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#00A300">{}</td></tr>""".format(type_id)
-                            counter += 1
-            body_line += p3
-            for user_id in get_user:
-                counter = 0
-                sale_orders = self.env['sale.order'].search([('user_id', '=', user_id.id),('create_date', '>=', today)])
-                states = ['to_proposal_approve','draft', 'sent', 'to_contract_approve', 'customer_approval','sale', 'done', 'cancel', 'rejected']
-                for state in states:
-                    x_sale_order = sale_orders.filtered(lambda x:x.state == state)
-                    if x_sale_order:
-                        status = self.get_state(state)
-                    else:
-                        status = "---"
-                    x_count = len(x_sale_order)
-                    if x_count > 0:
-                        if counter == 0:
-                            body_line += """<tr class="text-left"><strong><th style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#C5C5C5">{0}</th></strong>""".format(
-                                user_id.name)
-                        if counter > 0:
-                            body_line += """<td></td><td></td>"""
-                        body_line += """<td style="font-size:18.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#67B7D1">{0}</td>""".format(
-                            x_count) + """ <td style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#00A300">{}</td></tr>""".format(status)
-                        counter += 1
-            body_html = p1 + body_line
-            template.email_from = 'contact@alliance-acc.com'
-            template.body_html = body_html
-            template.subject = "Salesperson Leads and Activity Report"
-            users = get_user.filtered(lambda x: x.is_unique)
-            for user in users:
-                template.email_to = user.login
-                template.send_mail(user.id, force_send=True)
-                print("====================")
-
-    def get_state(self,state):
-        if state == 'to_proposal_approve':
-            return 'Waiting For Proposal Approval'
-        if state == 'draft':
-            return 'Proposal'
-        if state == 'sent':
-            return 'Proposal Sent'
-        if state == 'to_contract_approve':
-            return 'Waiting For Contract Approval'
-        if state == 'customer_approval':
-            return 'Customer Approval'
-        if state == 'sale':
-            return 'Contract'
-        if state == 'done':
-            return 'Locked'
-        if state == 'cancel':
-            return 'Cancelled'
-        if state == 'rejected':
-            return 'Rejected'
+# class ResUsers(models.Model):
+#     _inherit = 'res.users'
+#
+#     is_unique = fields.Boolean('is unique')
+#
+#     def get_details(self):
+#         template = self.env.ref('mail_template_work.crm_lead_custom_template')
+#         if template:
+#             p1 = """ <tr class="text-center"><h4>Active Leads for last 24 hours</h4></tr> """
+#             p2 = """ <tr class="text-center"><h4>Activities for last 24 hours</h4></tr> """
+#             p3 = """ <tr class="text-center"><h4>Sale Orders for last 24 hours</h4></tr> """
+#             body_line = ""
+#             x_body_line = ""
+#             today = fields.Datetime.now() - datetime.timedelta(days=1)
+#             get_user = self.env['res.users'].search([])
+#             for user_id in get_user:
+#                 leads = self.env['crm.lead'].search([('user_id', '=', user_id.id),('create_date', '>=', today)])
+#                 if leads:
+#                     count = len(leads)
+#                     body_line += """<tr class="text-left"><strong><th style="font-size:18.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#67B7D1">{0}</th></strong>""".format(
+#                         count) \
+#                                  + """<td style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#C5C5C5">{0}</td></tr>""".format(
+#                         user_id.name)
+#             body_line += p2
+#             for user_id in get_user:
+#                 counter = 0
+#                 activities = self.env['crm.activity.report'].search([('user_id', '=', user_id.id),('create_date', '>=', today)])
+#                 if activities:
+#                     activity_type = self.env['mail.activity.type'].search([])
+#                     for type in activity_type:
+#                         x_activities = activities.filtered(lambda a:a.mail_activity_type_id.id == type.id)
+#                         if x_activities:
+#                             type_id = type.name
+#                         else:
+#                             type_id = "---"
+#                         x_count = len(x_activities)
+#                         if x_count > 0:
+#                             if counter == 0:
+#                                 body_line +=  """<tr class="text-left"><strong><th style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#C5C5C5">{0}</th></strong>""".format(
+#                                         user_id.name)
+#                             if counter > 0:
+#                                 body_line += """<td></td><td></td>"""
+#                             body_line += """<td style="font-size:18.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#67B7D1">{0}</td>""".format(
+#                                 x_count) + """ <td style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#00A300">{}</td></tr>""".format(type_id)
+#                             counter += 1
+#             body_line += p3
+#             for user_id in get_user:
+#                 counter = 0
+#                 sale_orders = self.env['sale.order'].search([('user_id', '=', user_id.id),('create_date', '>=', today)])
+#                 states = ['to_proposal_approve','draft', 'sent', 'to_contract_approve', 'customer_approval','sale', 'done', 'cancel', 'rejected']
+#                 for state in states:
+#                     x_sale_order = sale_orders.filtered(lambda x:x.state == state)
+#                     if x_sale_order:
+#                         status = self.get_state(state)
+#                     else:
+#                         status = "---"
+#                     x_count = len(x_sale_order)
+#                     if x_count > 0:
+#                         if counter == 0:
+#                             body_line += """<tr class="text-left"><strong><th style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#C5C5C5">{0}</th></strong>""".format(
+#                                 user_id.name)
+#                         if counter > 0:
+#                             body_line += """<td></td><td></td>"""
+#                         body_line += """<td style="font-size:18.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#67B7D1">{0}</td>""".format(
+#                             x_count) + """ <td style="font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#00A300">{}</td></tr>""".format(status)
+#                         counter += 1
+#             body_html = p1 + body_line
+#             template.email_from = 'contact@alliance-acc.com'
+#             template.body_html = body_html
+#             template.subject = "Salesperson Leads and Activity Report"
+#             users = get_user.filtered(lambda x: x.is_unique)
+#             for user in users:
+#                 template.email_to = user.login
+#                 template.send_mail(user.id, force_send=True)
+#                 print("====================")
+#
+#     def get_state(self,state):
+#         if state == 'to_proposal_approve':
+#             return 'Waiting For Proposal Approval'
+#         if state == 'draft':
+#             return 'Proposal'
+#         if state == 'sent':
+#             return 'Proposal Sent'
+#         if state == 'to_contract_approve':
+#             return 'Waiting For Contract Approval'
+#         if state == 'customer_approval':
+#             return 'Customer Approval'
+#         if state == 'sale':
+#             return 'Contract'
+#         if state == 'done':
+#             return 'Locked'
+#         if state == 'cancel':
+#             return 'Cancelled'
+#         if state == 'rejected':
+#             return 'Rejected'
 
 class MailComposeMsg(models.TransientModel):
     _inherit = 'mail.compose.message'
@@ -181,7 +181,8 @@ class MailComposeMsg(models.TransientModel):
                         break
                     for id in self.partner_ids.ids:
                         partner_ids.append(id)
-                    partner_ids.append(self.x_partner_ids.id)
+                    if self.x_partner_ids:
+                        partner_ids.append(self.x_partner_ids.id)
                     all_mail_values[num]['partner_ids'] = partner_ids
                 for res_id, mail_values in all_mail_values.items():
                     if wizard.composition_mode == 'mass_mail':

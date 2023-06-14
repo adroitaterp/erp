@@ -89,38 +89,38 @@
                 </form>
             </field>
         </record>
-      <record id="view_users_form_mail_inherit" model="ir.ui.view">
-            <field name="name">res.users.form.mail.inherit</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_form"/>
-            <field name="arch" type="xml">
-                <data>
-                    <field name="signature" position="after">
-                        <field name="is_unique"/>
-                    </field>
-                </data>
-            </field>
-        </record>
+<!--      <record id="view_users_form_mail_inherit" model="ir.ui.view">-->
+<!--            <field name="name">res.users.form.mail.inherit</field>-->
+<!--            <field name="model">res.users</field>-->
+<!--            <field name="inherit_id" ref="base.view_users_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <data>-->
+<!--                    <field name="signature" position="after">-->
+<!--                        <field name="is_unique"/>-->
+<!--                    </field>-->
+<!--                </data>-->
+<!--            </field>-->
+<!--        </record>-->
 
- <record id="ir_cron_edi_network_inherit" model="ir.cron">
-        <field name="name">CRM : User leads</field>
-        <field name="model_id" ref="model_res_users"/>
-        <field name="state">code</field>
-        <field name="code">model.get_details()</field>
-        <field name="interval_number">1</field>
-        <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
-        <field name="active">False</field>
-    </record>
+<!-- <record id="ir_cron_edi_network_inherit" model="ir.cron">-->
+<!--        <field name="name">CRM : User leads</field>-->
+<!--        <field name="model_id" ref="model_res_users"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">model.get_details()</field>-->
+<!--        <field name="interval_number">1</field>-->
+<!--        <field name="interval_type">days</field>-->
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="active">False</field>-->
+<!--    </record>-->
 
-    <record id="crm_lead_custom_template" model="mail.template">
-        	<field name="name">CRM : Leads check</field>
-            <field name="model_id" ref="base.model_res_users"/>
-            <field name="auto_delete" eval="False"/>
-	  		<field name="body_html" type="html">
-                <div></div>
-	  		</field>
-       	</record>
+<!--    <record id="crm_lead_custom_template" model="mail.template">-->
+<!--        	<field name="name">CRM : Leads check</field>-->
+<!--            <field name="model_id" ref="base.model_res_users"/>-->
+<!--            <field name="auto_delete" eval="False"/>-->
+<!--	  		<field name="body_html" type="html">-->
+<!--                <div></div>-->
+<!--	  		</field>-->
+<!--       	</record>-->
 
   </data>
 </odoo>
