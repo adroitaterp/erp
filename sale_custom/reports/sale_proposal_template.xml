@@ -353,7 +353,7 @@
 <!--                                                </td>-->
                                                 <td name="td_priceunit" class="text-right">
                                                     <span t-if="line.price_unit">
-                                                        <span t-esc="line.price_unit"/>
+                                                        <span t-esc="line.price_unit" t-options='{"widget": "monetary", "display_currency": line.currency_id}'/>
                                                     </span>
                                                     <span t-elif="line.percentage_price">
                                                         <span t-esc="line.percentage_price"/>%
