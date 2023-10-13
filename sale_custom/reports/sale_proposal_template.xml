@@ -338,7 +338,8 @@
 <!--                                                </td>-->
                                                 <td name="td_priceunit" class="text-right">
                                                     <span t-if="line.price_unit">
-                                                        <span t-esc="line.price_unit" t-options='{"widget": "monetary", "display_currency": line.currency_id}'/>
+                                                        <span t-esc="'%.0f AED'%(line.price_unit)"/>
+                                                       
                                                     </span>
                                                     <span t-elif="line.percentage_price">
                                                         <span t-esc="line.percentage_price"/>%
@@ -442,9 +443,12 @@
                                     <br/>
                                     Bank: Emirates Islamic (EI) Dubai Souq Branch Dubai, U.A.E.
                                     <br/>
+                                       <br/>
                                 </p>
                             </div>
-                            <br/>
+                            <strong style="font-size:25px;text-decoration: underline;">
+                                Confidentiality:
+                            </strong>
                             <div style="padding-top: 3px; height=100%;">
                                 <p style="font-size: 18px;"
                                    class="text-justify">
@@ -454,9 +458,11 @@
                                     disclosed to unrelated third parties except where we have received your consent to
                                     do
                                     so, or where there is a legal right or duty to disclose
-                                    <br/>
+                                   
                                 </p>
                             </div>
+                          <br/>
+                           <br/>
                             <!--                            <p style="page-break-after:always;"/>-->
                             <strong style="font-size:25px;text-decoration: underline;">
                                 Terms of Contract
