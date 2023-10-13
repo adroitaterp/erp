@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_/mnt/extra-addons/account_invoice_report_/mnt/extra-addons/account_invoice_report,/mnt/extra-addons/account_invoice_report./mnt/extra-addons/account_invoice_report,model_/mnt/extra-addons/account_invoice_report_/mnt/extra-addons/account_invoice_report,base.group_user,1,1,1,1

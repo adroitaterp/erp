@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="tax_invoice_pdf_reports_template">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="oe_structure">
+
+                            <div name="top">
+                                <div style="float: left;width: 40%;">
+                                    <t t-set="image1" t-value="'account_invoice_report/static/src/a_logo.png'" />
+                                    <img t-att-src="image1" height="120px"  width="300px"/>
+                                </div>
+
+                                <div style="float: left;width: 20%;padding-top: 60px;text-align:center;">
+                                    <strong>
+                                        
+                                        <span style="font-size: 22px;">Tax Invoice</span>
+                                    </strong>
+                                </div>
+
+                                <div style="float: right;width: 30%;padding-top: 60px;">
+                                    
+                                    <table width="100%" style="font-size: 13px;">
+                                        <tr>
+                                            <td style="border:1px solid black;text-align:center;width:40%;line-height: 22px;" >TRN</td>
+                                            <td style="border:1px solid black;text-align:center;width:60%;line-height: 22px;"><span t-field="o.company_id.vat"/></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="border:1px solid black;text-align:center;width:40%;line-height: 22px;">Tax Date</td>
+                                            <td style="border:1px solid black;text-align:center;width:60%;line-height: 22px;"><span t-field="o.invoice_date"/></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="border:1px solid black;text-align:center;width:40%;line-height: 22px;">Invoice No.</td>
+                                            <td style="border:1px solid black;text-align:center;width:60%;line-height: 22px;"><span t-field="o.name"/></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td style="border:1px solid black;text-align:center;width:40%;line-height: 22px;">Reference #</td>
+                                            <td style="border:1px solid black;text-align:center;width:60%;line-height: 22px;"><span t-field= "o.ref"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <table width="100%" >
+                                <tr>
+                                    <td>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td>&#160;</td>
+                                </tr>
+                            </table>
+
+                            <div name="second">
+                                <div style="float: left;width: 65%;">
+                                   <table width="100%" >
+                                        <tr>
+                                            <td>Billed By:</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&#160;</td>
+                                        </tr>
+                                        <tr>          
+                                             <td>
+                                                  <strong>Alliance Prime Accounting and Tax Counsultancy</strong> <br/>
+                                                  office No, 8-2, Wxchange Tower, Business Bay, <br/>
+                                                  Dubai, United Arab Emirates
+                                             </td>
+                                         </tr>
+                                    </table>
+                                </div>
+
+                                <div style="float: right;width: 30%;">
+                                    <table width="100%" >
+                                        <tr>
+                                            <td>Billed To:</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&#160;</td>
+                                        </tr>
+                                        <tr>          
+                                             <td>
+                                                  <span t-field="o.partner_id.name"/><br/>
+                                                  
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                            <td>&#160;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customer TRN: <span t-field="o.partner_id.vat"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                            </div>
+
+                            <table width="100%" >
+                                <tr>
+                                    <td>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td>&#160;</td>
+                                </tr>
+                            </table>
+                    
+
+
+                            <table >
+                                <head>
+                                    <style>
+                                        table   {
+                                                width: 100%; 
+                                                }
+                                        th {
+                                                font-size: 16px;
+                                                line-height: 30px;
+                                                padding-left: 5px;
+
+                                            }
+                                        td {        
+                                                    font-size: 14px;
+                                                    padding-top: 0px;
+                                                    padding-bottom: 0px;
+                                                    padding-left: 5px;
+                                            
+                                            }
+
+                                    </style>
+                                </head>
+                                <tbody>
+                                    <tr>
+                                        <th style="text-align:center;width:15%;border:1px solid black;">Item</th>
+                                        <th style="text-align:center;width:35%;border:1px solid black;">Description</th>
+                                        <th style="text-align:center;width:15%;border:1px solid black;">Net Amount</th>
+                                        <th style="text-align:center;width:20%;border:1px solid black;">VAT Amount(5%)</th>
+                                        <th style="text-align:center;width:15%;border:1px solid black;">Total Amount</th>
+                                    </tr>
+
+                                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                                    <tr>
+                                        <td style="border:1px solid black;width:15%;text-align:center;">
+                                            <span t-esc="line.product_id.name" />
+                                        </td>
+
+                                        <td style="border:1px solid black;width:35%;text-align:center;">
+                                            <span t-esc="line.name" />
+                                        </td>
+
+                                        <td style="border:1px solid black;width:15%;text-align:center;">
+                                            <span t-esc="line.price_subtotal" />
+                                        </td>
+
+                                        <td style="border:1px solid black;width:20%;text-align:center;">
+                                            <t t-esc="line.price_total - line.price_subtotal" t-options="{'widget': 'float', 'precision': 2}"/>
+                                        </td>
+
+                                        <td style="border:1px solid black;width:15%;text-align:center;">
+                                            <span t-esc="line.price_total" />
+                                        </td>
+                                          
+                                    </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            
+                            <br/>
+                            <br/>
+
+                            <div class="row">
+                                    <div  class="col-6" >
+                                        <table >
+                                        <tbody>
+                                                <tr>
+                                                    <td style="font-weight: bold;">
+                                                            Bank &amp; Payment Details: 
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                        <td style="font-size:12px">
+                                                            <br/>Title: ALLIANCE PRIME ACCOUNTING AND TAX CONSULTANCY <br/>
+                                                            A/C No : 3708440345501 <br/>
+                                                            IBAN: AE48 0340 0037 0844 0345 501 <br/>                                                          
+                                                            Bank: Emirates Islamic (EI) Dubai Souq Branch Dubai, UAE.
+                                                        </td>
+                                                        
+                                                </tr>
+                                                </tbody>
+                                        </table >
+                                    </div>
+
+                                    <div style="font-size:12px" class="col-3" >
+                                    
+                                        <table >
+                                            <tbody>
+                                                <tr style="font-weight: bold;">
+                                                        <td style="text-align:left;" width="10%" >
+                                                            <t t-set="image2" t-value="'account_invoice_report/static/src/qr_code.png'" />
+                                                            <img t-att-src="image2" height="100px"  width="100px"/>
+                                                          
+                                                        </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+
+                                    </div>     
+
+                                     <div style="font-size:12px" class="col-3" >
+                                    
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-weight: bold;">Subtotal</td>
+                                                    <td><span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "currency_field": "currency_id"}'/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: bold;padding-top:10px;">VAT@5%</td>
+                                                    <td style="padding-top:10px;"><span t-field="o.amount_tax" t-options='{"widget": "monetary", "currency_field": "currency_id"}'/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: bold;padding-top:10px;">Total</td>
+                                                    <td style="font-weight: bold;padding-top:10px;"><span t-field="o.amount_total" t-options='{"widget": "monetary", "currency_field": "currency_id"}'/></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>     
+                                    
+                             </div>
+
+                            <br/>
+                            <br/>
+                            <br/>
+
+                            <table>
+                                <tr>
+                                    <td style="font-weight: bold;">Terms &amp; Conditions</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br/>
+                                        1. Shall be paid upon the receipt of the invoice.<br/>
+                                        2. Please quote the invoice when remitting funds.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    
+                                    <td>
+                                    <br/>For any enquiry email us on info@alliance-acc.com or call us on +971 4568 1979</td>
+                                </tr>
+                            </table>
+
+
+
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report 
+            id="account.account_invoices" 
+            model="account.move"
+            report_type="qweb-pdf"
+            string="Invoices"
+            name="account.report_invoice_with_payments"
+            file="account.report_invoice_with_payments"
+            attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
+            groups="account.group_account_invoice"
+            menu="False"
+        />
+
+        <record id="tax_paper_report_format" model="report.paperformat">
+			<field name="name">Tax PF</field>
+			<field name="default" eval="True"/>
+			<field name="format">custom</field>
+            <field name="page_height">210</field>
+            <field name="page_width">297</field>
+			<field name="orientation">Landscape</field>
+			<field name="margin_top">20</field>
+			<field name="margin_bottom">20</field>
+			<field name="margin_left">7</field>
+			<field name="margin_right">7</field>
+		</record>
+
+        <report id="tax_invoice_pdf_reports_template_id" 
+        model="account.move" 
+        string="Invoice" 
+        report_type="qweb-pdf"
+        paperformat="account_invoice_report.tax_paper_report_format"
+        name="account_invoice_report.tax_invoice_pdf_reports_template" 
+        file="account_invoice_report.tax_invoice_pdf_reports_template" 
+        print_report_name=" 'Tax Invoice (%s)' % (object.name)" />
+
+    </data>
+</odoo>
+
+

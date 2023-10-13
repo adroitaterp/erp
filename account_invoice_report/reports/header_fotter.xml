@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="custom_header">
+        <div class="header " >
+            <table>
+            
+                <br/>
+                <tr width="100%">
+                    <td style="text-align:left;" width="40%" >
+                        <img t-att-src="'/sale_custom/static/description/Alliance Logo Latest.png'" height="60%"/>
+                    </td>
+                           
+                </tr>
+            </table>
+        </div>
+    </template>
+</odoo>
