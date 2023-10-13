@@ -8,15 +8,15 @@
                 </tr>
                 <br/>
                 <tr width="100%">
-                    <td width="80%" style="text-align:center;">
+                    <td width="65%" style="text-align:center;">
                         <h5 style="text-decoration:overline underline;">
                             <strong>
                                 Alliance Prime Accounting and Tax Consultancy (APATC)
                             </strong>
                         </h5>
                     </td>
-                    <td style="text-align:left;" width="20%" >
-                        <img t-att-src="'/sale_custom/static/description/logo.png'" height="70%"/>
+                    <td style="text-align:left;" width="40%" >
+                        <img t-att-src="'/sale_custom/static/description/Alliance Logo Latest.png'" height="60%"/>
                     </td>
                 </tr>
             </table>
