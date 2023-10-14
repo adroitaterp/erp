@@ -25,7 +25,7 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        # 'reports/header_fotter.xml',
+        'reports/header_fotter.xml',
         # 'reports/report.xml',
         'reports/tax_invoice_report.xml',
         # 'views/templates.xml',

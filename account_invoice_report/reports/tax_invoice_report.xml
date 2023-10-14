@@ -15,10 +15,9 @@
                                     <img t-att-src="image1" height="120px"  width="300px"/>
                                 </div>
 
-                                <div style="float: left;width: 20%;padding-top: 60px;text-align:center;">
-                                    <strong>
-                                        
-                                        <span style="font-size: 22px;">Tax Invoice</span>
+                                <div style="float: left;width: 20%;padding-top: 50px;text-align:center;">
+                                    <strong>            
+                                        <span style="font-size: 28px;">Tax Invoice</span>
                                     </strong>
                                 </div>
 
@@ -26,13 +25,14 @@
                                     
                                     <table width="100%" style="font-size: 13px;">
                                         <tr>
-                                            <td style="border:1px solid black;text-align:center;width:40%;line-height: 22px;" >TRN</td>
+                                            <td style="border:1px solid black;text-align:center;width:40%;line-height: 22px;" >OUR TRN</td>
                                             <td style="border:1px solid black;text-align:center;width:60%;line-height: 22px;"><span t-field="o.company_id.vat"/></td>
                                         </tr>
 
                                         <tr>
                                             <td style="border:1px solid black;text-align:center;width:40%;line-height: 22px;">Tax Date</td>
-                                            <td style="border:1px solid black;text-align:center;width:60%;line-height: 22px;"><span t-field="o.invoice_date"/></td>
+                                            <td style="border:1px solid black;text-align:center;width:60%;line-height: 22px;"><span t-esc="o.invoice_date.strftime('%d/%m/%Y')"/></td>
+                                            
                                         </tr>
 
                                         <tr>
@@ -69,7 +69,7 @@
                                         <tr>          
                                              <td>
                                                   <strong>Alliance Prime Accounting and Tax Counsultancy</strong> <br/>
-                                                  office No, 8-2, Wxchange Tower, Business Bay, <br/>
+                                                  office No, 892, The EXchange Tower, Business Bay, <br/>
                                                   Dubai, United Arab Emirates
                                              </td>
                                          </tr>
@@ -86,15 +86,46 @@
                                         </tr>
                                         <tr>          
                                              <td>
-                                                  <span t-field="o.partner_id.name"/><br/>
+                                                  <span t-field="o.partner_id.name"/>
                                                   
                                              </td>
                                          </tr>
-                                         <tr>
-                                            <td>&#160;</td>
+                
+                                        <tr>
+                                            <td>TRN: <span t-field="o.partner_id.vat"/></td>
                                         </tr>
                                         <tr>
-                                            <td>Customer TRN: <span t-field="o.partner_id.vat"/></td>
+                                            <td>Address:
+                                                 <t t-if="o.partner_id.street">
+                                                        <span t-esc="o.partner_id.street"/>  
+                                                     <br/>
+                                                 </t>
+                                                <t t-if="o.partner_id.street2">
+                                                        <span t-esc="o.partner_id.street2"/>  
+                                                     <br/>
+                                                 </t>
+                                            
+                                                 <t t-if="o.partner_id.city">
+                                                        <span t-esc="o.partner_id.city"/>  
+                                                     
+                                                 </t>
+
+                                                 <t t-if="o.partner_id.city">
+                                                        <span t-esc="o.partner_id.state_id.name"/>  
+                                                     
+                                                 </t>
+                                                 <t t-if="o.partner_id.city">
+                                                        <span t-esc="o.partner_id.zip"/>  
+                                                     <br/>
+                                                 </t>
+                                                 <t t-if="o.partner_id.city">
+                                                        <span t-esc="o.partner_id.country_id.name"/>  
+                                                     
+                                                 </t>
+                                                
+                                                
+                                                
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -153,8 +184,8 @@
                                             <span t-esc="line.name" />
                                         </td>
 
-                                        <td style="border:1px solid black;width:15%;text-align:center;">
-                                            <span t-esc="line.price_subtotal" />
+                                        <td style="border:1px solid black;width:15%;text-align:center;"> 
+                                                 <span t-esc="'%.2f'%(line.price_subtotal)"/>
                                         </td>
 
                                         <td style="border:1px solid black;width:20%;text-align:center;">
@@ -162,7 +193,9 @@
                                         </td>
 
                                         <td style="border:1px solid black;width:15%;text-align:center;">
-                                            <span t-esc="line.price_total" />
+                                            <span t-esc="'%.2f'%(line.price_total)"
+                     
+                                                />
                                         </td>
                                           
                                     </tr>
@@ -247,20 +280,17 @@
                                     <td>
                                         <br/>
                                         1. Shall be paid upon the receipt of the invoice.<br/>
-                                        2. Please quote the invoice when remitting funds.
+                                        2. Please quote the invoice number when remitting funds.
                                     </td>
                                 </tr>
-                                <tr>
-                                    
-                                    <td>
-                                    <br/>For any enquiry email us on info@alliance-acc.com or call us on +971 4568 1979</td>
-                                </tr>
+                              
                             </table>
 
 
 
 
                             </div>
+                             <t t-call="account_invoice_report.custom_footer"/>
                         </div>
                     </t>
                 </t>
@@ -286,7 +316,7 @@
             <field name="page_height">210</field>
             <field name="page_width">297</field>
 			<field name="orientation">Landscape</field>
-			<field name="margin_top">20</field>
+			<field name="margin_top">10</field>
 			<field name="margin_bottom">20</field>
 			<field name="margin_left">7</field>
 			<field name="margin_right">7</field>
