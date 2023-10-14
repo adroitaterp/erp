@@ -196,14 +196,12 @@
                                 <p style="font-size: 18px;" class="text-justify">
                                     Alliance Prime Accounting and Tax Consultancy is an Approved Tax Agency
                                     authorized by the Federal Tax Authority (FTA) that strictly follows Federal Tax
-                                    Authority’s regulations on indirect taxation; Excise, VAT, Corporate Tax and all
-                                </p>
-                                <img t-att-src="'/sale_custom/static/description/all.png'" height="200px" width="100%"/>
-                                <p style="font-size: 18px;" class="text-justify">
-                                    related social responsibilities of a business. We are required to document and
+                                    Authority’s regulations on indirect taxation; Excise, VAT, Corporate Tax and all related       social responsibilities of a business. We are required to document and
                                     demonstrate that our firm strictly complies with the professional ethics and
                                     quality control standards established by the international bodies (IFAC).
                                 </p>
+                                <img t-att-src="'/sale_custom/static/description/all.png'" height="200px" width="100%"/>
+                               
                             </div>
                             <strong style="font-size:18px;">
                                 Professional Development
@@ -457,7 +455,7 @@
                                     be
                                     disclosed to unrelated third parties except where we have received your consent to
                                     do
-                                    so, or where there is a legal right or duty to disclose
+                                    so, or where there is a legal right or duty to disclose.
                                    
                                 </p>
                             </div>
@@ -512,7 +510,7 @@
                                     business for any losses, expenses, or liabilities incurred by  <span
                                         t-field="doc.partner_id.name"/>, due to
                                     tax or any other statutory or contractual liability to any third party arising from
-                                    the Consultancy Services
+                                    the Consultancy Services.
                                     <br/>
                                 </p>
                                 <!--                                <span t-field="doc.term_of_contract" style="font-size: 18px; word-spacing: 15px;"/>-->
@@ -602,7 +600,7 @@
                                     </div>
                                     <div class="col-6">
                                         <strong style="font-size:18px;text-decoration: underline;">
-                                            For and on the behalf of::
+                                            For and on the behalf of:
                                         </strong>
                                         <br/>
                                         <p>
