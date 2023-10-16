@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','account'],
 
     # always loaded
     'data': [
@@ -28,7 +28,7 @@
         'reports/header_fotter.xml',
         # 'reports/report.xml',
         'reports/tax_invoice_report.xml',
-        # 'views/templates.xml',
+        'views/views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
