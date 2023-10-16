@@ -185,7 +185,7 @@
                                         </td>
 
                                         <td style="border:1px solid black;width:15%;text-align:center;"> 
-                                                 <span t-esc="'%.2f'%(line.price_subtotal)"/>
+                                            <span t-esc="'{0:,.2f} AED'.format(line.price_subtotal)"/>
                                         </td>
 
                                         <td style="border:1px solid black;width:20%;text-align:center;">
@@ -193,9 +193,8 @@
                                         </td>
 
                                         <td style="border:1px solid black;width:15%;text-align:center;">
-                                            <span t-esc="'%.2f'%(line.price_total)"
-                     
-                                                />
+                                           
+                                             <span t-esc="'{0:,.2f} AED'.format(line.price_total)"/>
                                         </td>
                                           
                                     </tr>
