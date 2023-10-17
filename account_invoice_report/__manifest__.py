@@ -13,16 +13,11 @@
     'author': "Hamayun Fazal",
     'website': "http://www.hamayunfazal.com",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://gitlab.com/flectra-hq/flectra/blob/2.0/flectra/addons/base/data/ir_module_category_data.xml
-    # for the full list
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '0.10',
 
-    # any module necessary for this one to work correctly
     'depends': ['base','account'],
 
-    # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'reports/header_fotter.xml',
@@ -30,7 +25,6 @@
         'reports/tax_invoice_report.xml',
         'views/views.xml',
     ],
-    # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],

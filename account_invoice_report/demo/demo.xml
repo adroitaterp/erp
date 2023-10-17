@@ -1,4 +1,4 @@
-<flectra>
+<odoo>
     <data>
 <!--
           <record id="object0" model="/mnt/extra-addons/account_invoice_report./mnt/extra-addons/account_invoice_report">
@@ -27,4 +27,4 @@
           </record>
 -->
     </data>
-</flectra>
+</odoo>
