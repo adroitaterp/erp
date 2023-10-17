@@ -11,6 +11,18 @@
                         font-weight: normal;
                         font-style: normal;
                         }
+
+                        .circular-logo {
+  width: 160px; /* Aap apni marzi ke hisab se width aur height set kar sakte hain */
+  height: 160px;
+  border-radius: 50%; /* Yeh border ko circular banayega */
+  overflow: hidden; /* Yeh image ke bahar se baahar kuchh cheezen hide karega */
+}
+
+.circular-logo img {
+  width: 100%;
+  height: 100%;
+}
                     </style>
 
                     <div class="page">
@@ -133,7 +145,7 @@
                                             Mr.
                                             <span t-field="doc.employee_id.name"/>
                                             <br/>
-                                            Tax Partner
+                                            CEO and Tax Partner
                                         </p>
                                     </div>
                                 </div>
@@ -598,8 +610,8 @@
                                             Company Stamp:
                                         </p>
                                         <p>
-                                            <img t-att-src="'/sale_custom/static/description/STAMP.png'" height="200px"
-                                                 width="80%"/>
+                                            <img src="/sale_custom/static/description/STAMP.png" alt="Your Logo" style="border-radius: 50%;"/>
+
                                         </p>
                                     </div>
                                     <div class="col-6">
