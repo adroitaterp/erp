@@ -17,10 +17,11 @@ class CRMLeadInh(models.Model):
         res.onchange_user_id_assignee()
         return res
 
-    def write(self, vals):
-        res = super(CRMLeadInh, self).write(vals)
-        self.onchange_user_id_assignee()
-        return res
+     # def write(self, vals):
+     #    res = super(CRMLeadInh, self).write(vals)
+     #    for record in self:
+     #        record.onchange_user_id_assignee()
+     #    return res
 
     # @api.onchange('user_id')
     def onchange_user_id_assignee(self):
