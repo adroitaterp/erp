@@ -24,9 +24,9 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/project_department.xml',
+        'views/project_project.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
