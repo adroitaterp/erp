@@ -8,5 +8,7 @@ class ProjectProjectInherit(models.Model):
     name = fields.Char(string="Department")
     request_by_id = fields.Many2many('project.project', string='Project Type', store=True)
     
-    
+
+
+
 
