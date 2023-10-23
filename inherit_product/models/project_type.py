@@ -15,18 +15,18 @@ class ProjectProject(models.Model):
     department_project_id = fields.Many2one('project.new.department', string="Department") 
 
     
-    # @api.onchange('department_project_id')
-    # def branch_filter(self):
-    #     aa=self.department_project_id.project_by_id
-    #     all=[]
-    #     for j in aa:
-    #         all.append(j.id)
-    #     if all:
+    @api.onchange('department_project_id')
+    def branch_filter(self):
+        aa=self.department_project_id.department_id
+        all=[]
+        for j in aa:
+            all.append(j.id)
+        if all:
            
-    #         return {'domain': {'project_type_id': [('id', 'in', all)]}}
-    #     else:
+            return {'domain': {'project_type_id': [('id', 'in', all)]}}
+        else:
          
-    #         return {'domain': {'project_type_id': [('id', 'in', [])]}}
+            return {'domain': {'project_type_id': [('id', 'in', [])]}}
 
        
             

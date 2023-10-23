@@ -47,7 +47,7 @@
                   </field>
             </record>
 
-            <menuitem action="project_department_action" id="new_project_department" name="Project Department" parent="project.menu_project_config" sequence="15"/>
+            <menuitem action="project_new_department_action" id="new_project_department" name="Project Department" parent="project.menu_project_config" sequence="15"/>
 
         
     </data>
