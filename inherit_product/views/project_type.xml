@@ -54,7 +54,8 @@
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="project_type_id"/>
+                <field name="project_type_id" options="{'no_create_edit' : True}"/>
+                 <field name="department_project_id"/>
             </xpath>
         </field>
     </record>

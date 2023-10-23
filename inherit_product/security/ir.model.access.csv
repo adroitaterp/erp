@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_project_type,access.project.type,model_project_type,,1,1,1,1
+access_project_new_department,access.project.new.department,model_project_new_department,,1,1,1,1

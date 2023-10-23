@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+
+        <!-- project new department form view -->
+        <record id="project_department_view_form" model="ir.ui.view">
+                <field name="name">project.new.department.form.view</field>
+                <field name="model">project.new.department</field>
+                <field name="arch" type="xml">
+                
+                    <form string= "Project Department">
+                        <sheet>
+                                <group>
+                                    <field name="name" />
+                                </group>
+                                 <group>
+                                    <field name="department_id" widget="many2many_tags"/>
+                                </group>
+                        </sheet>
+                    </form>
+                </field>
+        </record>
+
+
+        <!--                    project new department tree view-->
+
+
+              <record id="project_new_department_tree_views" model="ir.ui.view">
+                <field name="name">project.new.department.Tree</field>
+                <field name="model">project.new.department</field>
+                <field name="arch" type="xml">
+                  <tree string="Project Department">
+                      <field name="name"/>
+                        <!-- <field name="project_by_id" widget="many2many_tags"/> -->
+                  </tree>
+                </field>
+              </record>
+
+
+        <!--                         project.new..department action-->
+            <record id="project_new_department_action" model="ir.actions.act_window">
+                  <field name="name">Project Department</field>
+                  <field name="type">ir.actions.act_window</field>
+                  <field name="res_model">project.new.department</field>
+                  <field name="view_mode">tree,form</field>
+                  <field name="help" type="html">
+                    <p class="oe_view_nocontent_create">Project Department here... </p>
+                  </field>
+            </record>
+
+            <menuitem action="project_department_action" id="new_project_department" name="Project Department" parent="project.menu_project_config" sequence="15"/>
+
+        
+    </data>
+</odoo>

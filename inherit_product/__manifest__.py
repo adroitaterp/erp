@@ -27,7 +27,7 @@
         # 'security/security.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
-        'views/templates.xml',
+        'views/project_new_department.xml',
         'views/project_type.xml',
     ],
     # only loaded in demonstration mode
