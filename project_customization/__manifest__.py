@@ -20,13 +20,13 @@
     'version': '0.3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'project'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
-        'views/project_department.xml',
-        'views/project_project.xml',
+        # 'security/ir.model.access.csv',
+        # 'views/project_department.xml',
+        # 'views/project_project.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
