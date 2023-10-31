@@ -34,7 +34,7 @@
         'reports/sale_contract_template.xml',
     ],
     
-    'license': 'AGPL-3',
+    'license': 'LGPL-3 ',
     'installable': True,
     'auto_install': False,
     'application': False,
