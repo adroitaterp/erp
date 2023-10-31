@@ -5,6 +5,9 @@ from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_is_zero, float_compare
+import logging
+
+
 
 
 class SaleOrderInherit(models.Model):
@@ -25,8 +28,48 @@ class SaleOrderInherit(models.Model):
         ('cancel', 'Cancelled'),
         ('rejected', 'Rejected'),
         ('customer_contract_rejected', 'Customer Contract Rejected'),
+        ('contract_expired', 'Contract Expired'), ('one_time_job_done', 'One Time Job Done'), 
         # ('rejected_by_customer', 'Rejected By Customer'),
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='to_proposal_approve')
+
+    sale_ids = fields.One2many('sale.order.line', 'sale_order_line_id', )
+    term = fields.Char(string="Term")
+    services = fields.Char(string="Services")
+
+    percentage = fields.Char(string="Fee for each service")
+    
+    
+
+
+
+    @api.onchange('order_line')
+    def _onchange_order_line_term(self):
+        term_list = []
+        service_list = []
+        percentage_list = []
+    
+        for line in self.order_line:
+            if line.term:
+                term_list.append(line.term)
+    
+            if line.product_id.name:
+                product_name_parts = line.product_id.name.split('(')
+                if len(product_name_parts) == 2:
+                    service_list.append(product_name_parts[0])
+                    percentage_list.append(product_name_parts[1].strip())  # Remove leading/trailing whitespaces
+    
+        self.term = ', '.join(term_list)
+        self.services = ', '.join(service_list)
+        self.percentage = ', '.join(percentage_list)
+    
+
+    
+
+        
+
+
+  
+
 
     until_completion = fields.Boolean('Until Completion')
     scope_of_work = fields.Text(string='Customer Note')
@@ -59,6 +102,7 @@ class SaleOrderInherit(models.Model):
         res = super(SaleOrderInherit, self).create(vals)
         lines = []
         for r in res.order_line:
+            
             vals = {
                 'order_id': res.id,
                 'product_id': r.product_id.id,
@@ -66,6 +110,7 @@ class SaleOrderInherit(models.Model):
             }
             lines.append(vals)
         result = self.env['sale.description'].create(lines)
+        
         return res
 
     def write(self, vals):
@@ -157,12 +202,32 @@ class SaleOrderInherit(models.Model):
             'state': 'rejected'
         })
 
+    def button_contract_expired(self):
+        self.write({
+            'state': 'contract_expired'
+        })
+
+    def button_one_time_job_done(self):
+        self.write({
+            'state': 'one_time_job_done'
+        })
+
+
+
+
+
+
+
+    
+
 
 class SaleLines(models.Model):
     _inherit = 'sale.order.line'
 
     term = fields.Selection([('one_time', 'One Time'), ('monthly', 'Monthly'), ('quarterly', 'Quarterly'),
                              ('yearly', 'Yearly'), ('per_item', 'Per Item'), ('free_of_charge', 'Free of Charge')])
+    sale_order_line_id = fields.Many2one('sale.order', string="Measurment")
+
 
     # def write(self, values):
     #     if 'product_id' in values:

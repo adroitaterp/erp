@@ -44,6 +44,12 @@
                         class="oe_highlight"
                         groups="sale_custom.group_approve_contract"
                 />
+                
+
+
+                
+
+                
 <!--                <button name="button_customer_approve"-->
 <!--                        type="object"-->
 <!--                        states="customer_approval"-->
@@ -79,6 +85,25 @@
                         class="oe_highlight"
                         groups="sale_custom.group_approve_contract"
                 />
+
+
+                <button name="button_contract_expired"
+                        type="object"
+                        states="sale"
+                        string="Contract expired"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                       
+                />
+
+                 <button name="button_one_time_job_done"
+                        type="object"
+                        states="sale"
+                        string="One Time Job Done"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                       
+                />
             </xpath>
 
 
@@ -86,6 +111,9 @@
                 <page name="misc_info" string="Miscellaneous">
                     <group>
                         <group>
+                                            <field name="term" invisible="1"/>
+                            <field name="percentage" invisible="1"/>
+                            <field name="services" invisible="1"/>
                             <field name="scope_of_work"/>
                             <field name="term_of_contract" invisible="1"/>
                             <field name="license_no" invisible="1"/>
@@ -145,6 +173,31 @@
 
         </field>
     </record>
+
+
+    <record id="view_sale_order_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="arch" type="xml">
+                
+                 <xpath expr="//field[@name='amount_total']" position="after">
+                     <field name="start_date"/>
+                     <field name="end_date"/>
+                     <field name="services"/>
+                     <field name="term"/> 
+                     
+                 </xpath>
+
+                
+        
+    
+    
+            </field>
+     </record>
+
+
+    
 
 
 </odoo>
