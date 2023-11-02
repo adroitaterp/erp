@@ -6,6 +6,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_is_zero, float_compare
 import logging
+from datetime import datetime
 
 
 
@@ -37,14 +38,7 @@ class SaleOrderInherit(models.Model):
     services = fields.Char(string="Services")
 
     percentage = fields.Char(string="Fee for each service")
-    days=fields.Char("EXPIRY")
-
-    @api.onchange('start_date','end_date')
-    def calculatedays(self):
-        if self.start_date and self.end_date:
-            days=(self.end_date-self.start_date).days
-            self.days=str(days)+" days"
-    
+   
     
 
 
@@ -96,6 +90,20 @@ class SaleOrderInherit(models.Model):
 
     contact_ids = fields.Many2many('res.partner', string='Contacts', compute='compute_contact_ids')
 
+
+
+    days=fields.Char("Days")
+
+    @api.onchange('start_date','end_date')
+    def calculatedays(self):
+        if self.start_date and self.end_date:
+            days=(self.end_date-self.start_date).days
+            self.days=str(days)+" days"
+
+    
+
+
+    
 
     @api.depends('contact_id')
     def compute_contact_ids(self):
