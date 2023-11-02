@@ -13,6 +13,17 @@ class ProjectProject(models.Model):
     _inherit = 'project.project'
     project_type_id = fields.Many2one('project.type', string="Project Type")
     department_project_id = fields.Many2one('project.new.department', string="Department") 
+    created_date=fields.Date('Create Date')
+    product_ids=fields.One2many('products.projects','project_id',string="products")
+
+   
+
+class productsproject(models.Model):
+    _name='products.projects'
+
+    project_id=fields.Many2one('project.project')
+    product_id = fields.Many2one('product.product', string="Product",)
+    name=fields.Char(string='Description')
 
     
     # @api.onchange('department_project_id')
