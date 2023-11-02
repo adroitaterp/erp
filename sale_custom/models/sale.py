@@ -37,6 +37,13 @@ class SaleOrderInherit(models.Model):
     services = fields.Char(string="Services")
 
     percentage = fields.Char(string="Fee for each service")
+    days=fields.Char("EXPIRY")
+
+    @api.onchange('start_date','end_date')
+    def calculatedays(self):
+        if self.start_date and self.end_date:
+            days=(self.end_date-self.start_date).days
+            self.days=str(days)+" days"
     
     
 

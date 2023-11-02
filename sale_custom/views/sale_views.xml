@@ -160,6 +160,7 @@
                 <field name="start_date"/>
                 <field name="until_completion"/>
                 <field name="end_date" attrs="{'invisible': [('until_completion', '=', True)]}"/>
+                <field name="days" widget="remaining_days" decoration-danger="days &lt; '30'"/>
                 <field name="payment_terms_note"/>
 
             </xpath>
@@ -184,17 +185,75 @@
                  <xpath expr="//field[@name='amount_total']" position="after">
                      <field name="start_date"/>
                      <field name="end_date"/>
+                         <field name="days" 
+                              decoration-danger="days &lt; '30'" />
                      <field name="services"/>
                      <field name="term"/> 
                      
                  </xpath>
 
-                
-        
-    
+            
     
             </field>
      </record>
+
+
+      <record id="view_sale_order_expire_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.order.expire.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="create_date"/>
+                </xpath>
+
+                 <xpath expr="//field[@name='amount_total']" position="after">
+                     <field name="start_date"/>
+                     <field name="end_date"/>
+                      <field name="days" decoration-danger="days &lt; '30'" />
+                     <field name="services"/>
+                     <field name="term"/> 
+                     
+                 </xpath>
+
+
+                 <xpath expr="//field[@name='invoice_status']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </xpath>
+
+                 <xpath expr="//field[@name='term']" position="after">
+                     <field name="state"/>
+                </xpath>
+
+            
+    
+            </field>
+     </record>
+
+    <!-- expriration menu -->
+     <record id="expire_date_action" model="ir.actions.act_window">
+              <field name="name">Renewable Contracts</field>
+              <field name="type">ir.actions.act_window</field>
+              <field name="res_model">sale.order</field>
+            <field name="domain">[('days', '&lt;=', 30)]</field>
+
+              <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+              <field name="help" type="html">
+                     <p class="oe_view_nocontent_create">Sale order details here... </p>
+              </field>
+    </record>
+   
+    <menuitem id="expire_data_id" 
+        name="Renewable Contracts" 
+        action="expire_date_action" 
+        parent="sale.menu_sale_report" 
+        sequence="2"/>
+
 
 
     
