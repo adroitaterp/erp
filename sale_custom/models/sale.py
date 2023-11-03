@@ -270,6 +270,12 @@ class SaleOrderInherit(models.Model):
 
 class SaleLines(models.Model):
     _inherit = 'sale.order.line'
+    
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        string="Service",
+        change_default=True, ondelete='restrict', check_company=True, index='btree_not_null',
+        domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]")
 
     term = fields.Selection([('one_time', 'One Time'), ('monthly', 'Monthly'), ('quarterly', 'Quarterly'),
                              ('yearly', 'Yearly'), ('per_item', 'Per Item'), ('free_of_charge', 'Free of Charge')])
