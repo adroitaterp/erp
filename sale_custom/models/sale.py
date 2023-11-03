@@ -199,6 +199,38 @@ class SaleOrderInherit(models.Model):
         self.write({
             'state': 'sale'
         })
+        objs=[]
+        for rec in self.sale_description_lines:
+            product_id=rec.product_id
+            name=rec.name
+            obj_dict = {
+            'product_id': product_id.id,
+            'name': name,
+            }
+            objs.append(obj_dict)
+        for rec in self.order_line:   
+            name=rec.product_template_id.name
+            description=rec.name
+            product_objs = []  
+            for obj in objs:
+                product_data = {
+                    'product_id': obj['product_id'],
+                    'name': obj['name'],
+                }
+                product_objs.append((0, 0, product_data))   
+            self.env['project.project'].create({        
+                'name':name,
+                'description':description,
+                'created_date':self.date_order,
+                'date_start': self.start_date,
+                'date': self.end_date,
+                'until_completion': self.until_completion,
+                'product_ids':product_objs
+
+            })
+         
+        return
+
 
     def button_customer_contract_reject(self):
         self.write({

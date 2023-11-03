@@ -48,6 +48,8 @@
               sequence="50"/>
 
 
+    <!-- project.project form view -->
+
     <record id="project_project_form_view" model="ir.ui.view">
         <field name="name">project.project.form</field>
         <field name="model">project.project</field>
@@ -58,26 +60,72 @@
                 <field name="project_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
               
             </xpath>
-            <xpath expr="//field[@name='user_id']" position="after">
-              
+            <xpath expr="//field[@name='user_id']" position="after">     
                 <field name="created_date" />
+            </xpath>
 
-          </xpath>
+             <xpath expr="//field[@name='date']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+             <xpath expr="//div[@name='dates']/i[1]" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+            <xpath expr="//div[@name='dates']/i[2]" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+            
+
+            
+
+             <xpath expr="//field[@name='company_id']" position="before">
+                 <field name="until_completion"/> 
+             </xpath>
+
+             <xpath expr="//field[@name='until_completion']" position="after">
+                 <field name="date" string = "End Date" attrs="{'invisible': [('until_completion', '=', True)]}"/> 
+             </xpath>
+
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                    <attribute name="string">Start Date</attribute>
+                </xpath>
+
+            
 
                <xpath expr="//page[@name='settings']" position="after">
               
-                <page name="Product Description" string="Product Description">
+                <page name="product_description" string="Scope of Work">
                 <field name="product_ids" >
-                                <tree editable="bottom">
-                                    <field name="product_id" />
-                                    <field name="name" />
-               
-                                  </tree>
+                    <tree editable="bottom">
+                        <field name="product_id" />
+                        <field name="name" />
+                      </tree>
                 </field>
                 </page>
                                     
 
           </xpath>
+        </field>
+    </record>
+
+
+    <!-- project tree view -->
+     <record id="project_project_tree_view" model="ir.ui.view">
+        <field name="name">project.project.tree</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="created_date" />
+          </xpath>
+
+             
+                                    
+
+          
         </field>
     </record>
 

@@ -146,7 +146,7 @@
                 <field name="state" widget="statusbar" statusbar_visible="draft,sent,customer_approval,sale"/>
             </xpath>
             <xpath expr="//sheet/notebook/page[@name='customer_signature']" position="after">
-                <page string="Product Description" name="product_description">
+                <page string="Scope of Work" name="product_description">
                     <field name="sale_description_lines">
                         <tree editable="bottom">
                             <field name="order_id" invisible="1"/>
@@ -160,7 +160,7 @@
                 <field name="start_date"/>
                 <field name="until_completion"/>
                 <field name="end_date" attrs="{'invisible': [('until_completion', '=', True)]}"/>
-                <field name="days"   decoration-danger="days &lt; '30'"/>
+                <field name="days"   decoration-danger="days &lt; '30'" invisible="True"/>
                 <field name="payment_terms_note"/>
 
             </xpath>
