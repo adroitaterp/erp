@@ -11,7 +11,7 @@ class ProjectType(models.Model):
     name = fields.Char(string="Type Name")
 class ProjectProject(models.Model):
     _inherit = 'project.project'
-    _order='created_date asc'
+    _order='created_date desc'
     project_type_id = fields.Many2one('project.type', string="Project Type")
     department_project_id = fields.Many2one('project.new.department', string="Department") 
     created_date=fields.Date('Create Date')

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="sale_rec_seq" model="ir.sequence">
+            <field name="name">Sale Sequence</field>
+            <field name="code">sale.sequence</field>
+            <field name="prefix">Sale</field>
+            <field name="padding">2</field>
+        </record>
+
+</odoo>

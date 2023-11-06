@@ -13,6 +13,8 @@ from datetime import datetime
 
 class SaleOrderInherit(models.Model):
     _inherit = 'sale.order'
+    ref = fields.Char(sring="", copy=False, default=" ", readonly="True")
+    prefix_pr = fields.Char('PR Prefix', store=True)
 
     state = fields.Selection([
         # ('to_proposal_review', 'Waiting For Proposal Review'),
@@ -125,7 +127,13 @@ class SaleOrderInherit(models.Model):
             }
             lines.append(vals)
         result = self.env['sale.description'].create(lines)
-        
+       
+        a = 2
+        if res.prefix_pr:
+            res.ref = (res.prefix_pr, res.id)
+        else:
+            res.ref = 'IR-00%s' % (res.id)
+   
         return res
 
     def write(self, vals):
@@ -221,6 +229,7 @@ class SaleOrderInherit(models.Model):
             self.env['project.project'].create({        
                 'name':name,
                 'description':description,
+                'partner_id': self.partner_id.id,
                 'created_date':self.date_order,
                 'date_start': self.start_date,
                 'date': self.end_date,
