@@ -51,4 +51,6 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     project_type_id = fields.Many2one('project.type', string="Project Type" , related='project_id.project_type_id')
+    leave_warning = fields.Char(string="")
+
 
