@@ -289,7 +289,7 @@ class SaleLines(models.Model):
     term = fields.Selection([('one_time', 'One Time'), ('monthly', 'Monthly'), ('quarterly', 'Quarterly'),
                              ('yearly', 'Yearly'), ('per_item', 'Per Item'), ('free_of_charge', 'Free of Charge')])
     sale_order_line_id = fields.Many2one('sale.order', string="Measurment")
-
+    
 
     # def write(self, values):
     #     if 'product_id' in values:
