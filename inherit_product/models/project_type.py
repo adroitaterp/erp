@@ -17,6 +17,7 @@ class ProjectProject(models.Model):
     created_date=fields.Date('Create Date')
     product_ids=fields.One2many('products.projects','project_id',string="products")
     until_completion = fields.Boolean('Until Completion')
+    one_time_job_annual = fields.Selection([('one_time_job', 'One Time Job'), ('annual_services', 'Annual Services')])
 
 
    
