@@ -100,6 +100,12 @@
                                             <span t-esc="context_timestamp(doc.date_order).strftime('%d/%m/%Y')"/>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th width="20%">Reference No</th>
+                                        <td width="80%">
+                                            <span t-field="doc.name"/>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
