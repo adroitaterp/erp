@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+        <record id="hr_employee_inherit_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.inherit.form.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml"> 
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page name="legal_information" string="Legal Information">
+                    <group>
+                        <group>
+                            <field name="date_of_joining"/>
+                             <field name="Online_Offer_letter"/>
+                            <field name="visa_change_status_no"/>
+                            <field name="visa_title"/>
+                            <field name="work_permit_no"/>
+                            <field name="employment_visa_no"/>
+                            <field name="employment_visa_start_date"/>
+                            <field name="employment_visa_end_date"/>
+                            <field name="emirates_id_no"/>
+                            <field name="emirates_id_expiration"/> 
+                            
+                        </group>
+                        <group>
+                            <field name="passport"/>
+                            <field name="passport_number"/>
+                            <field name="passport_expiration_date"/>
+                            <field name="labour_card_no"/>
+                            <field name="labour_card_expiry"/>
+                            <field name="labour_contract_no"/>
+                            <field name="labour_contract_no"/>
+                            <field name="health_insurance_expiry"/>
+                            <field name="health_insurance_expiry"/>
+                        </group>
+                    </group>
+
+                </page>
+
+                <page name="personal_information" string="Personal Information">
+                    <group>
+                        <group>
+                            <field name="religion"/>
+                             <field name="personal_email_address"/>
+                            
+                            
+                        </group>
+                        <group>
+                            <field name="personal_contact_no"/>
+                            <field name="personal_whatsapp_no"/>
+                           
+                        </group>
+                    </group>
+
+                </page>
+
+                <page string="Attachments">
+              <group>
+                <field name="attachment_ids" widget="many2many_binary" nolabel="1"/>
+              </group>
+            </page>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>
