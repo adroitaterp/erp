@@ -4,7 +4,6 @@ from odoo import models, fields, api
 class OrganizationalChart(models.Model):
     _name = 'hr.organizational.chart'
     _description = "HR Organizational Chart"
-
     @api.model
     def get_employee_data(self, emp_id):
         parent_emp = self.env['hr.employee'].search([('id', '=', str(emp_id))])
@@ -33,7 +32,6 @@ class OrganizationalChart(models.Model):
                              'office': self._get_image(child)})
             else:
                 data.append(self.get_children(child, next_style))
-
         if childrens:
             emp_data['children'] = data
         if style:

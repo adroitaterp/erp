@@ -18,7 +18,6 @@
             'hr_organizational_chart/static/src/js/organizational_view.js',
             'hr_organizational_chart/static/src/scss/chart_view.scss',
 
-
         ],
         'web.assets_qweb': [
             'hr_organizational_chart/static/src/xml/chart_view.xml',
