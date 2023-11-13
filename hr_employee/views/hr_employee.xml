@@ -36,29 +36,17 @@
 
                 </page>
 
-                <page name="personal_information" string="Personal Information">
-                    <group>
-                        <group>
-                            <field name="religion"/>
-                             <field name="personal_email_address"/>
-                            
-                            
-                        </group>
-                        <group>
-                            <field name="personal_contact_no"/>
-                            <field name="personal_whatsapp_no"/>
-                           
-                        </group>
-                    </group>
-
-                </page>
-
                 <page string="Attachments">
               <group>
                 <field name="attachment_ids" widget="many2many_binary" nolabel="1"/>
               </group>
             </page>
             </xpath>
+
+             <xpath expr="//field[@name='lang']" position="before">
+                  <field name="religion"/>
+                   <field name="personal_whatsapp_no"/>
+             </xpath>
         </field>
     </record>
   </data>
