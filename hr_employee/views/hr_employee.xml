@@ -28,8 +28,7 @@
                             <field name="labour_card_no"/>
                             <field name="labour_card_expiry"/>
                             <field name="labour_contract_no"/>
-                            <field name="labour_contract_no"/>
-                            <field name="health_insurance_expiry"/>
+    
                             <field name="health_insurance_expiry"/>
                         </group>
                     </group>
@@ -42,11 +41,16 @@
               </group>
             </page>
             </xpath>
+           
 
              <xpath expr="//field[@name='lang']" position="before">
                   <field name="religion"/>
                    <field name="personal_whatsapp_no"/>
              </xpath>
+            <xpath expr="//group[@name='has_work_permit']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+             </xpath>
+            
         </field>
     </record>
   </data>
