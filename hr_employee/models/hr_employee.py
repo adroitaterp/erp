@@ -8,7 +8,7 @@ class HrEmployeeInherit(models.Model):
      date_of_joining = fields.Date('Date of Joining')
      passport = fields.Selection([
         ('company', 'Company'),('him_her_self', 'Him/Her self'),],
-        default='', string='Passport', track_visibility='always')
+        default='', string='Passport With', track_visibility='always')
      passport_number = fields.Char(string="Passport Number")
      passport_expiration_date = fields.Date('Passport Expiration')
      Online_Offer_letter = fields.Char(string="Online Offer Letter No")
