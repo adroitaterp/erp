@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'HR Organizational Chart',
-    'version': '15.0.1.0.2',
+    'version': '15.0.1.0.3',
     'summary': 'HR Employees organizational chart',
     'description': 'HR Employees organizational chart',
     'author': 'hamayun fazal',
