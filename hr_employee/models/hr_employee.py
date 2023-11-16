@@ -26,15 +26,6 @@ class HrEmployeeInherit(models.Model):
      health_insurance_number = fields.Integer('Health Insurance Number')
      health_insurance_expiry = fields.Date('Health Insurance Expiry')
 
-     def _name_search(self, name='passport', args=None, operator='ilike', limit=100, name_get_uid=None):
-        args = args or []
-        domain= []
-        if name:
-            args += [('passport', operator, name)]
-        return self._search(args, limit=limit)
-
-
-
      religion = fields.Char(string="Religion")
      personal_email_address = fields.Char("Personal Email Address")
      personal_contact_no = fields.Char(string='Personal Contact No')
