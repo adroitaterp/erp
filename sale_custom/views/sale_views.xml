@@ -160,7 +160,9 @@
                 <field name="start_date"/>
                 <field name="until_completion"/>
                 <field name="end_date" attrs="{'invisible': [('until_completion', '=', True)]}"/>
-                <field name="days" decoration-danger="days &lt; 30" invisible="True"/>
+                <field name="days_int" invisible="True"/>
+                <field name="days" decoration-danger="days_int &lt; 30"/>
+                
                 <field name="payment_terms_note"/>
 
             </xpath>
@@ -204,8 +206,9 @@
                  <xpath expr="//field[@name='amount_total']" position="after">
                      <field name="start_date"/>
                      <field name="end_date"/>
+                     <field name="days_int" invisible="True"/>
                          <field name="days" 
-                              decoration-danger="days &lt; '30'" />
+                              decoration-danger="days_int &lt; 30" />
                      <field name="services"/>
                      <field name="term"/> 
                      
@@ -259,7 +262,7 @@
               <field name="name">Renewable Contracts</field>
               <field name="type">ir.actions.act_window</field>
               <field name="res_model">sale.order</field>
-            <field name="domain">[('days', '&lt;=', 30)]</field>
+             <field name="domain">[('days_int', '&lt;=', 30)]</field>
 
               <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
               <field name="help" type="html">

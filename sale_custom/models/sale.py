@@ -95,11 +95,13 @@ class SaleOrderInherit(models.Model):
 
 
     days=fields.Char("Days")
+    days_int=fields.Integer("Dayssss")
 
     @api.onchange('start_date','end_date')
     def calculatedays(self):
         if self.start_date and self.end_date:
             days=(self.end_date-self.start_date).days
+            self.days_int = days
             self.days=str(days)+" days"
 
     
