@@ -160,7 +160,7 @@
                 <field name="start_date"/>
                 <field name="until_completion"/>
                 <field name="end_date" attrs="{'invisible': [('until_completion', '=', True)]}"/>
-                <field name="days" decoration-danger="days &lt; '30'" invisible="True"/>
+                <field name="days" decoration-danger="days &lt; 30" invisible="True"/>
                 <field name="payment_terms_note"/>
 
             </xpath>
