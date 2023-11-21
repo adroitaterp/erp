@@ -64,14 +64,6 @@ class SaleOrderInherit(models.Model):
         self.term = ', '.join(term_list)
         self.services = ', '.join(service_list)
         self.percentage = ', '.join(percentage_list)
-    
-
-    
-
-        
-
-
-  
 
 
     until_completion = fields.Boolean('Until Completion')
@@ -103,9 +95,6 @@ class SaleOrderInherit(models.Model):
             days=(self.end_date-self.start_date).days
             self.days_int = days
             self.days=str(days)+" days"
-
-    
-
 
     
 
