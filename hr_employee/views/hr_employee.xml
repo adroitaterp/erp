@@ -21,9 +21,7 @@
                             <field name="visa_change_status_no"/>
                             <field name="labour_contract_no"/>
                             <field name="labour_card_no"/>
-                            <field name="labour_card_expiry"/>
-
-                            
+                            <field name="labour_card_expiry"/>                    
                         </group>
                         <group>
                             
