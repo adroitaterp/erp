@@ -31,10 +31,9 @@ class HrEmployeeInherit(models.Model):
      emirates_id_no = fields.Char(string="Emirates ID No")
      emirates_id_expiration = fields.Date('Emirates ID Expiration')
     
-     status = fields.Char(string="status")
-     validate_date_from = fields.Date('Validity Date From')
-     validate_date_to = fields.Date('Validity Date To')
+    
      expire_visa = fields.Date('E-visa Expiry')
+     insurance_new_no = fields.Char(string="Insurance No")
 
 
 
@@ -42,7 +41,7 @@ class HrEmployeeInherit(models.Model):
      visa_title = fields.Char(string="Visa Title")
      labour_card_no = fields.Char(string="Labour Card No")
      labour_card_expiry = fields.Date('Labour Card Expiry')
-     work_permit_no = fields.Char(string="Work Permit No")   
+     # work_permit_no = fields.Char(string="Work Permit No")   
      health_insurance_number = fields.Integer('Health Insurance Number')
      health_insurance_expiry = fields.Date('Health Insurance Expiry')
      religion = fields.Char(string="Religion")

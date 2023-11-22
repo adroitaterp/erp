@@ -33,8 +33,10 @@
                             <field name="employment_visa_end_date"/>
                             <field name="emirates_id_no"/>
                             <field name="emirates_id_expiration"/>
-                             <fied name="insurance_new_no"/>
-                            
+                            <field name="insurance_new_no"/>
+                            <field name="new_status"/>
+                            <field name="validate_date_from"/>
+                            <field name="validate_date_to"/>
                         </group>
                         
                     </group>
