@@ -22,9 +22,11 @@
                             <field name="labour_contract_no"/>
                             <field name="labour_card_no"/>
                             <field name="labour_card_expiry"/>
+
                             
                         </group>
                         <group>
+                            
                             <field name="passport"/>
                             <field name="passport_number"/>
                             <field name="passport_expiration_date"/>        
@@ -34,6 +36,7 @@
                             <field name="emirates_id_no"/>
                             <field name="emirates_id_expiration"/>
                              <fied name="insurance_new_no"/>
+                            
                         </group>
                         
                     </group>
