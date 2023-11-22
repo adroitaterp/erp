@@ -34,7 +34,6 @@
                             <field name="emirates_id_no"/>
                             <field name="emirates_id_expiration"/>
                              <fied name="insurance_new_no"/>
-
                         </group>
                         
                     </group>
