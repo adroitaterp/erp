@@ -33,8 +33,8 @@
         'demo/demo.xml',
     ],
     
+    'license': 'LGPL-3',
     'installable': True,
     'auto_install': False,
     'application': False,
-    'license': 'AGPL-3',
 }
