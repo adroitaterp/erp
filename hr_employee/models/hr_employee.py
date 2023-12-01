@@ -30,12 +30,8 @@ class HrEmployeeInherit(models.Model):
      employment_visa_end_date = fields.Date('Employment Visa End Date')
      emirates_id_no = fields.Char(string="Emirates ID No")
      emirates_id_expiration = fields.Date('Emirates ID Expiration')
-    
-    
      expire_visa = fields.Date('E-visa Expiry')
      insurance_new_no = fields.Char(string="Insurance No")
-
-
 
      
      visa_title = fields.Char(string="Visa Title")
