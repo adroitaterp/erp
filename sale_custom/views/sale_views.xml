@@ -47,8 +47,7 @@
                 
 
 
-                
-
+            
                 
 <!--                <button name="button_customer_approve"-->
 <!--                        type="object"-->
@@ -62,8 +61,7 @@
 <!--                        states="customer_approval"-->
 <!--                        string="Reject by customer"-->
 <!--                        class="oe_highlight"-->
-<!--                        groups="sale_custom.group_approve_contract"-->
-                />
+<!--                        groups="sale_custom.group_approve_contract"-->/>
                 <button name="button_contract_approve_reject"
                         type="object"
                         states="to_contract_approve"
@@ -161,32 +159,28 @@
                 <field name="until_completion"/>
                 <field name="end_date" attrs="{'invisible': [('until_completion', '=', True)]}"/>
                 <field name="days_int" invisible="True"/>
-                <field name="days" decoration-danger="days_int &lt; 30"/>
-                
+                <field name="days" decoration-danger="days_int &lt; 30"/>     
                 <field name="payment_terms_note"/>
-
+                
             </xpath>
-
-
 
             <field name="partner_id" position="after">
                 <field name="estimation_id" invisible="True"/>
-            </field>
-
-        
+            </field> 
+            
              <xpath expr="//field[@name='employee_id']" position="attributes">
                 <attribute name="string">CEO</attribute>
             </xpath>
-
+            
              <xpath expr="//field[@name='payment_term_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
 
+            
             <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
-          <attribute name="invisible">1</attribute>
-        </xpath>
+                  <attribute name="invisible">1</attribute>
+            </xpath>
 
-             
             
 <!--            <xpath expr="//field[@name='sale_order_template_id']" position="after">-->
 <!--&lt;!&ndash;                <label for="payment_terms_note" string="Payment Terms Note"/>&ndash;&gt;-->
