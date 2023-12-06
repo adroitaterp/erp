@@ -67,7 +67,7 @@ class MailActivity(models.Model):
         next_activities = self.env['mail.activity'].create(next_activities_values)
         if self.calendar_event_id:
             messages.attendees = ', '.join(self.calendar_event_id.partner_ids.mapped('name'))
-        self.unlink()  # will unlink activity, dont access `self` after that
+        
 
         return messages, next_activities
 
