@@ -15,6 +15,8 @@ class MailActivity(models.Model):
                 - messages is a recordset of posted mail.message
                 - activities is a recordset of mail.activity of forced automically created activities
         """
+
+        
         # marking as 'done'
         messages = self.env['mail.message']
         next_activities_values = []
@@ -70,7 +72,6 @@ class MailActivity(models.Model):
         
 
         return messages, next_activities
-
 
 class MailMessageInh(models.Model):
     _inherit = 'mail.message'
