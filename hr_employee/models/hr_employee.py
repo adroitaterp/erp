@@ -32,8 +32,6 @@ class HrEmployeeInherit(models.Model):
      emirates_id_expiration = fields.Date('Emirates ID Expiration')
      expire_visa = fields.Date('E-visa Expiry')
      insurance_new_no = fields.Char(string="Insurance No")
-
-     
      visa_title = fields.Char(string="Visa Title")
      labour_card_no = fields.Char(string="Labour Card No")
      labour_card_expiry = fields.Date('Labour Card Expiry')

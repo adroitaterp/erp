@@ -10,7 +10,7 @@
                     <group>
                         <group>
                             <field name="date_of_joining"/>
-                             <field name="end_date_of_probationary"/>
+                            <field name="end_date_of_probationary"/>
                             <field name="date_of_regularization"/>
                             <field name="end_date"/>
                             <field name="visa_company_name"/>
@@ -49,8 +49,8 @@
               </group>
             </page>
             </xpath>
-           
 
+            
              <xpath expr="//field[@name='lang']" position="before">
                   <field name="religion"/>
                    <field name="personal_whatsapp_no"/>
@@ -58,6 +58,67 @@
             <xpath expr="//group[@name='has_work_permit']" position="attributes">
                     <attribute name="invisible">1</attribute>
              </xpath>
+
+            <xpath expr="//field[@name='address_home_id']" position="attributes">
+                <attribute name="string">Permanent Address</attribute>
+            </xpath>
+
+
+             <xpath expr="//field[@name='address_home_id']" position="before">
+                 <field name="present_address"/>
+            </xpath>
+
+             <xpath expr="//field[@name='private_email']" position="attributes">
+                <attribute name="string">Personal Email</attribute>
+            </xpath>
+
+              <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="string">Personal Contact No</attribute>
+                 
+              </xpath>
+
+
+             <xpath expr="//field[@name='religion']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+             <xpath expr="//field[@name='lang']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+             </xpath>
+
+             <xpath expr ="//page[@name='personal_information']/group/group[1]/div[@name='div_km_home_work']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+             </xpath>
+
+             <xpath expr ="//page[@name='personal_information']/group/group[1]/label" position="attributes">
+                    <attribute name="invisible">1</attribute>
+             </xpath>
+
+             <xpath expr="//page[@name='personal_information']/field[@name='emergancy_contact']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+             </xpath>
+
+
+            <!-- <xpath expr="//page[@name='personal_information']/group/group[2]" position="after">
+                <group string="Emergence">
+                    <field name="emergency_contact_person_name"/>
+                    <field name="emergency_address"/>
+                    <field name="emergency_contact"/>
+                    <field name="relationship"/>
+                </group>
+
+            </xpath> -->
+
+
+             <!-- <xpath expr="//page[@name='personal_information']/group/group[4]" position="after">
+
+                 <group string="Employee Accountabilities Laptop">
+
+
+                 </group>
+
+             </xpath> -->
+
+            
             
         </field>
     </record>
