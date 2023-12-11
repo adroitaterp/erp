@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-     <record id="sale_rec_seq" model="ir.sequence">
-            <field name="name">Sale Sequence</field>
-            <field name="code">sale.sequence</field>
-            <field name="prefix">Sale</field>
-            <field name="padding">2</field>
-        </record>
+   
+    <record id="cron_job_create_allocation_records" model="ir.cron">
+        <field name="name">Create Allocation Records</field>
+        <field name="model_id" ref="sale_custom.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model._compute_function_name()</field>
+        <field name="active" eval="True"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field> 
+        <field name="doall" eval="False"/>
+    </record>
 
 </odoo>

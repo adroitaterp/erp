@@ -89,13 +89,38 @@ class SaleOrderInherit(models.Model):
     days=fields.Char("Days")
     days_int=fields.Integer("Dayssss")
 
-    @api.onchange('start_date','end_date')
+    # @api.onchange('start_date','end_date')
+    # def calculatedays(self):
+    #     if self.start_date and self.end_date:
+    #         days=(self.end_date-self.start_date).days
+    #         self.days_int = days
+    #         self.days=str(days)+" days"
+
+    contract_expired = fields.Boolean(string='Contract Expired', compute='_compute_contract_expired',store=True)
+    def _compute_function_name(self):
+        for record in self:
+            current_date = fields.Date.today()
+            if record.end_date:
+                if record.end_date < current_date:
+                    record.boolean_field = True
+                else:
+                    record.boolean_field = False
+
+    @api.onchange('start_date', 'end_date')
     def calculatedays(self):
         if self.start_date and self.end_date:
-            days=(self.end_date-self.start_date).days
+            days = (self.end_date - self.start_date).days
             self.days_int = days
-            self.days=str(days)+" days"
+            self.days = f"{days} days"
 
+    @api.depends('end_date')
+    def _compute_contract_expired(self):
+        for record in self:
+            if record.end_date and record.end_date < datetime.now().date():
+                record.contract_expired = True
+                record.days = "Contract Expired"
+            else:
+                record.contract_expired = False
     
 
     @api.depends('contact_id')
