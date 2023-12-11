@@ -1,6 +1,20 @@
 <odoo>
     <data>
 
+         <record id="view_calendar_event_form_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form.inherit</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <!-- Extend the existing form view with additional fields or modifications -->
+                <xpath expr="//group" position="inside">
+                    <!-- Add your custom field here, for example, is_done -->
+                    <field name="is_done"/>
+                    <!-- Include other fields or modifications as needed -->
+                </xpath>
+            </field>
+        </record>
+
         <record id="view_crm_activity_report_edit_inh" model="ir.ui.view">
             <field name="name">crm.activity.report.tree.inh</field>
             <field name="model">crm.activity.report</field>
@@ -12,6 +26,20 @@
                 </xpath>
             </field>
         </record>
+
+
+         <record id="view_calendar_event_form_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form.inherit</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <!-- Add your custom field 'is_done' to the form view -->
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="is_done"/>
+                </xpath>
+            </field>
+        </record>
+        
 
         <record id="crm_user_activity_report_action" model="ir.actions.act_window">
             <field name="name">Activities</field>
@@ -33,6 +61,7 @@
             </p>
             </field>
         </record>
+       
 
         <menuitem
                 id="crm_user_activity_report_menu"
