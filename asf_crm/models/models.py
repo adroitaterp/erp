@@ -72,6 +72,11 @@ class MailActivity(models.Model):
 
     #     return messages, next_activities
 
+
+    
+
+
+    
     def _action_done(self, feedback=False, attachment_ids=None):
         """ Private implementation of marking activity as done: posting a message, deleting activity
             (since done), and eventually create the automatical next activity (depending on config).
