@@ -33,10 +33,9 @@
         'reports/sale_proposal_template.xml',
         'reports/sale_contract_template.xml',
     ],
-    
+
     'installable': True,
     'auto_install': False,
     'application': False,
     'license': 'AGPL-3',
-
 }
