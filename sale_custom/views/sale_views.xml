@@ -203,11 +203,8 @@
                      <field name="end_date"/>
                      <field name="days_int" invisible="True"/>
                          <field name="days" 
-                              decoration-danger="days_int &lt; 30" />
-                                          <!-- <field name="state"/>
- -->
-                     <!-- <field name="services"/>
-                     <field name="term"/>  -->
+                              decoration-danger="days_int &lt; 30" optional="hide"/>
+         
                      
                  </xpath>
 
@@ -260,15 +257,13 @@
               <field name="type">ir.actions.act_window</field>
               <field name="res_model">sale.order</field>
               <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
-              <field name="domain">[('days_int', '&lt;=', 30)]</field>
              <field name="domain">[ '|', ('days_int', '&lt;=', 30), ('days', '=', 'Contract Expired'),('state', '=', 'sale'), ]</field>
-
-
               <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
               <field name="help" type="html">
                      <p class="oe_view_nocontent_create">Sale order details here... </p>
               </field>
     </record>
+
    
     <menuitem id="expire_data_id" 
         name="Renewable Contracts" 
