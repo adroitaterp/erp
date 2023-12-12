@@ -9,6 +9,7 @@
         Sale Custom
     """,
 
+    
     'author': "Hamayun Fazal",
     'website': "http://www.projective.com",
     # Categories can be used to filter modules in modules listing
