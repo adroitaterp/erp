@@ -261,7 +261,8 @@
               <field name="res_model">sale.order</field>
               <field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
               <field name="domain">[('days_int', '&lt;=', 30)]</field>
-             <field name="domain">['|', ('days_int', '&lt;=', 30), ('days', '=', 'Contract Expired')]</field>
+             <field name="domain">[ '|', ('days_int', '&lt;=', 30), ('days', '=', 'Contract Expired'),('state', '=', 'sale'), ]</field>
+
 
               <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
               <field name="help" type="html">
