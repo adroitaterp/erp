@@ -20,7 +20,7 @@
     'version': '0.5',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','hr'],
+    'depends': ['base','hr','hr_contract'],
 
     # always loaded
     'data': [
@@ -28,6 +28,7 @@
         'security/ir.model.access.csv',
         'views/hr_employee.xml',
         'views/templates.xml',
+        # 'views/hr_contract.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

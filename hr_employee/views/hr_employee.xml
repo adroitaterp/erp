@@ -44,16 +44,110 @@
                 </page>
 
                 <page string="Attachments">
-              <group>
-                <field name="attachment_ids" widget="many2many_binary" nolabel="1"/>
-              </group>
+                    <group>
+                          <group string="CV and Interview Evaluation Form">  
+                              <field name="attachment_ids" invisible="True"/>
+                             <field name="cv_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                        <group string="Passport Size Photo">  
+                             <field name="passport_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Insurance Card">  
+                             <field name="insurance_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Emirates ID">  
+                             <field name="emirates_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Residence Visa">  
+                             <field name="residence_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Original Passport">  
+                             <field name="original_p_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="E-Visa">  
+                             <field name="e_visa_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Labour Card">  
+                             <field name="labour_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Medical Form Application">  
+                             <field name="medical_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Visa Change Status">  
+                             <field name="visa_c_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+
+                    <group string="Signed Labour Contract">  
+                             <field name="s_labour_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Signed Online Offer Letter">  
+                             <field name="s_online_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Signed Offer Letter">  
+                             <field name="s_offer_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Passport Undertaking">  
+                             <field name="passport_u_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Employee Equipment Accountability Form">  
+                             <field name="employee_e_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Non-Disclosure and Confidentiality Agreement">  
+                             <field name="ndis_conf_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Staff Filming and Photography Consent Form">  
+                             <field name="staf_f_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Terms and Condition in case of Separation">  
+                             <field name="t_c_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Residence Cancellation or Visit Visa">  
+                             <field name="visit_v_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Home Country ID">  
+                             <field name="h_country_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Attested Educational Certificate">  
+                             <field name="attested_e_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    <group string="Previous Employment Certificate">  
+                             <field name="previous_e_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                    </group>
+                    <group>
+                    <group string="Other Documents">  
+                             <field name="other_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                          </group>
+                        
+
+                    </group>
+            
             </page>
             </xpath>
 
             
              <xpath expr="//field[@name='lang']" position="before">
                   <field name="religion"/>
-                   <field name="personal_whatsapp_no"/>
              </xpath>
             <xpath expr="//group[@name='has_work_permit']" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -64,9 +158,7 @@
             </xpath>
 
 
-             <xpath expr="//field[@name='address_home_id']" position="before">
-                 <field name="present_address"/>
-            </xpath>
+            
 
              <xpath expr="//field[@name='private_email']" position="attributes">
                 <attribute name="string">Personal Email</attribute>
@@ -93,7 +185,7 @@
                     <attribute name="invisible">1</attribute>
              </xpath>
 
-             <xpath expr ="//page[@name='personal_information']/group/group[3]" position="attributes">
+             <xpath expr ="//page[@name='personal_information']/group/group[3]/field[@name='spouse_birthdate']" position="attributes">
                     <attribute name="invisible">1</attribute>
              </xpath>
              <xpath expr ="//page[@name='personal_information']/group/group[4]" position="attributes">
@@ -127,7 +219,6 @@
                      <field name="accessories"/>
                      <field name="ms_office_id"/>
                      <field name="ms_office_password"/>
-                     <field name="laptop_password"/>
                      <field name="company_serial_no"/>
                      <field name="laptop_password"/>
                      <field name="laptop_history"/>
@@ -145,11 +236,27 @@
              </xpath>
             
 
-            <xpath expr ="//page[@name='personal_information']/group/group[1]/field[@name='address_home_id']" position="after">
-                <field name="personal_email"/>
-                <field name="personal_whatsup_no"/>
+            <xpath expr ="//page[@name='personal_information']/group/group[1]/field[@name='address_home_id']" position="attributes">
+                 <attribute name="invisible">1</attribute>
 
             </xpath>
+
+            <xpath expr ="//page[@name='personal_information']/group/group[1]/field[@name='address_home_id']" position="after">
+                <field name="uae_address"/>
+                 <field name="present_address"/>
+                <field name="personal_email"/>
+                <field name="personal_whatsapp_no"/>
+                <field name="bank_name"/>
+                <field name="bank_account"/>
+                <field name="bank_account_ibn"/>
+               
+
+
+            </xpath>
+
+            <xpath expr="//field[@name='coach_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+             </xpath>
 
             <xpath expr ="//page[@name='personal_information']/group/group[2]/field[@name='passport_id']" position="attributes">
                     <attribute name="invisible">1</attribute>
