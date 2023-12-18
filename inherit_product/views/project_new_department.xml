@@ -23,7 +23,7 @@
 
         <!--                    project new department tree view-->
 
-
+        
               <record id="project_new_department_tree_views" model="ir.ui.view">
                 <field name="name">project.new.department.Tree</field>
                 <field name="model">project.new.department</field>

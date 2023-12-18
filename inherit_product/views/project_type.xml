@@ -82,15 +82,14 @@
                         <attribute name="invisible">1</attribute>
              </xpath>
 
-
            
-            
              <xpath expr="//field[@name='company_id']" position="before">
                  <field name="until_completion"/> 
              </xpath>
 
              <xpath expr="//field[@name='until_completion']" position="after">
-                 <field name="date" string = "End Date" attrs="{'invisible': [('until_completion', '=', True)]}"/> 
+                 <field name="date" string = "End Date" attrs="{'invisible': [('until_completion', '=', True)]}"  
+                     decoration-danger="date &lt; time.strftime('%Y-%m-%d')"/> 
              </xpath>
 
             <xpath expr="//field[@name='date_start']" position="attributes">
@@ -131,7 +130,11 @@
                 <field name="created_date" />
           </xpath>
 
-             
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="decoration-danger">date &lt; time.strftime('%Y-%m-%d')</attribute>
+            </xpath>
+
+           
                                     
 
           
@@ -166,6 +169,26 @@
             </xpath>
         </field>
     </record>
+
+
+      <!-- expriration menu -->
+     <record id="project_expire_date_action" model="ir.actions.act_window">
+              <field name="name">Project Expriration</field>
+              <field name="type">ir.actions.act_window</field>
+              <field name="res_model">project.project</field>
+              <field name="view_id" ref="inherit_product.project_project_tree_view"/>
+             <field name="domain">[('date', '&lt;=', time.strftime('%Y-%m-%d'))]</field>
+              <field name="view_mode">tree,kanban,form</field>
+              <field name="help" type="html">
+                     <p class="oe_view_nocontent_create">Project details here... </p>
+              </field>
+    </record>
+   
+    <menuitem id="project_expire_data_id" 
+        name="Project Expriration" 
+        action="project_expire_date_action" 
+        parent="project.menu_project_report" 
+        sequence="2"/>
 
 
 </odoo>

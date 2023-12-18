@@ -1,6 +1,6 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
-from datetime import datetime
+from datetime import datetime,date
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ class ProjectProject(models.Model):
     _order='created_date desc'
     project_type_id = fields.Many2one('project.type', string="Project Type")
     department_project_id = fields.Many2one('project.new.department', string="Department") 
-    created_date=fields.Date('Create Date')
+    created_date=fields.Date('Create Date', default=date.today(), store=True, force_save=True)
     product_ids=fields.One2many('products.projects','project_id',string="products")
     until_completion = fields.Boolean('Until Completion')
     one_time_job_annual = fields.Selection([('one_time_job', 'One Time Job'), ('annual_services', 'Annual Services')])
