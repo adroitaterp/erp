@@ -10,7 +10,7 @@ class HrEmployeeInherit(models.Model):
      new_status = fields.Char(string="Status",track_visibility='always')
      validate_date_from = fields.Date('Validity Date From',track_visibility='always')
      validate_date_to = fields.Date('Validity Date To',track_visibility='always')
-     present_address = fields.Char(string="Home Country Address)",track_visibility='always')
+     present_address = fields.Char(string="Home Country Address",track_visibility='always')
      personal_whatsup_no = fields.Char(string="Personal Whatsapp No",track_visibility='always')
      emergency_contact_person_name = fields.Char(string="Emergency Contact Person Name",track_visibility='always')
      emergency_address = fields.Char(string="Emergency Address",track_visibility='always')
@@ -40,12 +40,14 @@ class HrEmployeeInherit(models.Model):
      iphone_cloud = fields.Char(string="Iphone Cloud",track_visibility='always')
      iphone_cloud_password = fields.Char(string="Iphone Cloud Password",track_visibility='always')
      recovery_email = fields.Char(string="Recovery Email",track_visibility='always')
-     personal_email = fields.Char(string="Personal Contact No", groups="hr.group_hr_user",track_visibility='always')
+     personal_email = fields.Char(string="Personal Email", groups="hr.group_hr_user",track_visibility='always')
+     personal_contact = fields.Char(string="Personal Contact", track_visibility='always')
+
      personal_whatsup_no = fields.Char(string="Personal Whatsapp No.", groups="hr.group_hr_user",track_visibility='always')
      uae_address = fields.Char("UAE Address",track_visibility='always')
      bank_name = fields.Char("Bank Name",track_visibility='always')
      bank_account = fields.Char("Bank Account Number",track_visibility='always')
-     bank_account_ibn = fields.Char("IBN Number",track_visibility='always')
+     bank_account_ibn = fields.Char("IBAN Number",track_visibility='always')
      marital = fields.Selection([
         ('single', 'Single'),
         ('married', 'Married'),
