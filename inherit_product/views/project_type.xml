@@ -177,7 +177,7 @@
               <field name="type">ir.actions.act_window</field>
               <field name="res_model">project.project</field>
               <field name="view_id" ref="inherit_product.project_project_tree_view"/>
-             <field name="domain">[('date', '&lt;=', time.strftime('%Y-%m-%d'))]</field>
+             <field name="domain">[('date', '&lt;', time.strftime('%Y-%m-%d')),('stage_id', '=', 'New')]</field>
               <field name="view_mode">tree,kanban,form</field>
               <field name="help" type="html">
                      <p class="oe_view_nocontent_create">Project details here... </p>
@@ -185,7 +185,7 @@
     </record>
    
     <menuitem id="project_expire_data_id" 
-        name="Project Expriration" 
+        name="Overdue Projects" 
         action="project_expire_date_action" 
         parent="project.menu_project_report" 
         sequence="2"/>
