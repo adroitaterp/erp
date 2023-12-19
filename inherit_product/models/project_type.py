@@ -14,10 +14,15 @@ class ProjectProject(models.Model):
     _order='created_date desc'
     project_type_id = fields.Many2one('project.type', string="Project Type")
     department_project_id = fields.Many2one('project.new.department', string="Department") 
-    created_date=fields.Date('Create Date', default=date.today(), store=True, force_save=True)
+    created_date=fields.Date('Create Date', default=date.today(), store=True, force_save=True, readonly=True)
     product_ids=fields.One2many('products.projects','project_id',string="products")
     until_completion = fields.Boolean('Until Completion')
     one_time_job_annual = fields.Selection([('one_time_job', 'One Time Job'), ('annual_services', 'Annual Services')])
+    project_start_date=fields.Date('Project Start Date', store=True, force_save=True)
+    project_end_date=fields.Date('Project End Date', store=True, force_save=True)
+    sale_order = fields.Many2one('sale.order', string="Sale Order no") 
+
+
 
 
    

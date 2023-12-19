@@ -59,6 +59,7 @@
                    <field name="department_project_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                 <field name="one_time_job_annual"/>
                 <field name="project_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                <field name="sale_order"/>
               
             </xpath>
             <xpath expr="//field[@name='user_id']" position="after">     
@@ -88,8 +89,10 @@
              </xpath>
 
              <xpath expr="//field[@name='until_completion']" position="after">
-                 <field name="date" string = "End Date" attrs="{'invisible': [('until_completion', '=', True)]}"  
+                 <field name="date" string = "Contract End Date" attrs="{'invisible': [('until_completion', '=', True)]}"  
                      decoration-danger="date &lt; time.strftime('%Y-%m-%d')"/> 
+                 <field name="project_start_date"/>
+                 <field name="project_end_date"/>
              </xpath>
 
             <xpath expr="//field[@name='date_start']" position="attributes">
@@ -97,7 +100,7 @@
                 </xpath>
 
               <xpath expr="//field[@name='until_completion']" position="before">
-                 <field name="date_start" string="Start Date"/> 
+                 <field name="date_start" string="Contract Start Date"/> 
              </xpath>
 
             
@@ -127,17 +130,20 @@
         <field name="arch" type="xml">
             
             <xpath expr="//field[@name='name']" position="after">
-                <field name="created_date" />
+                <field name="created_date"  />
           </xpath>
-
             <xpath expr="//field[@name='date']" position="attributes">
                 <attribute name="decoration-danger">date &lt; time.strftime('%Y-%m-%d')</attribute>
             </xpath>
 
-           
-                                    
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="string">Contract End Date</attribute>
+            </xpath>
 
-          
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                <attribute name="string">Contract Start Date</attribute>
+            </xpath>
+
         </field>
     </record>
 
@@ -148,6 +154,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_ids']" position="before">
                 <field name="project_type_id"/>
+                
             </xpath>
         </field>
     </record>
