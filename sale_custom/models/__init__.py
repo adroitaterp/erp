@@ -3,5 +3,5 @@
 from . import sale
 from . import lead
 from . import res_partner
-from . import anayltic_account
+# from . import anayltic_account
 from . import project

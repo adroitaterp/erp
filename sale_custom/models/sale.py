@@ -90,6 +90,7 @@ class SaleOrderInherit(models.Model):
 
 
 
+
     days=fields.Char("Days")
     days_int=fields.Integer("Dayssss")
 
@@ -300,12 +301,12 @@ class SaleOrderInherit(models.Model):
             'state': 'one_time_job_done'
         })
 
-    project_count = fields.Integer(string="Project Count", compute="_project_compute__count")
-    def _project_compute__count(self):
-        for record in self:
-            project = self.env['project.project'].search([])
-            record.project_count = len(project)
+    project = fields.Char(string="Project")
+    project_count = fields.Char(string="Project")
 
+
+   
+   
     def get_project(self):
         self.ensure_one()
         return {
@@ -313,8 +314,8 @@ class SaleOrderInherit(models.Model):
             'name': 'project.project',
             'view_mode': 'tree,form',
             'res_model': 'project.project',
-            # 'domain': [('res_partner_id', '=', self.name)],
-          }
+            'domain': [('sale_order', '=', self.name)],
+        }
 
     
 
