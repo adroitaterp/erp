@@ -5,7 +5,10 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+          
+    
             <xpath expr="//header//button[@name='action_confirm']" position="after">
+                
 
                 
                 <button name="button_proposal_approve"
@@ -104,6 +107,10 @@
                        
                 />
             </xpath>
+             
+
+
+                      
 
 
             <xpath expr="//page[@name='order_lines']" position="after">

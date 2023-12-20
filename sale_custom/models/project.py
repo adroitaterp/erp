@@ -14,3 +14,12 @@ from datetime import datetime
 class SaleOrderInherit(models.Model):
     _inherit = 'project.project'
     name = fields.Char(string='Name', required=False, translate=True)
+
+    @api.onchange('partner_id')
+    def sale_order_domain(self):
+        sale_orders = self.env['sale.order'].search([('partner_id','=',self.partner_id.id)])
+
+        if sale_orders:
+            return {'domain': {'sale_order': [('id', 'in', sale_orders.ids)]}}
+        else:
+            return {'domain': {'sale_order': [('id', 'in', [])]}}

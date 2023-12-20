@@ -89,6 +89,7 @@ class SaleOrderInherit(models.Model):
 
 
 
+
     days=fields.Char("Days")
     days_int=fields.Integer("Dayssss")
 
@@ -232,27 +233,28 @@ class SaleOrderInherit(models.Model):
         self.write({
             'state': 'sale'
         })
-        objs=[]
-        for rec in self.sale_description_lines:
-            product_id=rec.product_id
-            name=rec.name
-            obj_dict = {
-            'product_id': product_id.id,
-            'name': name,
-            }
-            objs.append(obj_dict)
-        for rec in self.order_line:   
+        # objs=[]
+        # for rec in self.sale_description_lines:
+        #     product_id=rec.product_id
+        #     name=rec.name
+        #     obj_dict = {
+        #     'product_id': product_id.id,
+        #     'name': name,
+        #     }
+        #     objs.append(obj_dict)
+        for rec,s_work in zip(self.order_line,self.sale_description_lines):   
             name=rec.product_template_id.name
             description=rec.name
-            product_objs = []  
-            for obj in objs:
-                product_data = {
-                    'product_id': obj['product_id'],
-                    'name': obj['name'],
-                }
-                product_objs.append((0, 0, product_data))   
+            product_objs = []
+            # for obj in objs:
+            product_data = {
+                'product_id': s_work.product_id.id,
+                'name': s_work.name,
+            }
+            product_objs.append((0, 0, product_data))   
             self.env['project.project'].create({        
                 'name':name,
+                'sale_order': self.id,
                 'description':description,
                 'partner_id': self.partner_id.id,
                 'created_date':self.date_order,
@@ -260,10 +262,15 @@ class SaleOrderInherit(models.Model):
                 'date': self.end_date,
                 'until_completion': self.until_completion,
                 'product_ids':product_objs
+                   
 
             })
          
         return
+
+    
+
+    
 
 
     def button_customer_contract_reject(self):
@@ -292,6 +299,24 @@ class SaleOrderInherit(models.Model):
         self.write({
             'state': 'one_time_job_done'
         })
+
+    project_count = fields.Integer(string="Project Count", compute="_project_compute__count")
+    def _project_compute__count(self):
+        for record in self:
+            project = self.env['project.project'].search([])
+            record.project_count = len(project)
+
+    def get_project(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'project.project',
+            'view_mode': 'tree,form',
+            'res_model': 'project.project',
+            # 'domain': [('res_partner_id', '=', self.name)],
+          }
+
+    
 
 
 

@@ -60,7 +60,7 @@
                 <field name="one_time_job_annual"/>
                 <field name="project_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                 <field name="sale_order"/>
-              
+             
             </xpath>
             <xpath expr="//field[@name='user_id']" position="after">     
                 <field name="created_date" />
@@ -131,9 +131,11 @@
             
             <xpath expr="//field[@name='name']" position="after">
                 <field name="created_date"  />
+                 <field name="stage_name" invisible="1" />
+                
           </xpath>
             <xpath expr="//field[@name='date']" position="attributes">
-                <attribute name="decoration-danger">date &lt; time.strftime('%Y-%m-%d')</attribute>
+                <attribute name="decoration-danger">date &lt; time.strftime('%Y-%m-%d') and (stage_name &#61;&#61; 'New')</attribute>
             </xpath>
 
             <xpath expr="//field[@name='date']" position="attributes">
