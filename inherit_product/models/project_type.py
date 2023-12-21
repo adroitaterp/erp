@@ -22,6 +22,7 @@ class ProjectProject(models.Model):
     project_end_date=fields.Date('Project End Date', store=True, force_save=True)
     sale_order = fields.Many2one('sale.order', string="Sale Order no") 
     stage_name=fields.Char('Stage Name',related="stage_id.name")
+    
 
 
 

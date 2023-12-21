@@ -301,8 +301,14 @@ class SaleOrderInherit(models.Model):
             'state': 'one_time_job_done'
         })
 
-    project = fields.Char(string="Project")
-    project_count = fields.Char(string="Project")
+    project = fields.Integer(string="Project",compute='_count_project')
+    # project_count = fields.Char(string="Project")
+
+    @api.depends('state')
+    def _count_project(self):
+        # if self.state == 'sale':
+        count=self.env['project.project'].search_count([('sale_order','=',self.id)])
+        self.project=count
 
 
    

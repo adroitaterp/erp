@@ -5,12 +5,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-          
-    
+            
             <xpath expr="//header//button[@name='action_confirm']" position="after">
-                
-
-                
+      
                 <button name="button_proposal_approve"
                         type="object"
                         states="to_proposal_approve"
@@ -49,10 +46,6 @@
                         groups="sale_custom.group_approve_contract"
                 />
                 
-
-
-            
-                
 <!--                <button name="button_customer_approve"-->
 <!--                        type="object"-->
 <!--                        states="customer_approval"-->
@@ -65,7 +58,10 @@
 <!--                        states="customer_approval"-->
 <!--                        string="Reject by customer"-->
 <!--                        class="oe_highlight"-->
-<!--                        groups="sale_custom.group_approve_contract"-->/>
+<!--                        groups="sale_custom.group_approve_contract"-->
+
+
+                
                 <button name="button_contract_approve_reject"
                         type="object"
                         states="to_contract_approve"
@@ -107,17 +103,13 @@
                        
                 />
             </xpath>
-             
-
-
-                      
-
-
+       
             <xpath expr="//page[@name='order_lines']" position="after">
                 <page name="misc_info" string="Miscellaneous">
                     <group>
                         <group>
-                                            <field name="term" invisible="1"/>
+                            
+                            <field name="term" invisible="1"/>
                             <field name="percentage" invisible="1"/>
                             <field name="services" invisible="1"/>
                             <field name="scope_of_work"/>
