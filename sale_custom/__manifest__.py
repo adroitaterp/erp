@@ -27,6 +27,8 @@
         'data/data_sale.xml',
         'views/lead_views.xml',
         'views/sale_views.xml',
+         'views/sale_views_new.xml',
+       
         'views/partner_views.xml',
         'views/sale_views_inherit.xml',
         'reports/sale_proposal_report.xml',
