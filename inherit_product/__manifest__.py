@@ -30,6 +30,11 @@
         'views/project_new_department.xml',
         'views/project_type.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+        'inherit_product/static/src/js/fields.js',
+        ],
+        },
     'license': 'LGPL-3',
     'installable': True,
     'auto_install': False,

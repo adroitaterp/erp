@@ -59,7 +59,7 @@
                    <field name="department_project_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                 <field name="one_time_job_annual"/>
                 <field name="project_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
-                <field name="sale_order" widget="many2one" options="{'no_create_edit': False, 'no_open': True, 'search_more': false}"/>
+                <field name="sale_order" widget="many2one" options="{'no_create_edit': False, 'no_open': True,}"/>
 
 
             </xpath>
@@ -119,8 +119,44 @@
                                     
 
           </xpath>
+
+             <xpath expr="//button[@name='317']" position="attributes">     
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_analytic_account_entries']" position="attributes">     
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='320']" position="attributes">     
+                <attribute name="invisible">1</attribute>
+            </xpath>
+           
+           
         </field>
     </record>
+
+    
+    <record id="project_project_form_hr_payroll_view" model="ir.ui.view">
+        <field name="name">project.project.form.payroll</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_hr_payroll_account.project_project_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_project_contracts']" position="replace">     
+               
+            </xpath>
+        </field>
+    </record>
+        	
+    <!-- <record id="project_project_form_sale_timesheet_view" model="ir.ui.view">
+        <field name="name">project.project.form.timesheet</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="sale_timesheet.project_project_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_billable_time_button']" position="replace">     
+                
+            </xpath>
+        </field>
+    </record> -->
+            
 
 
     <!-- project tree view -->
