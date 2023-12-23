@@ -13,6 +13,19 @@
                     </button>
                  </button>
             </xpath>
+
+            <xpath expr="//header//button[@name='button_one_time_job_done']" position="after">
+      
+               <button name="butto_expire_and_renew"
+                        type="object"
+                        states="sale"
+                        string="Contract Expired and Renewed"
+                        class="oe_highlight"
+                        groups="sale_custom.group_approve_contract"
+                       
+                />
+                       
+                     </xpath>
     
         </field>
 

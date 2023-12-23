@@ -34,8 +34,9 @@ class SaleOrderInherit(models.Model):
         ('cancel', 'Cancelled'),
         ('rejected', 'Rejected'),
         ('customer_contract_rejected', 'Customer Contract Rejected'),
-        ('contract_expired', 'Contract Expired'), ('one_time_job_done', 'One Time Job Done'), 
-        # ('rejected_by_customer', 'Rejected By Customer'),
+        ('contract_expired', 'Contract Expired'), ('one_time_job_done', 'One Time Job Done'),
+        # ('contract_expiredand Renewed', 'Contract Expired')
+         ('contract_expired_and_renewed', 'Contract Expired And Renewed'),
     ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='to_proposal_approve')
 
     sale_ids = fields.One2many('sale.order.line', 'sale_order_line_id', )
@@ -232,7 +233,7 @@ class SaleOrderInherit(models.Model):
 
     def button_customer_contract_approve(self):
         self.write({
-            'state': 'sale'
+            'state': 'sale',
         })
         # objs=[]
         # for rec in self.sale_description_lines:
@@ -344,7 +345,7 @@ class SaleLines(models.Model):
         domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]")
 
     term = fields.Selection([('one_time', 'One Time'), ('monthly', 'Monthly'), ('quarterly', 'Quarterly'),
-                             ('yearly', 'Yearly'), ('per_item', 'Per Item'), ('free_of_charge', 'Free of Charge')])
+                             ('yearly', 'Per Year'), ('per_item', 'Per Item'), ('free_of_charge', 'Free of Charge')])
     sale_order_line_id = fields.Many2one('sale.order', string="Measurment")
     
 

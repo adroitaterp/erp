@@ -20,7 +20,7 @@ class ProjectProject(models.Model):
     one_time_job_annual = fields.Selection([('one_time_job', 'One Time Job'), ('annual_services', 'Annual Services')])
     project_start_date=fields.Date('Project Start Date', store=True, force_save=True)
     project_end_date=fields.Date('Project End Date', store=True, force_save=True)
-    sale_order = fields.Many2one('sale.order', string="Sale Order no") 
+    sale_order = fields.Many2one('sale.order', string="Sale Order no",track_visibility='always') 
     stage_name=fields.Char('Stage Name',related="stage_id.name")
     
 

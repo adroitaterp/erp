@@ -20,6 +20,6 @@ class SaleOrderInherit(models.Model):
         sale_orders = self.env['sale.order'].search([('partner_id','=',self.partner_id.id)])
 
         if sale_orders:
-            return {'domain': {'sale_order': [('id', 'in', sale_orders.ids),('state','=','sale')]}}
+            return {'domain': {'sale_order': [('id', 'in', sale_orders.ids),('state','in',['sale','cancel','contract_expired','contract_expired_and_renewed'])]}}
         else:
             return {'domain': {'sale_order': [('id', 'in', [])]}}

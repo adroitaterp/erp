@@ -102,6 +102,8 @@
                         groups="sale_custom.group_approve_contract"
                        
                 />
+
+               
             </xpath>
        
             <xpath expr="//page[@name='order_lines']" position="after">

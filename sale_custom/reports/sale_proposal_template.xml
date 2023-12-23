@@ -400,8 +400,12 @@
                                 <!--                                services are rendered.-->
                                 <!--                                <br/>-->
                                 *All prices are VAT
-                                <strong>EXCLUSIVE. *A tax invoice will be issued upon receipt of payment.</strong>
+                                <strong>EXCLUSIVE. *A tax invoice will be issued upon receipt of payment.
+                                </strong>
                                 <br/>
+                                <strong>
+                                    Work will commence upon payment being completed.
+                                </strong>
                                 <strong>
                                     <span t-field="doc.payment_details"/>
                                     <!--                                    INSERT SPECIFIC DETAILS OF EACH PAYMENT-->

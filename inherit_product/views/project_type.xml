@@ -75,6 +75,18 @@
                         <attribute name="invisible">1</attribute>
              </xpath>
 
+            <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+              <xpath expr="//field[@name='privacy_visibility']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+             <!-- <xpath expr="//field[@name='allow_billable']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+ -->
             
              <xpath expr="//div[@name='dates']/i[1]" position="attributes">
                         <attribute name="invisible">1</attribute>
