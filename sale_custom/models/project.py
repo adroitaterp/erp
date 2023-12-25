@@ -23,3 +23,7 @@ class SaleOrderInherit(models.Model):
             return {'domain': {'sale_order': [('id', 'in', sale_orders.ids),('state','in',['sale','cancel','contract_expired','contract_expired_and_renewed'])]}}
         else:
             return {'domain': {'sale_order': [('id', 'in', [])]}}
+
+
+    
+        

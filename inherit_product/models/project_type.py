@@ -22,11 +22,22 @@ class ProjectProject(models.Model):
     project_end_date=fields.Date('Project End Date', store=True, force_save=True)
     sale_order = fields.Many2one('sale.order', string="Sale Order no",track_visibility='always') 
     stage_name=fields.Char('Stage Name',related="stage_id.name")
-    
+
+    # @api.model
+    # def fields_view_get(self,view_id=None, view_type='form', toolbar=False, submenu=False):
+    #     sale_orders = self.env['sale.order'].search([('partner_id','=',self.partner_id.id)])
+    #     res = super(ProjectProject,self).fields_view_get(view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu)
+    #     fields=res.get('fields')
+    #     if sale_orders:
+    #         if fields.get('sale_order'):
+    #             res['fields']['sale_order']['domain'] = [('id','in',sale_orders.ids),('state','in',['sale','cancel','contract_expired','contract_expired_and_renewed'])]
+    #     # else:
+    #     #     res['fields']['sale_order']['domain'] = [('id','in',[])]
+    #     return res
 
 
 
-
+  
    
 
 class productsproject(models.Model):
