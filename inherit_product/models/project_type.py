@@ -17,7 +17,7 @@ class ProjectProject(models.Model):
     created_date=fields.Date('Create Date', default=date.today(), store=True, force_save=True,)
     product_ids=fields.One2many('products.projects','project_id',string="products")
     until_completion = fields.Boolean('Until Completion')
-    one_time_job_annual = fields.Selection([('one_time_job', 'One Time Job'), ('annual_services', 'Annual Services')])
+    one_time_job_annual = fields.Selection([('one_time_job', 'One Time Job/Annual'), ('annual_services', 'Annual Services')])
     project_start_date=fields.Date('Project Start Date', store=True, force_save=True)
     project_end_date=fields.Date('Project End Date', store=True, force_save=True)
     sale_order = fields.Many2one('sale.order', string="Sale Order no",track_visibility='always') 
