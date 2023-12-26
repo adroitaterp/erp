@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+
+        <!-- calender form view -->
+           <record id="calendar_event_form_inherited" model="ir.ui.view">
+                <field name="name">calendar event Form Inherited</field>
+                <field name="model">calendar.event</field>
+                <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='alarm_ids']" position="after">
+                        <field name="location_id"/>
+                    </xpath>
+    
+                    <xpath expr="//field[@name='location']" position="attributes">
+                    	<attribute name="invisible">1</attribute>
+                    </xpath>
+    
+    
+                    
+                </field>
+          </record>
+
+            <!-- calender tree view -->
+         <record id="calendar_event_list_inherited" model="ir.ui.view">
+                <field name="name">calendar event Lis Inherited</field>
+                <field name="model">calendar.event</field>
+                <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='partner_ids']" position="after">
+                        <field name="location_id"/>
+                    </xpath>
+    
+                    <xpath expr="//field[@name='location']" position="attributes">
+                    	<attribute name="invisible">1</attribute>
+                    </xpath>
+    
+    
+                    
+                </field>
+          </record>
+    </data>
+</odoo>
