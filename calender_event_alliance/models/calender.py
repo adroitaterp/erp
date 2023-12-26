@@ -26,3 +26,4 @@ class CalendarEventInherit(models.Model):
                 raise ValidationError(_('Another event is already scheduled at the same time and location!'))
 
         return super(CalendarEventInherit, self).create(values)
+
