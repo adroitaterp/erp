@@ -15,7 +15,7 @@ this.additionalContext
 var values = await this._super.apply(this, arguments);
 
 if (this.attrs.name == 'sale_order'){
-    this.limit=2
+    this.limit=1
 }
     
 // Add "Search more..." option even if results count is lower than the limit of 7
