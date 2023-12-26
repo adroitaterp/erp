@@ -147,7 +147,7 @@
     </record>
 
     
-    <!-- <record id="project_project_form_hr_payroll_view" model="ir.ui.view">
+    <record id="project_project_form_hr_payroll_view" model="ir.ui.view">
         <field name="name">project.project.form.payroll</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project_hr_payroll_account.project_project_view_form"/>
@@ -156,7 +156,7 @@
                
             </xpath>
         </field>
-    </record> -->
+    </record>
         	
     <!-- <record id="project_project_form_sale_timesheet_view" model="ir.ui.view">
         <field name="name">project.project.form.timesheet</field>
