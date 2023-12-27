@@ -11,10 +11,12 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 class CalendarEventInherit(models.Model):
     _inherit = 'calendar.event'
     # location = fields.Char('Location', tracking=True, required=True)
-    location_id = fields.Many2one('calendar.location', string="Location")
+    location_id = fields.Many2one('calendar.location', string="Location",required=True)
     
     @api.model
     def create(self, values):
+        if not values.get('location_id'):
+            raise ValidationError(_('Location field can not be empty'))
         if values.get('start') and values.get('stop') and values.get('location_id'):
             domain = [
                 ('start', '<', values['stop']),
