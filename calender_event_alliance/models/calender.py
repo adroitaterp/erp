@@ -6,8 +6,6 @@ from odoo.tools import float_is_zero, float_compare
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-
-
 class CalendarEventInherit(models.Model):
     _inherit = 'calendar.event'
     location_id = fields.Many2one('calendar.location', string="Exact Location",required=True)

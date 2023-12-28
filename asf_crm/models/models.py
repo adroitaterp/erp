@@ -3,9 +3,9 @@ from collections import defaultdict
 
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
-
     is_done = fields.Boolean(string='Is Done', default=True)
 
+    
     # def _action_done(self, feedback=False, attachment_ids=None):
     #     """ Private implementation of marking activity as done: posting a message, not deleting activity,
     #         and eventually creating the automatic next activity (depending on config).
