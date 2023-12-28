@@ -10,8 +10,21 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class CalendarEventInherit(models.Model):
     _inherit = 'calendar.event'
-    # location = fields.Char('Location', tracking=True, required=True)
-    location_id = fields.Many2one('calendar.location', string="Location",required=True)
+    location_id = fields.Many2one('calendar.location', string="Exact Location",required=True)
+
+    is_done = fields.Boolean(string='Is Done', default=False)
+
+    def mark_meeting_as_done(self):
+        """Custom logic to mark the meeting as done without unlinking."""
+        # Your custom logic here
+        # For example, update the 'is_done' field to True
+        self.write({'is_done': False})
+
+    def unlink(self):
+        for meeting in self:
+            if meeting.is_done:
+                raise ValueError("You cannot delete a meeting that is marked as done.")
+        return super(CalendarEventInherit, self).unlink()
     
     @api.model
     def create(self, values):

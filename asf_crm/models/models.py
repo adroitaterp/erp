@@ -145,22 +145,6 @@ class MailActivity(models.Model):
 
 
 
-class YourCustomMeetingModel(models.Model):
-    _inherit = 'calendar.event'
-
-    is_done = fields.Boolean(string='Is Done', default=True)
-
-    def mark_meeting_as_done(self):
-        """Custom logic to mark the meeting as done without unlinking."""
-        # Your custom logic here
-        # For example, update the 'is_done' field to True
-        self.write({'is_done': True})
-
-    def unlink(self):
-        pass
-
-
-
 class MailMessageInh(models.Model):
     _inherit = 'mail.message'
 

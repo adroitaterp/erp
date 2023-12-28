@@ -8,3 +8,5 @@ class LocationCalender(models.Model):
     _name = 'calendar.location'
     name = fields.Char('Location')
 
+
+

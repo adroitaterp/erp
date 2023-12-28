@@ -14,12 +14,16 @@
                     <xpath expr="//field[@name='location']" position="attributes">
                     	<attribute name="invisible">1</attribute>
                     </xpath>
+
+                    <xpath expr="//field[@name='description']" position="after">
+                    <field name="is_done" invisible="True"/>
+                </xpath>
     
     
                     
                 </field>
           </record>
-
+ 
             <!-- calender tree view -->
          <record id="calendar_event_list_inherited" model="ir.ui.view">
                 <field name="name">calendar event Lis Inherited</field>
