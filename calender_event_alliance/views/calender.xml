@@ -16,7 +16,9 @@
                     </xpath>
 
                     <xpath expr="//field[@name='description']" position="after">
-                    <field name="is_done" invisible="True"/>
+                        <field name="sent_email"/>
+                        <field name="is_done" invisible="True"/>
+                        
                 </xpath>
     
     

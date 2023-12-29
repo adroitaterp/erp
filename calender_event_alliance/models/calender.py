@@ -12,6 +12,7 @@ class CalendarEventInherit(models.Model):
 
     is_done = fields.Boolean(string='Is Done', default=False)
 
+
     def mark_meeting_as_done(self):
         """Custom logic to mark the meeting as done without unlinking."""
         # Your custom logic here
@@ -28,6 +29,11 @@ class CalendarEventInherit(models.Model):
     def create(self, values):
         if not values.get('location_id'):
             raise ValidationError(_('Location field can not be empty'))
+
+        if values.get('sent_email') != 'yes':
+            raise ValidationError(_('Make sure to send email invitation for meeting'))
+
+      
         if values.get('start') and values.get('stop') and values.get('location_id'):
             domain = [
                 ('start', '<', values['stop']),
