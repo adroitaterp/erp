@@ -9,6 +9,13 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 class CalendarEventInherit(models.Model):
     _inherit = 'calendar.event'
     location_id = fields.Many2one('calendar.location', string="Exact Location",required=True)
+    # location_id = fields.Selection([
+    #     ('yes', 'Yes'),
+    #     ('no', 'No'),
+       
+    # ],default='',string='Are u Sending Email')
+   
+
 
     is_done = fields.Boolean(string='Is Done', default=False)
 
