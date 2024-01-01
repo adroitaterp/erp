@@ -15,5 +15,8 @@ class CalendarEventInheritNew(models.Model):
     ],default='',string='Are u Sending Email')
 
 
+
+
+
    
 
