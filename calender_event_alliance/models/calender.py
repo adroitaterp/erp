@@ -12,7 +12,6 @@ class CalendarEventInherit(models.Model):
     # location_id = fields.Selection([
     #     ('yes', 'Yes'),
     #     ('no', 'No'),
-       
     # ],default='',string='Are u Sending Email')
    
 
