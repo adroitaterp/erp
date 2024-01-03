@@ -16,7 +16,5 @@ class CalendarEventInheritNew(models.Model):
 
 
 
-
-
    
 
