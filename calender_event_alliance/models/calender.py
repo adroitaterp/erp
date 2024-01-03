@@ -8,7 +8,13 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class CalendarEventInherit(models.Model):
     _inherit = 'calendar.event'
-    location_id = fields.Many2one('calendar.location', string="Exact Location",required=True)
+    # def _set_location(self):
+        
+    #     a=self.env['calendar.location'].search(['name','=','Alliance Prime Meeting Room'])
+    #     return a
+    location_id = fields.Many2one('calendar.location', string="Exact Location", domain=[('need_record', '=', True)],required=True, store=True,)
+
+   
     # location_id = fields.Selection([
     #     ('yes', 'Yes'),
     #     ('no', 'No'),
@@ -17,7 +23,7 @@ class CalendarEventInherit(models.Model):
 
 
     is_done = fields.Boolean(string='Is Done', default=False)
-
+ 
 
     def mark_meeting_as_done(self):
         """Custom logic to mark the meeting as done without unlinking."""

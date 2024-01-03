@@ -12,7 +12,7 @@ class CalendarEventInheritNew(models.Model):
         ('yes', 'Yes'),
         ('no', 'No'),
        
-    ],default='',string='Are u Sending Email')
+    ],default='',string='Email Invitation Sent')
 
 
 
