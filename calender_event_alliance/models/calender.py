@@ -12,7 +12,9 @@ class CalendarEventInherit(models.Model):
         
     #     a=self.env['calendar.location'].search(['name','=','Alliance Prime Meeting Room'])
     #     return a
-    location_id = fields.Many2one('calendar.location', string="Exact Location", domain=[('need_record', '=', True)],required=True, store=True,)
+    location_id = fields.Many2one('calendar.location', string="Exact Location", 
+                                  domain=[('need_record', '=', True)],
+                                   required=True, store=True,)
 
    
     # location_id = fields.Selection([

@@ -10,9 +10,8 @@ class CalendarEventInheritNew(models.Model):
     _inherit = 'calendar.event'
     sent_email = fields.Selection([
         ('yes', 'Yes'),
-        ('no', 'No'),
-       
-    ],default='',string='Email Invitation Sent')
+        ('no', 'No'), 
+    ],default='',string='Are you sending email invitation?')
 
 
 
