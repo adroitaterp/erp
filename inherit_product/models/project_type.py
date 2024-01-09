@@ -12,9 +12,9 @@ class ProjectType(models.Model):
 class ProjectProject(models.Model):
     _inherit = 'project.project'
     _order='created_date desc'
-    project_type_id = fields.Many2one('project.type', string="Project Type")
+    project_type_id = fields.Many2one('project.type', string="Project Type", track_visibility='always')
     department_project_id = fields.Many2one('project.new.department', string="Department") 
-    created_date=fields.Date('Create Date', default=date.today(), store=True, force_save=True,)
+    created_date=fields.Date('Create Date', default=date.today(), store=True, force_save=True,track_visibility='always')
     product_ids=fields.One2many('products.projects','project_id',string="products")
     until_completion = fields.Boolean('Until Completion')
     one_time_job_annual = fields.Selection([('one_time_job', 'One Time Job'), ('annual_services', 'Annual Services')], string="One Time Job/Annual")
@@ -22,18 +22,6 @@ class ProjectProject(models.Model):
     project_end_date=fields.Date('Project End Date', store=True, force_save=True)
     sale_order = fields.Many2one('sale.order', string="Sale Order no",track_visibility='always') 
     stage_name=fields.Char('Stage Name',related="stage_id.name")
-
-    # @api.model
-    # def fields_view_get(self,view_id=None, view_type='form', toolbar=False, submenu=False):
-    #     sale_orders = self.env['sale.order'].search([('partner_id','=',self.partner_id.id)])
-    #     res = super(ProjectProject,self).fields_view_get(view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu)
-    #     fields=res.get('fields')
-    #     if sale_orders:
-    #         if fields.get('sale_order'):
-    #             res['fields']['sale_order']['domain'] = [('id','in',sale_orders.ids),('state','in',['sale','cancel','contract_expired','contract_expired_and_renewed'])]
-    #     # else:
-    #     #     res['fields']['sale_order']['domain'] = [('id','in',[])]
-    #     return res
 
 
 
@@ -71,5 +59,10 @@ class ProjectTask(models.Model):
 
     project_type_id = fields.Many2one('project.type', string="Project Type" , related='project_id.project_type_id')
     leave_warning = fields.Char(string="")
+    task_start_date=fields.Date('Task Start Date', store=True, force_save=True)
+    task_end_date=fields.Date('Task End Date', store=True, force_save=True)
+
+
+    
 
 
