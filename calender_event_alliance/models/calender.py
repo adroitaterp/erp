@@ -1,6 +1,8 @@
 from odoo.exceptions import Warning
 from datetime import datetime
 from odoo import models, fields, api, _
+from odoo import models, fields, api, exceptions
+
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_is_zero, float_compare
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -44,8 +46,9 @@ class CalendarEventInherit(models.Model):
         if not values.get('location_id'):
             raise ValidationError(_('Location field can not be empty'))
 
-        if values.get('sent_email') != 'yes':
-            raise ValidationError(_('Make sure to send email invitation for meeting'))
+        if values.get('sent_email') not in ('yes', 'no'):
+            raise exceptions.ValidationError(_('Make sure to send email invitation for meeting'))
+
 
       
         if values.get('start') and values.get('stop') and values.get('location_id'):
