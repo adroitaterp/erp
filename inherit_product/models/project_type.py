@@ -8,6 +8,8 @@ _logger = logging.getLogger(__name__)
 class ProjectType(models.Model):
     _name = 'project.type'
 
+
+    
     name = fields.Char(string="Type Name")
 class ProjectProject(models.Model):
     _inherit = 'project.project'

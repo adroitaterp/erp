@@ -8,6 +8,7 @@ class ProductTemplate(models.Model):
     percentage_price = fields.Float(string='Percentage Price', default="1")
 
 
+
 class PricelistItem(models.Model):
     _inherit = 'product.pricelist.item'
 
