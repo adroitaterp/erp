@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+
+    <record id="group_project_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="base.module_category_services_project"/>
+        <!-- <field name="implied_ids" eval="[(4, ref('group_project_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/> -->
+    </record>
+
 <!--    <record id="project_category" model="ir.module.category">-->
 <!--        <field name="name">Project</field>-->
 <!--        <field name="description">Project</field>-->
