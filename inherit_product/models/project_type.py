@@ -32,6 +32,8 @@ class ProjectProject(models.Model):
         "Timesheets", compute='_compute_allow_timesheets', store=True, readonly=False,
         default=True, help="Enable timesheeting on the project.",track_visibility='always')
 
+    follower_group_id = fields.Char(string='Related Field')
+
    
     def write(self, values):
         result = super(ProjectProject, self).write(values)
@@ -43,21 +45,16 @@ class ProjectProject(models.Model):
         
         return result
 
-
-    @api.constrains("stage_id")
-    def check_stage_id_permission(self):
-        # for the default value on create
-        if self.env.context.get("disable_stage_check", False):
-            return True
+    @api.onchange('stage_id')
+    def task_stage(self):
+        if self._origin.stage_id.name == 'Done' and self.stage_id.name != 'Done':
+            if self.env.ref("inherit_product.group_project_admin").id not in self.env.user.groups_id.ids:
+                raise ValidationError(_("You are not authorized to change stage"))
+        
     
-        if (self.env.ref("inherit_product.group_project_admin").id not in self.env.user.groups_id.ids):
-            raise ValidationError(_("You are not authorized to change stage"))
-
-    # on create just call the super with the context to disable the stage change, to allow it as "default" value
-    
-    @api.model
-    def create(self, values):
-        return super(ProjectProject, self.with_context(disable_stage_check=True)).create(values)
+    # @api.model
+    # def create(self, values):
+    #     return super(ProjectProject, self.with_context(disable_stage_check=True)).create(values)
 
   
 
@@ -95,10 +92,52 @@ class productsproject(models.Model):
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    project_type_id = fields.Many2one('project.type', string="Project Type" , related='project_id.project_type_id')
+    project_type_id = fields.Many2one('project.type', string="Project Type" , related='project_id.project_type_id',track_visibility='onchange')
     leave_warning = fields.Char(string="")
-    task_start_date=fields.Date('Task Start Date', store=True, force_save=True)
-    task_end_date=fields.Date('Task End Date', store=True, force_save=True)
+    task_start_date=fields.Date('Task Start Date', store=True, force_save=True,track_visibility='onchange')
+    task_end_date=fields.Date('Task End Date', store=True, force_save=True,track_visibility='onchange')
+    project_id = fields.Many2one('project.project', string='Project',
+        compute='_compute_project_id', recursive=True, store=True, readonly=False,
+        index=True, tracking=True, check_company=True, change_default=True,track_visibility='onchange')
+    parent_id = fields.Many2one('project.task', string='Parent Task', index=True,track_visibility='onchange')
+    recurring_task = fields.Boolean(string="Recurrent",track_visibility='onchange')
+
+
+    def write(self, values):
+        result = super(ProjectTask, self).write(values)
+        if values.get('user_ids'):
+            all=""
+            for rec in self.user_ids:    
+                all +=" "+rec.name
+            self.message_post(body=all,subject="Assignees")
+
+        if values.get('tag_ids'):
+            all=""
+            for rec in self.tag_ids:    
+                all +=" "+rec.name
+            self.message_post(body=all,subject="Tags")
+        
+        return result
+
+
+
+    @api.constrains("stage_id")
+    def check_stage_id_permission(self):
+        
+        # Your validation logic goes here
+        if self.stage_id and self.stage_id.name == "In Progress (For Client or FTA Action)" and not self.task_start_date:
+            raise ValidationError("Please fill in the Task Start Date before moving to In Progress.")
+
+        if self.stage_id and self.stage_id.name == "In Progress (For Alliance Action)" and not self.task_start_date:
+            raise ValidationError("Please fill in the Task Start Date before moving to In Progress.")
+
+        # Your validation logic goes here
+        if self.stage_id and self.stage_id.name == "Done" and not self.task_end_date:
+            raise ValidationError("Please fill in the Task End Date before moving to Done.")
+
+        # Additional validation logic if needed
+
+        return True
 
 
     

@@ -29,6 +29,7 @@
         'views/views.xml',
         'views/project_new_department.xml',
         'views/project_type.xml',
+        'views/followers.xml'
     ],
     'assets': {
         'web.assets_backend': [
