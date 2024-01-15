@@ -28,6 +28,7 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/project_new_department.xml',
+        # 'views/project_project_new.xml',
         'views/project_type.xml',
         'views/followers.xml'
     ],

@@ -50,6 +50,25 @@ class ProjectProject(models.Model):
         if self._origin.stage_id.name == 'Done' and self.stage_id.name != 'Done':
             if self.env.ref("inherit_product.group_project_admin").id not in self.env.user.groups_id.ids:
                 raise ValidationError(_("You are not authorized to change stage"))
+
+
+
+    @api.constrains("stage_id")
+    def check_stage_id_permission(self):
+        
+        # Your validation logic goes here
+        if self.stage_id and self.stage_id.name == "In Progress" and not self.project_start_date:
+            raise ValidationError("Please fill in the Project Start Date before moving to In Progress.")
+
+       
+        # Your validation logic goes here
+        if self.stage_id and self.stage_id.name == "Done" and not self.project_end_date:
+            raise ValidationError("Please fill in the Project End Date before moving to Done.")
+
+        # Additional validation logic if needed
+
+        return True
+
         
     
     # @api.model

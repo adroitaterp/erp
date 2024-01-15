@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_type_tree" model="ir.ui.view">
+        <field name="name">project.type.tree</field>
+        <field name="model">project.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <record id="project_type_form" model="ir.ui.view">
+        <field name="name">project.type.form</field>
+        <field name="model">project.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="name"/>
+                </sheet>
+                <!--                <div class="oe_chatter">-->
+                <!--                    <field name="message_follower_ids" widget="mail_followers"/>-->
+                <!--                    <field name="message_ids" widget="mail_thread"/>-->
+                <!--                </div>-->
+            </form>
+        </field>
+    </record>
+
+    <record id="project_type_action" model="ir.actions.act_window">
+        <field name="name">Project Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.type</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create your Project Type!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="project_type_details"
+              name="Project Type"
+              parent="project.menu_project_config"
+              action="project_type_action"
+              sequence="50"/>
+
+
+    <!-- project.project form view -->
+
+    <record id="project_project_form_view" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                   <field name="department_project_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                <field name="one_time_job_annual"/>
+                <field name="project_type_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                <field name="sale_order" widget="many2one" options="{'no_create_edit': False, 'no_open': True,}"/>
+
+
+            </xpath>
+            <!-- <xpath expr="//field[@name='user_id']" position="after">
+                <field name="follower_group_ids" widget="many2many_tags"/>
+            </xpath> -->
+            <xpath expr="//field[@name='user_id']" position="after">     
+                <field name="created_date" />
+            </xpath>
+
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+            
+             <xpath expr="//field[@name='date']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+            <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+             <xpath expr="//field[@name='label_tasks']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+              <xpath expr="//field[@name='privacy_visibility']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+             <!-- <xpath expr="//field[@name='allow_billable']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+ -->
+            
+             <xpath expr="//div[@name='dates']/i[1]" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+            <xpath expr="//div[@name='dates']/i[2]" position="attributes">
+                        <attribute name="invisible">1</attribute>
+             </xpath>
+
+           
+             <xpath expr="//field[@name='company_id']" position="before">
+                 <field name="until_completion"/> 
+             </xpath>
+
+             <xpath expr="//field[@name='until_completion']" position="after">
+                 <field name="date" string = "Contract End Date" attrs="{'invisible': [('until_completion', '=', True)]}"  
+                     decoration-danger="date &lt; time.strftime('%Y-%m-%d')"/> 
+                 <field name="project_start_date"/>
+                 <field name="project_end_date"/>
+             </xpath>
+
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                    <attribute name="string">Start Date</attribute>
+                </xpath>
+
+              <xpath expr="//field[@name='until_completion']" position="before">
+                 <field name="date_start" string="Contract Start Date"/> 
+             </xpath>
+
+            
+
+               <xpath expr="//page[@name='description']" position="before">
+              
+                <page name="product_description" string="Scope of Work">
+                <field name="product_ids" >
+                    <tree editable="bottom">
+                        <field name="product_id" />
+                        <field name="name" />
+                      </tree>
+                </field>
+                </page>
+                                    
+
+          </xpath>
+
+             <xpath expr="//button[@name='317']" position="attributes">     
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_analytic_account_entries']" position="attributes">     
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='320']" position="attributes">     
+                <attribute name="invisible">1</attribute>
+            </xpath>
+           
+           
+        </field>
+    </record>
+
+    
+    <!-- <record id="project_project_form_hr_payroll_view" model="ir.ui.view">
+        <field name="name">project.project.form.payroll</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_hr_payroll_account.project_project_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_project_contracts']" position="replace">     
+               
+            </xpath>
+        </field>
+    </record> -->
+        	
+    <!-- <record id="project_project_form_sale_timesheet_view" model="ir.ui.view">
+        <field name="name">project.project.form.timesheet</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="sale_timesheet.project_project_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_billable_time_button']" position="replace">     
+                
+            </xpath>
+        </field>
+    </record> -->
+            
+
+
+    <!-- project tree view -->
+     <record id="project_project_tree_view" model="ir.ui.view">
+        <field name="name">project.project.tree</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="created_date"  />
+                 <field name="stage_name" invisible="1" />
+                
+          </xpath>
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="decoration-danger">date &lt; time.strftime('%Y-%m-%d') and (stage_name &#61;&#61; 'New')</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="string">Contract End Date</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                <attribute name="string">Contract Start Date</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="project_task_form_view" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_ids']" position="before">
+                <field name="project_type_id"/>
+                
+            </xpath>
+
+
+            
+        </field>
+    </record>
+
+
+    <record id="project_task_form_view_new" model="ir.ui.view">
+        <field name="name">project.task.form.new</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='date_deadline']" position="after">     
+               <field name="task_start_date"/>
+             <field name="task_end_date"/>
+            </xpath>    
+        </field>
+    </record>
+
+    <record id="project.open_view_project_all" model="ir.actions.act_window">
+        <field name="view_id" ref="project.view_project"/>
+    </record>
+
+    <record id="project.action_view_all_task" model="ir.actions.act_window">
+        <field name="context">{'search_default_my_tasks': 1, 'all_task': 0,'create':False}</field>
+    </record>
+
+    <record id="view_project_task_search_inherit" model="ir.ui.view">
+        <field name="name">project.task.search.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='personal_stage']" position="replace">
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_activity" model="ir.ui.view">
+        <field name="name">project.activity</field>
+        <field name="model">project.project</field>
+        <field name="arch" type="xml">
+            <activity string="Projects">
+                <field name="user_id"/>
+                <!-- <field name="company_currency"/> -->
+                <templates>
+                    <div t-name="activity-box">
+                        <field name="user_id" widget="many2one_avatar_user"/>
+                        <div>
+                            <field name="name" display="full"/>
+                            <field name="project_type_id" muted="1"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
+    <record id="project.open_view_project_all_group_stage" model="ir.actions.act_window">
+            <field name="view_mode">kanban,form,activity</field>
+    </record>
+
+
+      <!-- expriration menu -->
+     <record id="project_expire_date_action" model="ir.actions.act_window">
+              <field name="name">Project Expriration</field>
+              <field name="type">ir.actions.act_window</field>
+              <field name="res_model">project.project</field>
+              <field name="view_id" ref="inherit_product.project_project_tree_view"/>
+             <field name="domain">[('date', '&lt;', time.strftime('%Y-%m-%d')),('stage_id', '=', 'New')]</field>
+              <field name="view_mode">tree,kanban,form</field>
+              <field name="help" type="html">
+                     <p class="oe_view_nocontent_create">Project details here... </p>
+              </field>
+    </record>
+   
+    <menuitem id="project_expire_data_id" 
+        name="Overdue Projects" 
+        action="project_expire_date_action" 
+        parent="project.menu_project_report" 
+        sequence="2"/>
+
+
+</odoo>
