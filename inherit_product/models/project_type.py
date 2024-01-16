@@ -7,13 +7,38 @@ _logger = logging.getLogger(__name__)
 
 class ProjectType(models.Model):
     _name = 'project.type'
-
-
+  
     
     name = fields.Char(string="Type Name")
 class ProjectProject(models.Model):
     _inherit = 'project.project'
-    _order='created_date desc'
+    _order = 'create_date desc'
+
+
+    follower = fields.Many2many('res.partner', string="Follower", compute='_compute_follower', readonly=False,store=True)
+
+    @api.depends('message_follower_ids')
+    def _compute_follower(self):
+        for project in self:
+            follower_ids = project.message_follower_ids.mapped('partner_id')
+            project.follower = [(6, 0, follower_ids.ids)]
+
+    
+            
+            
+
+
+    activity_type_id = fields.Many2one('mail.activity.type', string="Activity Type", store=True)
+    activity_type_group = fields.Char(string="Activity Type Group", compute='_compute_activity_type_group', store=True)
+
+    @api.depends('activity_type_id')
+    def _compute_activity_type_group(self):
+        for project in self:
+            project.activity_type_group = project.activity_type_id.name
+
+
+   
+   
     project_type_id = fields.Many2one('project.type', string="Project Type", track_visibility='always')
     department_project_id = fields.Many2one('project.new.department', string="Department", track_visibility='always') 
     created_date=fields.Date('Create Date', default=date.today(), store=True, force_save=True,track_visibility='always')
@@ -34,7 +59,6 @@ class ProjectProject(models.Model):
 
     follower_group_id = fields.Char(string='Related Field')
 
-   
     def write(self, values):
         result = super(ProjectProject, self).write(values)
         if values.get('tag_ids'):

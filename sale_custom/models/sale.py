@@ -257,6 +257,7 @@ class SaleOrderInherit(models.Model):
             self.env['project.project'].create({        
                 'name':name,
                 'sale_order': self.id,
+                'analytic_account_id': self.analytic_account_id.id,
                 'description':description,
                 'partner_id': self.partner_id.id,
                 'created_date':self.date_order,
@@ -315,7 +316,6 @@ class SaleOrderInherit(models.Model):
    
    
     def get_project(self):
-        self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
             'name': 'project.project',
@@ -323,12 +323,6 @@ class SaleOrderInherit(models.Model):
             'res_model': 'project.project',
             'domain': [('sale_order', '=', self.name)],
         }
-
-    
-
-
-
-
 
 
 
