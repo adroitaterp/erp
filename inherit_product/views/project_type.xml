@@ -219,6 +219,14 @@
                 <attribute name="string">Contract Start Date</attribute>
             </xpath>
 
+             <xpath expr="//field[@name='date_start']" position="after">
+                         <field name="project_type_id" optional="hide"/>
+                        <field name="sale_order"  optional="hide"/>
+                        <field name="project_start_date" optional="hide"/>
+                         <field name="project_end_date" optional="hide"/>
+                        <field name="follower" optional="hide"/>
+             </xpath>
+            
         </field>
     </record>
 

@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+  <!-- res.partner form view -->
+           <record id="res_partner_form_inherited" model="ir.ui.view">
+                <field name="name">res partner Form Inherited</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//group/group[2]" position="before">     
+                            <group name="contact_details" string="Point of Contact Details">  
+                             <field name="contact_person_name"/>
+                                <field name="position"/>
+                                <field name="contact_person_number"/>
+                                <field name="contact_email_address" widget="email"/>
+                                <field name="office_address"/>
+                          </group>
+                    </xpath>
+
+                     <xpath expr="//group/group[3]" position="after">     
+                         
+                        <group string="Accounts Department Details">  
+                                <field name="name_of_accountant"/>
+                                <field name="accountant_contact_number"/>
+                                <field name="accountant_email_address"/>
+                          </group>
+                    </xpath>
+                    
+                </field>
+          </record>
+    </data>
+</odoo>
