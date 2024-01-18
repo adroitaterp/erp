@@ -15,13 +15,34 @@ class ProjectProject(models.Model):
     _order = 'create_date desc'
 
 
-    follower = fields.Many2many('res.partner', string="Follower", compute='_compute_follower', readonly=False,store=True)
+    follower = fields.Many2many('res.partner', string="Follower", compute='_compute_follower', readonly=False, store=True)
 
     @api.depends('message_follower_ids')
     def _compute_follower(self):
         for project in self:
             follower_ids = project.message_follower_ids.mapped('partner_id')
             project.follower = [(6, 0, follower_ids.ids)]
+
+    @api.onchange('follower')
+    def add_followers(self):
+        for rec in self:
+            rec.message_subscribe(partner_ids=rec.follower.ids)
+           
+    # follower = fields.Many2many('res.partner', string="Follower", compute='_compute_follower', readonly=False,store=True)
+
+    # @api.depends('message_follower_ids')
+    # def _compute_follower(self):
+    #     for project in self:
+    #         follower_ids = project.message_follower_ids.mapped('partner_id')
+    #         project.follower = [(6, 0, follower_ids.ids)]
+
+
+    # @api.onchange('follower')
+    # def add_followers(self):
+    #     for rec in self:
+    #         rec.message_subscribe(partner_ids=rec.follower.ids)
+              
+           
 
     
             

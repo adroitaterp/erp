@@ -26,6 +26,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/mail_template.xml',
         'views/views.xml',
         'views/project_new_department.xml',
         # 'views/project_new.xml',

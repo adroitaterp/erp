@@ -275,6 +275,7 @@
             <pivot string="Activities Analysis" sample="1">
                     <field name="activity_type_id" type="col"/>
                     <field name="date" interval="month" type="row"/>
+                   <field name="user_id" type="row"/>
                 </pivot>
             
             <!-- <pivot string="Projects" display_quantity="1" sample="1">

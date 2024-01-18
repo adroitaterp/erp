@@ -316,13 +316,17 @@ class SaleOrderInherit(models.Model):
    
    
     def get_project(self):
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'project.project',
-            'view_mode': 'tree,form',
-            'res_model': 'project.project',
-            'domain': [('sale_order', '=', self.name)],
-        }
+        action = self.env["ir.actions.actions"]._for_xml_id("project.open_view_project_all_group_stage")
+        action['domain'] = [('sale_order', '=', self.id)]
+        action['context'] = {}
+        return action
+        # return {
+        #     'type': 'ir.actions.act_window',
+        #     'name': 'project.project',
+        #     'view_mode': 'tree,form',
+        #     'res_model': 'project.project',
+        #     # 'domain': [('sale_order', '=', self.id)],
+        # }
 
 
 
