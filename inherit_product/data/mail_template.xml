@@ -14,9 +14,7 @@
             
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px;">
-                    
-                             this email is for teting purpose
-                            
+                Dear You have Asigin a new task                                
                 </div>
                 
             </field>

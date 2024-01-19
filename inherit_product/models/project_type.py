@@ -1,6 +1,8 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 from datetime import datetime,date
+import re
+import ast
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -16,6 +18,8 @@ class ProjectProject(models.Model):
 
 
     follower = fields.Many2many('res.partner', string="Follower", compute='_compute_follower', readonly=False, store=True)
+    all_follower= fields.Many2many(comodel_name='res.partner',relation ='project_id_rel',column1='partner_id',column2 ='project_id' , string="All Follower",store=True)
+    remove_follower= fields.Char("Remove Followers")
 
     @api.depends('message_follower_ids')
     def _compute_follower(self):
@@ -27,23 +31,24 @@ class ProjectProject(models.Model):
     def add_followers(self):
         for rec in self:
             rec.message_subscribe(partner_ids=rec.follower.ids)
+
+            set_a = set(rec.all_follower.ids)
+
+            self.all_follower = [(6, 0, rec.follower.ids)]
+          
+            set_b = set(rec.all_follower.ids)
+            result = list(set_a - set_b)
+
+            ee=rec.remove_follower
            
-    # follower = fields.Many2many('res.partner', string="Follower", compute='_compute_follower', readonly=False,store=True)
-
-    # @api.depends('message_follower_ids')
-    # def _compute_follower(self):
-    #     for project in self:
-    #         follower_ids = project.message_follower_ids.mapped('partner_id')
-    #         project.follower = [(6, 0, follower_ids.ids)]
-
-
-    # @api.onchange('follower')
-    # def add_followers(self):
-    #     for rec in self:
-    #         rec.message_subscribe(partner_ids=rec.follower.ids)
-              
-           
-
+            if ee:
+                result=str(result)+ee
+            a=rec.remove_follower=result
+            if a:
+                numbers = re.findall(r'\d+', a)
+                numbers = [int(num) for num in numbers]
+                rec.remove_follower=numbers
+            
     
             
             
@@ -82,11 +87,23 @@ class ProjectProject(models.Model):
 
     def write(self, values):
         result = super(ProjectProject, self).write(values)
+        res=self.remove_follower
+        res=ast.literal_eval(res)
+        self.message_unsubscribe(res)
         if values.get('tag_ids'):
             all=""
             for rec in self.tag_ids:    
                 all +=" "+rec.name
             self.message_post(body=all,subject="Tags")
+        if values.get('follower'):
+            all=""
+            for rec in self.follower:    
+                all +=" "+rec.name
+            self.message_post(body=all,subject="Followers")
+        template=self.env.ref('inherit_product.project_mail_pp')
+        if values.get('user_id'):
+            email_values={'email_to': res.user_id.partner_id.email}
+            template.send_mail(res.id,email_values=email_values,force_send=True)
         
         return result
 
