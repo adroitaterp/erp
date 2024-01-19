@@ -182,6 +182,7 @@ class ProjectTask(models.Model):
         index=True, tracking=True, check_company=True, change_default=True,track_visibility='onchange')
     parent_id = fields.Many2one('project.task', string='Parent Task', index=True,track_visibility='onchange')
     recurring_task = fields.Boolean(string="Recurrent",track_visibility='onchange')
+    
 
 
     def write(self, values):

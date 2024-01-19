@@ -243,6 +243,14 @@
                 
             </xpath>
 
+             <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="create_date" string="Create Date"/>
+                
+            </xpath>
+
+
+            
+
 
             
         </field>
