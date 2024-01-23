@@ -1,0 +1,43 @@
+<odoo>
+  <data>
+
+      <!-- Project form view -->
+         <record id="project_project_inherit_view_form" model="ir.ui.view">
+                <field name="name">project.project.inherit.form.view</field>
+                <field name="model">project.project</field>
+                <field name="inherit_id" ref="project.edit_project"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='tag_ids']" position="after">
+                        <field name="contact_person_name" invisible="True"/>
+                        <field name="position" invisible="True"/>
+                        <field name="contact_person_number" invisible="True"/>
+                        <field name="contact_email_address" invisible="True"/>
+                        <field name="office_address" invisible="True"/>
+                    </xpath>
+        
+                </field>
+         </record>
+
+
+
+       <!-- Project tree view -->
+         <record id="project_project_inherit_view_tree" model="ir.ui.view">
+                <field name="name">project.project.inherit.tree.view</field>
+                <field name="model">project.project</field>
+                <field name="inherit_id" ref="project.view_project"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="contact_person_name" optional="hide"/>
+                        <field name="position" optional="hide"/>
+                        <field name="contact_person_number" optional="hide"/>
+                        <field name="contact_email_address" optional="hide"/>
+                        <field name="office_address" optional="hide"/>
+                       
+
+                    </xpath>
+        
+                </field>
+         </record>
+
+    </data>
+</odoo>

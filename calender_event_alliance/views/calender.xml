@@ -48,5 +48,9 @@
        
                 </field>
           </record>
+
+        <record id="calendar.action_calendar_event" model="ir.actions.act_window">
+            <field name="context">{'create':False}</field>
+        </record>
     </data>
 </odoo>

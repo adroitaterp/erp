@@ -24,15 +24,19 @@
 
     # always loaded
     'data': [
-        # 'security/security.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
+        'data/mail_template.xml',
         'views/views.xml',
         'views/project_new_department.xml',
+        # 'views/project_new.xml',
         'views/project_type.xml',
+        'views/followers.xml'
     ],
     'assets': {
         'web.assets_backend': [
         'inherit_product/static/src/js/fields.js',
+        # 'inherit_product/static/src/js/wedgit.js',
         ],
         },
     'license': 'LGPL-3',

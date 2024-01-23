@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_project_type,access.project.type,model_project_type,,1,1,1,1
 access_project_new_department,access.project.new.department,model_project_new_department,,1,1,1,1
 access_products_projects,access.products_projects,model_products_projects,,1,1,1,1
+access_project_followers,access.project.followers,inherit_product.model_followers_group_project,,1,1,1,1

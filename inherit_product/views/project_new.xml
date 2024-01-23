@@ -68,20 +68,7 @@
             </xpath> -->
             <xpath expr="//field[@name='user_id']" position="after">     
                 <field name="created_date" />
-                                  
-
             </xpath>
-              <xpath expr="//field[@name='user_id']" position="after">     
-                <field name="created_date" />
-                                  
-
-            </xpath>
-
-                                  
-
-           
-
-            
 
             <xpath expr="//field[@name='date_start']" position="attributes">
                         <attribute name="invisible">1</attribute>
@@ -123,16 +110,8 @@
              <xpath expr="//field[@name='until_completion']" position="after">
                  <field name="date" string = "Contract End Date" attrs="{'invisible': [('until_completion', '=', True)]}"  
                      decoration-danger="date &lt; time.strftime('%Y-%m-%d')"/> 
-
-
                  <field name="project_start_date"/>
                  <field name="project_end_date"/>
-                 <field name="follower" widget="many2many_tags"/>
-                 <field name="all_follower" invisible="1"/>
-                 <field name="remove_follower" invisible="1"/>
-                 <field name="new_follower" invisible="1"/>
-                 
-                 
              </xpath>
 
             <xpath expr="//field[@name='date_start']" position="attributes">
@@ -142,8 +121,6 @@
               <xpath expr="//field[@name='until_completion']" position="before">
                  <field name="date_start" string="Contract Start Date"/> 
              </xpath>
-            
-           
 
             
 
@@ -161,8 +138,6 @@
 
           </xpath>
 
-
-           
              <xpath expr="//button[@name='317']" position="attributes">     
                 <attribute name="invisible">1</attribute>
             </xpath>
@@ -218,8 +193,6 @@
                 <attribute name="decoration-danger">date &lt; time.strftime('%Y-%m-%d') and (stage_name &#61;&#61; 'New')</attribute>
             </xpath>
 
-        
-
             <xpath expr="//field[@name='date']" position="attributes">
                 <attribute name="string">Contract End Date</attribute>
             </xpath>
@@ -227,23 +200,7 @@
             <xpath expr="//field[@name='date_start']" position="attributes">
                 <attribute name="string">Contract Start Date</attribute>
             </xpath>
-                <xpath expr="//field[@name='date']" position="before">
-                <field name="end_date_display" decoration-danger="date &lt; time.strftime('%Y-%m-%d')" />
-            </xpath>
 
-             <xpath expr="//field[@name='date']" position="attributes">
-                        <attribute name="invisible">1</attribute>
-                </xpath>
-            
-
-             <xpath expr="//field[@name='date_start']" position="after">
-                         <field name="project_type_id" optional="hide"/>
-                        <field name="sale_order"  optional="hide"/>
-                        <field name="project_start_date" optional="hide"/>
-                         <field name="project_end_date" optional="hide"/>
-                        <field name="follower" optional="hide"/>
-             </xpath>
-            
         </field>
     </record>
 
@@ -256,14 +213,6 @@
                 <field name="project_type_id"/>
                 
             </xpath>
-
-             <xpath expr="//field[@name='partner_id']" position="before">
-                <field name="create_date" string="Create Date"/>
-                
-            </xpath>
-
-
-            
 
 
             
@@ -301,30 +250,28 @@
         </field>
     </record>
 
-    <record id="view_project_pivot" model="ir.ui.view">
-        <field name="name">project.pivot</field>
+    <record id="view_project_activity" model="ir.ui.view">
+        <field name="name">project.activity</field>
         <field name="model">project.project</field>
         <field name="arch" type="xml">
-            <pivot string="Activities Analysis" sample="1">
-                    <field name="activity_type_id" type="col"/>
-                    <field name="date" interval="month" type="row"/>
-                   <field name="user_id" type="row"/>
-                </pivot>
-            
-            <!-- <pivot string="Projects" display_quantity="1" sample="1">
-                    <field name="user_id" type="row"/>
-                    <field name="department_project_id" />
-                    <field name="project_type_id" />
-                    <field name="date_start" />
-                    <field name="date" />
-                    <field name="project_start_date" />
-                    <field name="project_end_date" />
-                </pivot> -->
+            <activity string="Projects">
+                <field name="user_id"/>
+                <!-- <field name="company_currency"/> -->
+                <templates>
+                    <div t-name="activity-box">
+                        <field name="user_id" widget="many2one_avatar_user"/>
+                        <div>
+                            <field name="name" display="full"/>
+                            <field name="project_type_id" muted="1"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
         </field>
     </record>
 
     <record id="project.open_view_project_all_group_stage" model="ir.actions.act_window">
-            <field name="view_mode">tree,kanban,form,pivot</field>
+            <field name="view_mode">kanban,form,activity</field>
     </record>
 
 
