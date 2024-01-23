@@ -20,6 +20,23 @@ class ProjectProject(models.Model):
     follower = fields.Many2many('res.partner', string="Follower", compute='_compute_follower', readonly=False, store=True)
     all_follower= fields.Many2many(comodel_name='res.partner',relation ='project_id_rel',column1='partner_id',column2 ='project_id' , string="All Follower",store=True)
     remove_follower= fields.Char("Remove Followers")
+    new_follower= fields.Char("New Followers")
+    end_date_display = fields.Char(string="Contract End Date", compute="_compute_display")
+
+    def _compute_display(self):
+        
+        for record in self:
+            if not record.date:
+                record.end_date_display = 'until completion'
+            else:
+                formatted_date = record.date.strftime("%d/%m/%Y")
+                record.end_date_display = formatted_date
+
+            
+            
+
+
+    
 
     @api.depends('message_follower_ids')
     def _compute_follower(self):
@@ -38,6 +55,13 @@ class ProjectProject(models.Model):
           
             set_b = set(rec.all_follower.ids)
             result = list(set_a - set_b)
+
+            set_c=set(rec.message_follower_ids.mapped('partner_id').ids)
+            
+            new=list(set_b-set_c)
+
+           
+            rec.new_follower=new
 
             ee=rec.remove_follower
            
@@ -86,6 +110,7 @@ class ProjectProject(models.Model):
     follower_group_id = fields.Char(string='Related Field')
 
     def write(self, values):
+        
         result = super(ProjectProject, self).write(values)
         res=self.remove_follower
         res=ast.literal_eval(res)
@@ -102,8 +127,25 @@ class ProjectProject(models.Model):
             self.message_post(body=all,subject="Followers")
         template=self.env.ref('inherit_product.project_mail_pp')
         if values.get('user_id'):
-            email_values={'email_to': res.user_id.partner_id.email}
-            template.send_mail(res.id,email_values=email_values,force_send=True)
+            email_values={'email_to': self.user_id.partner_id.email}
+            template.send_mail(self.id,email_values=email_values,force_send=True)
+
+        if values.get('new_follower'):
+            
+            pp=ast.literal_eval(self.new_follower)
+            
+            all=self.env['res.partner'].search([('id','in',pp)])
+            
+            email_to_list=all.mapped('email')
+            email_to_list = ', '.join(email_to_list)
+          
+            email_values={'email_to': email_to_list}
+            template=self.env.ref('inherit_product.project_mail_pp')
+            template.send_mail(self.id,email_values=email_values,force_send=True)
+
+        # _logger.warning("This test relies on demo data. '%s'",self.follower._origin.ids)
+        # _logger.warning("This test relies on demo data. '%s'",values.get('follower'))
+
         
         return result
 

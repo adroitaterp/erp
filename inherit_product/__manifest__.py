@@ -36,6 +36,7 @@
     'assets': {
         'web.assets_backend': [
         'inherit_product/static/src/js/fields.js',
+        # 'inherit_product/static/src/js/wedgit.js',
         ],
         },
     'license': 'LGPL-3',
