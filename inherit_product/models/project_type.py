@@ -22,6 +22,8 @@ class ProjectProject(models.Model):
     remove_follower= fields.Char("Remove Followers")
     new_follower= fields.Char("New Followers")
     end_date_display = fields.Char(string="Contract End Date", compute="_compute_display")
+    
+
 
     def _compute_display(self):
         
@@ -31,6 +33,13 @@ class ProjectProject(models.Model):
             else:
                 formatted_date = record.date.strftime("%d/%m/%Y")
                 record.end_date_display = formatted_date
+
+
+    def show_task(self):
+        if self.stage_id.name != 'In Progress':
+            raise ValidationError(_("Task creation is only availabe in  'In Progress' stage"))
+        return self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
+
 
             
             
@@ -112,8 +121,10 @@ class ProjectProject(models.Model):
     def write(self, values):
         
         result = super(ProjectProject, self).write(values)
-        res=self.remove_follower
-        res=ast.literal_eval(res)
+        res = self.remove_follower
+        if isinstance(res, bool):
+            res = str(res)
+        res = ast.literal_eval(res)
         self.message_unsubscribe(res)
         if values.get('tag_ids'):
             all=""

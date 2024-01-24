@@ -14,7 +14,8 @@
             
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px;">
-                Dear you have been assigned as a follower to the project <t t-out="object.name"/>                               
+                Dear<br/>
+                    In Odoo database you have been assigned as a follower to the project <t t-out="object.name"/>                               
                 </div>
                 
             </field>

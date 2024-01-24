@@ -55,6 +55,10 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="required">1</attribute>
+           </xpath>
             <xpath expr="//field[@name='tag_ids']" position="after">
                    <field name="department_project_id" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
                 <field name="one_time_job_annual"/>
@@ -68,14 +72,17 @@
             </xpath> -->
             <xpath expr="//field[@name='user_id']" position="after">     
                 <field name="created_date" />
-                                  
-
             </xpath>
               <xpath expr="//field[@name='user_id']" position="after">     
                 <field name="created_date" />
                                   
 
             </xpath>
+
+           <xpath expr="//button[@name='%(project.act_project_project_2_project_task_all)d']" position="attributes">
+                <attribute name="name">show_task</attribute>
+                <attribute name="type">object</attribute>
+           </xpath>
 
                                   
 
@@ -91,9 +98,9 @@
                         <attribute name="invisible">1</attribute>
              </xpath>
 
-            <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+            <!-- <xpath expr="//field[@name='analytic_account_id']" position="attributes">
                         <attribute name="invisible">1</attribute>
-             </xpath>
+             </xpath> -->
              <xpath expr="//field[@name='label_tasks']" position="attributes">
                         <attribute name="invisible">1</attribute>
              </xpath>
@@ -228,7 +235,7 @@
                 <attribute name="string">Contract Start Date</attribute>
             </xpath>
                 <xpath expr="//field[@name='date']" position="before">
-                <field name="end_date_display" decoration-danger="date &lt; time.strftime('%Y-%m-%d')" />
+                <field name="end_date_display" decoration-danger="date &lt; time.strftime('%Y-%m-%d') and end_date_display != 'until completion'"/>
             </xpath>
 
              <xpath expr="//field[@name='date']" position="attributes">
