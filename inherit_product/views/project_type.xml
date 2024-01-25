@@ -70,9 +70,9 @@
             <!-- <xpath expr="//field[@name='user_id']" position="after">
                 <field name="follower_group_ids" widget="many2many_tags"/>
             </xpath> -->
-            <xpath expr="//field[@name='user_id']" position="after">     
+            <!-- <xpath expr="//field[@name='user_id']" position="after">     
                 <field name="created_date" />
-            </xpath>
+            </xpath> -->
               <xpath expr="//field[@name='user_id']" position="after">     
                 <field name="created_date" />
                                   
