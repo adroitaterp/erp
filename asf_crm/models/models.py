@@ -1,6 +1,18 @@
 from odoo import models, fields, api, Command
 from collections import defaultdict
 
+
+
+class MeetingInherited(models.Model):
+    _inherit = 'calendar.event'
+
+    def unlink(self):
+        rec=self.env[self.res_model].browse(self.res_id)
+        rec.message_post(body="Activity is cancelled",subject="Activity")
+       
+        result = super(MeetingInherited, self).unlink()
+        return result
+        
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
     is_done = fields.Boolean(string='Is Done', default=True)
