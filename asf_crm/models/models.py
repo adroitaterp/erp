@@ -8,7 +8,8 @@ class MeetingInherited(models.Model):
 
     def unlink(self):
         rec=self.env[self.res_model].browse(self.res_id)
-        rec.message_post(body="Activity is cancelled",subject="Activity")
+        msg=self.name +" "+"is cancelled"
+        rec.message_post(body=msg,subject="Meeting")
        
         result = super(MeetingInherited, self).unlink()
         return result

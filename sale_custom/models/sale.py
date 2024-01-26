@@ -18,6 +18,7 @@ class SaleOrderInherit(models.Model):
     _inherit = 'sale.order'
     ref = fields.Char(sring="", copy=False, default=" ", readonly="True")
     prefix_pr = fields.Char('PR Prefix', store=True)
+    one_time_job_annual = fields.Selection([('one_time_job', 'One time job contract'), ('annual_contract', 'Annual Contract')], string="One Time Job/Annual",track_visibility='always')
 
     state = fields.Selection([
         # ('to_proposal_review', 'Waiting For Proposal Review'),
