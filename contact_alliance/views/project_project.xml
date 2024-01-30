@@ -28,7 +28,27 @@
                         <field name="position" optional="hide"/>
                         <field name="contact_person_number" optional="hide"/>
                         <field name="contact_email_address" optional="hide"/>
-                        <field name="office_address" optional="hide"/>
+                      
+                       
+
+                    </xpath>
+
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                       
+                        <field name="office_address" optional="hide" string="Customer Office Address"/>
+                        <field name="department_project_id" optional="hide"/>
+                         <field name="project_type_id" optional="hide"/>
+                      
+                        
+                       
+
+                    </xpath>
+
+
+                        <xpath expr="//field[@name='project_type_id']" position="after">
+                       
+                           <field name="sale_order"  optional="hide"/>
+                           <field name="one_time_job_annual" optional="hide"/>
                        
 
                     </xpath>

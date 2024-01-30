@@ -45,6 +45,8 @@ class SaleOrderInherit(models.Model):
     services = fields.Char(string="Services")
 
     percentage = fields.Char(string="Fee for each service")
+
+    
    
     
 
