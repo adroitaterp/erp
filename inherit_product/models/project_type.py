@@ -37,8 +37,11 @@ class ProjectProject(models.Model):
 
     def show_task(self):
         if self.stage_id.name != 'In Progress':
-            raise ValidationError(_("Task creation is only availabe in  'In Progress' stage"))
-        return self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
+            action=self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
+            action['context']={'create':False}
+            return action
+        else:
+            return self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
 
 
             

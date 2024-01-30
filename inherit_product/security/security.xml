@@ -9,7 +9,7 @@
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/> -->
     </record>
 
-<!--    <record id="project_category" model="ir.module.category">-->
+   <!-- <record id="project_category" model="ir.module.category">-->
 <!--        <field name="name">Project</field>-->
 <!--        <field name="description">Project</field>-->
 <!--    </record>-->
@@ -79,7 +79,7 @@
 <!--        <field name="model_id" ref="model_project_task"/>-->
 <!--        <field name="domain_force">[('user_ids', 'in', user.ids)]</field>-->
 <!--        <field name="groups" eval="[(4,ref('inherit_product.user_admin'))]"/>-->
-<!--    </record>-->
+<!--    </record> -->
 
 
 </odoo>
