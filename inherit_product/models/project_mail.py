@@ -16,7 +16,6 @@ from odoo import api, fields, models, _
 #         template.send_mail(res.id,email_values=email_values,force_send=True)
 #         return res
 
-
 class ProjectProjectInherit(models.Model):
     _inherit = 'project.project'
 
