@@ -14,9 +14,6 @@ class MeetingInherited(models.Model):
 
         result = super(MeetingInherited, self).unlink()
         return result
-
-
-
         
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
