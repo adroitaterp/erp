@@ -7,12 +7,16 @@ class MeetingInherited(models.Model):
     _inherit = 'calendar.event'
 
     def unlink(self):
-        rec=self.env[self.res_model].browse(self.res_id)
-        msg=self.name +" "+"is cancelled"
-        rec.message_post(body=msg,subject="Meeting")
-       
+        if self.res_id and self.res_model:
+            rec = self.env[self.res_model].browse(self.res_id)
+            msg = f"{self.name} is cancelled"
+            rec.message_post(body=msg, subject="Meeting")
+
         result = super(MeetingInherited, self).unlink()
         return result
+
+
+
         
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
