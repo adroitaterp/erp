@@ -8,10 +8,10 @@ _logger = logging.getLogger(__name__)
 
 
 class ProjectType(models.Model):
-    _name = 'project.type'
-  
-    
+    _name = 'project.type'  
     name = fields.Char(string="Type Name")
+
+
 class ProjectProject(models.Model):
     _inherit = 'project.project'
     _order = 'create_date desc'
@@ -22,6 +22,18 @@ class ProjectProject(models.Model):
     remove_follower= fields.Char("Remove Followers")
     new_follower= fields.Char("New Followers")
     end_date_display = fields.Char(string="Contract End Date", compute="_compute_display")
+
+
+
+    @api.model
+    def create(self, vals):
+        # Prevent double project creation
+        self = self.with_context(mail_create_nosubscribe=True)
+        project = super(ProjectProject, self).create(vals)
+        _logger.warning("ZZZZZZZZZZZZZZZZZZZZZZZZZZZ ZFFFFFFFFFFFF DDDDDDDDDD SSSSSSSSSSS ")
+        # if project.privacy_visibility == 'portal' and project.partner_id:
+        #     project.message_subscribe(project.partner_id.ids)
+        return project
     
 
 
@@ -36,28 +48,31 @@ class ProjectProject(models.Model):
 
 
     def show_task(self):
-        if self.stage_id.name != 'In Progress':
+        if self.stage_id.name == 'Cancelled':
             action=self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
-            action['context']={'create':False}
+            action['context']={'create':False,'edit':False}
             return action
-        else:
-            return self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
+        # if self.stage_id.name != 'In Progress':
+        #     action=self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
+        #     action['context']={'create':False}
+        #     return action
+        
+        
+        return self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
 
 
-            
-            
-
-
+        
     
 
     @api.depends('message_follower_ids')
     def _compute_follower(self):
         for project in self:
-            follower_ids = project.message_follower_ids.mapped('partner_id')
+            follower_ids = project.message_follower_ids.filtered(lambda follower: follower.partner_id.is_company == False).mapped('partner_id')
             project.follower = [(6, 0, follower_ids.ids)]
 
     @api.onchange('follower')
     def add_followers(self):
+       
         for rec in self:
             rec.message_subscribe(partner_ids=rec.follower.ids)
 
@@ -144,23 +159,21 @@ class ProjectProject(models.Model):
             email_values={'email_to': self.user_id.partner_id.email}
             template.send_mail(self.id,email_values=email_values,force_send=True)
 
-        if values.get('new_follower'):
-            
-            pp=ast.literal_eval(self.new_follower)
-            
-            all=self.env['res.partner'].search([('id','in',pp)])
-            
-            email_to_list=all.mapped('email')
-            email_to_list = ', '.join(email_to_list)
-          
-            email_values={'email_to': email_to_list}
-            template=self.env.ref('inherit_product.project_mail_pp')
-            template.send_mail(self.id,email_values=email_values,force_send=True)
-
-        # _logger.warning("This test relies on demo data. '%s'",self.follower._origin.ids)
-        # _logger.warning("This test relies on demo data. '%s'",values.get('follower'))
-
         
+        if values.get('new_follower'):
+            pp = ast.literal_eval(self.new_follower)
+            all_partners = self.env['res.partner'].search([('id', 'in', pp)])
+            
+            # Filter out boolean values in the email list
+            email_to_list = [partner.email for partner in all_partners if partner.email]
+            
+            email_to_list = ', '.join(email_to_list)
+            
+            email_values = {'email_to': email_to_list}
+            template = self.env.ref('inherit_product.project_mail_pp')
+            template.send_mail(self.id, email_values=email_values, force_send=True)
+        
+                
         return result
 
     @api.onchange('stage_id')

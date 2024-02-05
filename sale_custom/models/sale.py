@@ -238,15 +238,6 @@ class SaleOrderInherit(models.Model):
         self.write({
             'state': 'sale',
         })
-        # objs=[]
-        # for rec in self.sale_description_lines:
-        #     product_id=rec.product_id
-        #     name=rec.name
-        #     obj_dict = {
-        #     'product_id': product_id.id,
-        #     'name': name,
-        #     }
-        #     objs.append(obj_dict)
         for rec,s_work in zip(self.order_line,self.sale_description_lines):   
             name=rec.product_template_id.name
             description=rec.name
@@ -267,8 +258,7 @@ class SaleOrderInherit(models.Model):
                 'date': self.end_date,
                 'until_completion': self.until_completion,
                 'product_ids':product_objs
-                   
-
+                
             })
          
         return
@@ -319,13 +309,21 @@ class SaleOrderInherit(models.Model):
    
     def get_project(self):
         self.ensure_one()
-        return {
+        
+        action= {
             'type': 'ir.actions.act_window',
             'name': 'project.project',
             'view_mode': 'tree,form',
             'res_model': 'project.project',
             'domain': [('sale_order', '=', self.name)],
         }
+        if self.state in ['cancel','contract_expired','contract_expired_and_renewed']:
+            action['context']={'edit':False}
+            all=self.env['project.project'].search([('sale_order','=',self.name)])
+            stage=self.env['project.project.stage'].search([('name','=','Cancelled')])
+            for a in all:
+                a.stage_id=stage.id
+        return action
 
     
 
