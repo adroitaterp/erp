@@ -248,7 +248,7 @@ class SaleOrderInherit(models.Model):
                 'name': s_work.name,
             }
             product_objs.append((0, 0, product_data))   
-            self.env['project.project'].create({        
+            project=self.env['project.project'].create({        
                 'name':name,
                 'sale_order': self.id,
                 'description':description,
@@ -258,10 +258,65 @@ class SaleOrderInherit(models.Model):
                 'date': self.end_date,
                 'until_completion': self.until_completion,
                 'product_ids':product_objs
-                
             })
-         
-        return
+            products=self.order_line.product_id.ids
+            product=self.env['product.product'].search([('name','=','Monthly Bookkeeping')])
+            if products[0]==product.id:
+                child_task_list = []
+                sub_list_name=['Collecting supporting Documents (SALES INV-Purchase INV- All expenses - Bank St pdf & Excel)',
+                    'Salaries sheet with Names - Joining Date - Basic Salary - Allowances -Advances- Deductions if any - Total (If there is      more than 5 Employees)',
+'Reviewing All data & clarify any uncleared Transactions',
+'Booking Purchases',
+'Booking Sales',
+'Booking Expenses (Bank& Cash) & Receivable (Cash & Bank)',
+'Booking prepaid Expenses (Rent _ Insurance) & Accrued Expenses (Salaries - Utilities- Annual Leave- Gratuity- Annual Air tickets)',
+'Bank recon (Balance matching) keep Pdf copy from the bank ledger and Bank St'
+'Depreciation entry',
+'Generate Inventory report (confirm there is no negative Balance) &Keep PDF Copy',
+'Cash Balance Confirmation if their petty cash',
+'Generate Trial Balance for the Month & Keep pdf copy']
+                product_task=self.env['project.task'].create({        
+                'name':product.name,
+                'project_id':project.id
+                })
+                for i in sub_list_name:  # Assuming you want to create 3 tasks
+                    child_task_list.append({
+                        'name': i,
+                        # 'parent_id': product_task.id  # Link the task to the project
+                    })
+                
+                tasks = self.env['project.task'].create(child_task_list)
+                
+                product_task.write({'child_ids': [(4, task.id) for task in tasks]})
+
+            product=self.env['product.product'].search([('name','=','Bookkeeping Review')])
+            if products[0]==product.id:
+                child_task_list = []
+                sub_list_name=['Soft copies for Sales & Purchases & Expenses randomly',
+                               'Bank statement keeping excel copy and pdf copy',
+                               'Generate Bank Ledger PDF Copy',
+                               'Generate sales Ledger PDF Copy',
+                               'Generate Purchase Ledger Copy',
+                               'Inventory Report PDF Copy and its matching with the physical inventory',
+                               'Cash Balance Confirmation',
+                               'Generate Trial Balance PDF',
+                               'Vat ledgers is matching with the portal']
+                product_task=self.env['project.task'].create({        
+                'name':product.name,
+                'project_id':project.id
+                })
+                for i in sub_list_name:  # Assuming you want to create 3 tasks
+                    child_task_list.append({
+                        'name': i,
+                        # 'parent_id': product_task.id  # Link the task to the project
+                    })
+                
+                tasks = self.env['project.task'].create(child_task_list)
+                
+                product_task.write({'child_ids': [(4, task.id) for task in tasks]})
+                
+            
+      
 
     
 
