@@ -14,29 +14,28 @@ class ContactAlliance(models.Model):
     name_of_accountant = fields.Char(string="Name of Accountant")
     accountant_contact_number = fields.Char(string="Accountant Contact Number")
     accountant_email_address = fields.Char(string="Accountant Email Address")
-
-    @api.model
-    def autocomplete(self, query, timeout=15):
+    # @api.model
+    # def autocomplete(self, query, timeout=15):
        
-        all=self.env['res.partner'].search([('name','ilike',query)])
+    #     all=self.env['res.partner'].search([('name','ilike',query)])
        
-        suggestions, _ = self.env['iap.autocomplete.api']._request_partner_autocomplete('search', {
-            'query': query,
-        }, timeout=timeout)
+    #     suggestions, _ = self.env['iap.autocomplete.api']._request_partner_autocomplete('search', {
+    #         'query': query,
+    #     }, timeout=timeout)
         
         
-        if suggestions:
+    #     if suggestions:
            
-            results = []
-            for suggestion in suggestions:
-                results.append(self._format_data_company(suggestion))
+    #         results = []
+    #         for suggestion in suggestions:
+    #             results.append(self._format_data_company(suggestion))
            
-            for a in all:
-                results.append({'name':a.name ,'ignored': False})
+    #         for a in all:
+    #             results.append({'name':a.name ,'ignored': False})
             
-            return results
-        else:
-            return []
+    #         return results
+    #     else:
+    #         return []
 
 
     # @api.constrains('name')
@@ -54,12 +53,12 @@ class ContactAlliance(models.Model):
 
 
 
-    @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
-        """ This method will find Customer names according to its mobile, phone, city, email, and its job position."""
-        if name:
-            args = args if args else []
-            args.extend(['|', ['name', 'ilike', name]])
-            name = ''
-        return super(ContactAlliance, self).name_search(name=name, args=args, operator=operator, limit=limit)
+    # @api.model
+    # def name_search(self, name='', args=None, operator='ilike', limit=100):
+    #     """ This method will find Customer names according to its mobile, phone, city, email, and its job position."""
+    #     if name:
+    #         args = args if args else []
+    #         args.extend(['|', ['name', 'ilike', name]])
+    #         name = ''
+    #     return super(ContactAlliance, self).name_search(name=name, args=args, operator=operator, limit=limit)
 
