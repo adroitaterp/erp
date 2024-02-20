@@ -27,5 +27,11 @@
             <field name="implied_ids" eval="[(4, ref('ks_dashboard_ninja.ks_dashboard_ninja_group_manager'))]"/>
         </record>
 
+
+        <record model="res.groups" id="ks_dashboard_ninja_group_admin">
+            <field name="name">Sale Dashboard Admin</field>
+            <field name="category_id" ref="ks_dashboard_ninja.ks_dashboard_ninja_security_groups"/>
+        </record>
+
     </data>
 </odoo>
