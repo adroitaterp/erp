@@ -192,7 +192,6 @@
 
             </field>
         </record>
-
         <record id="ks_dn_advance.board_tree_inherit" model="ir.ui.view">
             <field name="name">ks_dashboard_item_quick_edit_view</field>
             <field name="model">ks_dashboard_ninja.board</field>
