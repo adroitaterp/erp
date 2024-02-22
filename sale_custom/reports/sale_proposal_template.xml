@@ -152,7 +152,7 @@
                                             Mr.
                                             <span t-field="doc.employee_id.name"/>
                                             <br/>
-                                            CEO and Tax Partner
+                                            Ali
                                         </p>
                                     </div>
                                 </div>
@@ -586,7 +586,7 @@
                                         The Client is in agreement with the entirety of the Proposal and understands
                                         that acceptance of this proposal shall be considered a contract between both
                                         <span t-field="doc.partner_id.name"/>
-                                        and ALLIANCE PRIME ACCOUNT AND TAX
+                                        and ALLIANCE PRIME ACCOUNTING AND TAX
                                         CONSULTANCY.
                                         <br/>
                                     </p>
@@ -622,7 +622,6 @@
                                         </p>
                                         <p>
                                             <img src="/sale_custom/static/description/STAMP.png" alt="Your Logo" style="border-radius: 50%;"/>
-
                                         </p>
                                     </div>
                                     <div class="col-6">
@@ -655,7 +654,6 @@
                                         <p>
                                             Company Stamp:
                                         </p>
-
 
                                     </div>
                                     <br/>
