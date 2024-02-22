@@ -101,10 +101,6 @@
                         <div style="padding-left:50px;padding-right:50px;">
 
                             <p style="page-break-after:always;"/>
-                            <!--                        <strong style="font-size:25px; color: blue;">-->
-                            <!--                            <span t-field="res_company.name"/>-->
-                            <!--                        </strong>-->
-                            <!--                        <br/>-->
                             <br/>
                             <div style="padding-top: 3px; height=100%; page-break-after:always;">
                                 <p style="font-size: 18px;" class="text-justify">
