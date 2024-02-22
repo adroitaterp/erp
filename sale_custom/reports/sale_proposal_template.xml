@@ -149,10 +149,9 @@
                                             Best regards,
                                             <br/>
                                             <br/>
-                                            Mr.
-                                            <span t-field="doc.employee_id.name"/>
+                                            Mr. Ali
                                             <br/>
-                                            Ali
+                                            CEO and Tax Partner
                                         </p>
                                     </div>
                                 </div>
