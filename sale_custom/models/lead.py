@@ -10,10 +10,10 @@ class CRMLeadInh(models.Model):
     @api.model
     def create(self, vals):
         res = super(CRMLeadInh, self).create(vals)
-        partner = self.env['res.partner'].sudo().create({
-            'name': res.name,
-            'type': 'contact',
-        })
+        # partner = self.env['res.partner'].sudo().create({
+        #     'name': res.name,
+        #     'type': 'contact',
+        # })
         res.onchange_user_id_assignee()
         return res
 
