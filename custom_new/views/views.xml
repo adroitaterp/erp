@@ -44,9 +44,9 @@
                 <field name="arch" type="xml">
                     <xpath expr="//field[@name='department_id']" position="after">
                         
-                       <field name="house_allowance" string="SA Housing Allowance"/>
-                            <field name="transportation_allowance"  string="Transportation Allowance"/>
-                            <field name="other_allowance" string="Other Allowance"/>
+                       <field name="house_allowance" string="SA Housing Allowance" type="row"/>
+                            <field name="transportation_allowance"  string="Transportation Allowance" type="row"/>
+                            <field name="other_allowance" string="Other Allowance" type="row"/>
                 </xpath>
                     
                    
