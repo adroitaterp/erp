@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+            <!-- payslip form view -->
+      
+       <record id="hr_payroll_report_custom_new" model="ir.ui.view">
+            <field name="name">hr.payslip</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                  <xpath expr="//field[@name='company_id']" position="after">
+                      <field name="house_allowance" />
+                      <field name="transportation_allowance" />
+                      <field name="other_allowance" />
+
+                </xpath>
+
+            </field>         
+               
+               
+        </record>
+
+<!-- hr payroll tree view -->
+       <record id="hr_payroll_report_view_tree_custom" model="ir.ui.view">
+            <field name="name">hr.payroll.report.view.tree</field>
+            <field name="model">hr.payroll.report</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payroll_report_view_tree"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='company_id']" position="after">
+                      <field name="house_allowance" />
+                      <field name="transportation_allowance" />
+                      <field name="other_allowance" />
+
+                </xpath>
+            </field>
+
+        </record>
+    <!--payroll pivot view definition -->
+  
+      
+        <record id="hr_payroll_report_view_pivot_custom" model="ir.ui.view">
+                <field name="name">hr.payroll.report.view.pivot</field>
+                <field name="model">hr.payroll.report</field>
+                <field name="inherit_id" ref="hr_payroll.payroll_report_view_pivot"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='department_id']" position="after">
+                        
+                       <field name="house_allowance" string="SA Housing Allowance"/>
+                            <field name="transportation_allowance"  string="Transportation Allowance"/>
+                            <field name="other_allowance" string="Other Allowance"/>
+                </xpath>
+                    
+                   
+                </field>
+        </record>
+
+
+    
+  </data>
+</odoo>
