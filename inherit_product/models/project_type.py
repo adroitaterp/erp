@@ -60,10 +60,6 @@ class ProjectProject(models.Model):
         
         return self.env['ir.actions.act_window']._for_xml_id('project.act_project_project_2_project_task_all')
 
-
-        
-    
-
     @api.depends('message_follower_ids')
     def _compute_follower(self):
         for project in self:
