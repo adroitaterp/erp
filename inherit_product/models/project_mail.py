@@ -1,4 +1,6 @@
 from odoo import api, fields, models, _
+import logging
+_logger = logging.getLogger(__name__)
 
 
 # class ProjectProjectInherit(models.Model):
@@ -24,7 +26,13 @@ class ProjectProjectInherit(models.Model):
         res = super(ProjectProjectInherit, self).create(vals)
         template = self.env.ref('inherit_product.project_mail_pp')
         followers = res.message_follower_ids.filtered(lambda follower: follower.partner_id.email)
+        
+        p=self.env['res.partner'].browse(vals['partner_id'])
+       
         email_to_list = followers.mapped('partner_id.email')
+        
+        if p.email in email_to_list:
+            email_to_list.remove(p.email)
         
         # Filter out any boolean values (e.g., False) from the list
         email_to_list = [email for email in email_to_list if isinstance(email, str)]

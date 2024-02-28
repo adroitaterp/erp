@@ -30,7 +30,7 @@ class ProjectProject(models.Model):
         # Prevent double project creation
         self = self.with_context(mail_create_nosubscribe=True)
         project = super(ProjectProject, self).create(vals)
-        _logger.warning("ZZZZZZZZZZZZZZZZZZZZZZZZZZZ ZFFFFFFFFFFFF DDDDDDDDDD SSSSSSSSSSS ")
+        
         # if project.privacy_visibility == 'portal' and project.partner_id:
         #     project.message_subscribe(project.partner_id.ids)
         return project
