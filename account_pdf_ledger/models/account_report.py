@@ -217,7 +217,6 @@ class AccountReport(models.AbstractModel):
                 new_td.append(sp)
             tds[3].insert_after(new_td)
 
-
         # Get the modified HTML
         body = soup.prettify()
 
