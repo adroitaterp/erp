@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+
+      <!-- Sale Order form view -->
+         <record id="sale_order_inherit_view_form" model="ir.ui.view">
+                <field name="name">sale.order.inherit.form.view</field>
+                <field name="model">sale.order</field>
+                <field name="inherit_id" ref="sale.view_order_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="contact_person_name" invisible="True"/>
+                        <field name="position" invisible="True"/>
+                        <field name="contact_person_number" invisible="True"/>
+                        <field name="contact_email_address" invisible="True"/>
+                        <field name="office_address" invisible="True"/>
+                    </xpath>
+        
+                </field>
+         </record>
+       <!-- sale.order tree view -->
+         <record id="sale_order_inherit_view_tree" model="ir.ui.view">
+                <field name="name">sale.order.inherit.tree.view</field>
+                <field name="model">sale.order</field>
+                <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="contact_person_name" optional="hide"/>
+                        <field name="position" optional="hide"/>
+                        <field name="contact_person_number" optional="hide"/>
+                        <field name="contact_email_address" optional="hide"/>
+                        <field name="office_address" optional="hide"/>
+                       
+
+                    </xpath>
+        
+                </field>
+         </record>
+
+    </data>
+</odoo>

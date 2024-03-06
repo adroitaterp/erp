@@ -222,11 +222,13 @@
                 
                  <xpath expr="//field[@name='amount_total']" position="after">
                      <field name="start_date"/>
-                     <field name="end_date"/>
+                     <field name="end_date" invisible="True"/>
                      <field name="days_int" invisible="True"/>
                          <field name="days" 
                               decoration-danger="days_int &lt; 30" optional="hide"/>
-         
+
+                                        <field name="end_date_display" decoration-danger="end_date &lt; time.strftime('%Y-%m-%d') and end_date_display != 'until completion' " optional="hide"/>
+
                      
                  </xpath>
 

@@ -104,6 +104,18 @@ class SaleOrderInherit(models.Model):
     #         self.days=str(days)+" days"
 
     contract_expired = fields.Boolean(string='Contract Expired', compute='_compute_contract_expired',store=True)
+    end_date_display = fields.Char(string="End Date", compute="_compute_display")
+
+
+    def _compute_display(self):
+        
+        for record in self:
+            if not record.end_date:
+                record.end_date_display = 'until completion'
+            else:
+                formatted_date = record.end_date.strftime("%d/%m/%Y")
+                record.end_date_display = formatted_date
+
     
     def _compute_function_name(self):
         all=self.env['sale.order'].search([])
