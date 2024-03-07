@@ -19,12 +19,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'crm'],
+    'depends': ['base', 'crm','sale_crm'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        'security/security_groups.xml',
         'views/views.xml',
+        'views/crm_views.xml',
     ],
     'installable': True,
     'auto_install': False,

@@ -52,5 +52,18 @@
         <record id="calendar.action_calendar_event" model="ir.actions.act_window">
             <field name="context">{'create':False}</field>
         </record>
+
+        <record id="calendar_event_calender_inherited" model="ir.ui.view">
+                <field name="name">calendar event  view Inherited</field>
+                <field name="model">calendar.event</field>
+                <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='partner_ids']" position="after">
+                        <field name="location_id"/>
+                    </xpath>
+    
+       
+                </field>
+          </record>
     </data>
 </odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+
+
+        <record id="view_crm_activity_form_edit_inh" model="ir.ui.view">
+            <field name="name">crm.lead.form.inh</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_sale_quotations_new']"  position="attributes">
+                        <attribute name="groups">asf_crm.group_crm_create_documentsss</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

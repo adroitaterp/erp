@@ -2,7 +2,6 @@ from odoo import models, fields, api, Command
 from collections import defaultdict
 
 
-
 class MeetingInherited(models.Model):
     _inherit = 'calendar.event'
 
