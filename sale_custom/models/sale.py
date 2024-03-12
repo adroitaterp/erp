@@ -11,7 +11,6 @@ from datetime import datetime
 import logging
 _logger = logging.getLogger(__name__)
 
-
 class SaleOrderInherit(models.Model):
     _inherit = 'sale.order'
     ref = fields.Char(sring="", copy=False, default=" ", readonly="True")
@@ -44,9 +43,6 @@ class SaleOrderInherit(models.Model):
 
     percentage = fields.Char(string="Fee for each service")
 
-    
-   
-    
 
 
 
