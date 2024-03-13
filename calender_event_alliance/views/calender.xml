@@ -28,7 +28,6 @@
                                 <field name="is_done" invisible="True"/>
                        
                     </xpath>
-                
                 </field>
           </record>
  
