@@ -49,9 +49,9 @@
                 </field>
           </record>
 
-        <!-- <record id="calendar.action_calendar_event" model="ir.actions.act_window">
-            <field name="context">{'create':False}</field>
-        </record> -->
+        <record id="calendar.action_calendar_event" model="ir.actions.act_window">
+            <field name="context">{'create':True}</field>
+        </record>
 
         <record id="calendar_event_calender_inherited" model="ir.ui.view">
                 <field name="name">calendar event  view Inherited</field>
